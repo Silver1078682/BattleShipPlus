@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://da08dburhb63a"]
+
+[ext_resource type="Script" uid="uid://q8f14vfkxn5k" path="res://demo/1/comp.gd" id="1_pbue3"]
+
+[node name="AdvancedComponent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pbue3")
+metadata/_custom_type_script = "uid://q8f14vfkxn5k"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 63.0
+offset_top = 312.0
+offset_right = 128.0
+offset_bottom = 335.0
+size_flags_horizontal = 6
+text = "test text"
+
+[node name="SubControl" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 308.0
+offset_right = 1152.0
+offset_bottom = 339.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 5.0
+
+[connection signal="text_submitted" from="SubControl" to="." method="update"]

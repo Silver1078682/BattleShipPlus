@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SettingWindowMode" load_steps=2 format=3 uid="uid://3u2nm4gd0atv"]
+
+[ext_resource type="Script" uid="uid://c3uxcl22kg84l" path="res://src/objects/settings/setting_window_mode.gd" id="1_pancf"]
+
+[resource]
+script = ExtResource("1_pancf")
+default = false
+name = "full_screen"
+section = "Display"
+metadata/_custom_type_script = "uid://c3uxcl22kg84l"

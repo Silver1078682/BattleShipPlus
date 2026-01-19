@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackConfigArtillery" load_steps=3 format=3 uid="uid://8lyq4dfoq6tp"]
+
+[ext_resource type="PackedScene" uid="uid://bf3jb6othj56w" path="res://asset/resources/attacks/anims/Artillery.tscn" id="1_6ft1a"]
+[ext_resource type="Script" uid="uid://ddp33t2uoo23t" path="res://src/objects/attack/configs/attack_config_artillery.gd" id="2_6ft1a"]
+
+[resource]
+resource_name = "ArtilleryAttack"
+script = ExtResource("2_6ft1a")
+name = "ArtilleryAttack"
+anim_scene = ExtResource("1_6ft1a")
+use_dice = true
+metadata/_custom_type_script = "uid://cp6jouck8vku0"

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WarshipConfig" load_steps=5 format=3 uid="uid://cquh58uilekmu"]
+
+[ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_pwv11"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_v0ash"]
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_vfq1d"]
+[ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_x4ugh"]
+
+[resource]
+resource_name = "HeavyCruiser"
+script = ExtResource("1_v0ash")
+name = "HeavyCruiser"
+abbreviation = "CA"
+health = 6
+motility = 3
+aerial_defense = 3
+artillery_distance = 3
+artillery_level = 2
+cost = 2
+action_movement = Array[ExtResource("1_vfq1d")]([ExtResource("1_pwv11")])
+action_artillery_attack = Array[ExtResource("1_vfq1d")]([ExtResource("2_x4ugh")])
+metadata/_custom_type_script = "uid://pixh8p210jgk"

@@ -1,0 +1,134 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2coe6xmp6mrk"]
+
+[ext_resource type="Script" uid="uid://b473ljmrnkahy" path="res://src/ui/ui.gd" id="1_s5y5c"]
+[ext_resource type="Script" uid="uid://x5bs1siw50ch" path="res://src/ui/menus/game_menu/phase_label.gd" id="2_uw2jg"]
+[ext_resource type="Script" uid="uid://bbvbrkypfdbte" path="res://src/ui/cards/card_container.gd" id="3_cdn7g"]
+[ext_resource type="Script" uid="uid://c3yniljehnri8" path="res://src/ui/menus/game_menu/sunk.gd" id="3_uw2jg"]
+[ext_resource type="Script" uid="uid://bbi4cwupya5nf" path="res://src/ui/menus/game_menu/tech_point.gd" id="4_q6if4"]
+[ext_resource type="Script" uid="uid://dtu0ibko00sxm" path="res://src/ui/cards/card_manager.gd" id="5_6ricq"]
+[ext_resource type="Script" uid="uid://cw53m6fnndhyl" path="res://src/ui/menus/game_menu/next_phase_button.gd" id="6_nme5g"]
+[ext_resource type="Script" uid="uid://cs2xuu7x813vf" path="res://src/services/anim.gd" id="7_m4oro"]
+[ext_resource type="PackedScene" uid="uid://ci1emonde57ra" path="res://src/ui/menus/ending_screen/ending_screen.tscn" id="9_7qugi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_67gkr"]
+font_size = 32
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_s5y5c")
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Phase" type="Label" parent="Main"]
+layout_mode = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_67gkr")
+script = ExtResource("2_uw2jg")
+
+[node name="Sunk" type="HBoxContainer" parent="Main"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player" type="VBoxContainer" parent="Main/Sunk"]
+layout_mode = 2
+size_flags_horizontal = 2
+alignment = 1
+script = ExtResource("3_uw2jg")
+
+[node name="Opponent" type="VBoxContainer" parent="Main/Sunk"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 1
+script = ExtResource("3_uw2jg")
+
+[node name="Bottom" type="HBoxContainer" parent="Main"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CardDeck" type="VBoxContainer" parent="Main/Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Cards" type="HBoxContainer" parent="Main/Bottom/CardDeck"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_behavior_recursive = 2
+script = ExtResource("3_cdn7g")
+
+[node name="TechPoint" type="HBoxContainer" parent="Main/Bottom/CardDeck"]
+layout_mode = 2
+script = ExtResource("4_q6if4")
+
+[node name="ProgressBar" type="ProgressBar" parent="Main/Bottom/CardDeck/TechPoint"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+show_percentage = false
+
+[node name="Label" type="Label" parent="Main/Bottom/CardDeck/TechPoint"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CardManager" type="Node" parent="Main/Bottom/CardDeck" node_paths=PackedStringArray("container", "tech_point")]
+unique_name_in_owner = true
+script = ExtResource("5_6ricq")
+container = NodePath("../Cards")
+tech_point = NodePath("../TechPoint")
+metadata/_custom_type_script = "uid://dtu0ibko00sxm"
+
+[node name="NextPhase" type="Button" parent="Main/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_behavior_recursive = 2
+text = "NEXT_PHASE"
+script = ExtResource("6_nme5g")
+
+[node name="Count" type="Label" parent="Main/Bottom/NextPhase"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+
+[node name="Warning" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_m4oro")
+
+[node name="Label" type="Label" parent="Warning"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+
+[node name="EndingScreen" parent="." instance=ExtResource("9_7qugi")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Main/Bottom/NextPhase" to="Main/Bottom/NextPhase" method="_on_pressed"]

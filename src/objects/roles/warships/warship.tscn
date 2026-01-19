@@ -1,0 +1,405 @@
+[gd_scene load_steps=34 format=3 uid="uid://0104oo2lacg"]
+
+[ext_resource type="Script" uid="uid://buc7r34h0b5an" path="res://src/objects/roles/warships/warship.gd" id="1_mvf5n"]
+[ext_resource type="Script" uid="uid://lxvriaxxdxxs" path="res://src/connectors/property_setter.gd" id="3_gvf1y"]
+[ext_resource type="Texture2D" uid="uid://c8btkw1o0ybis" path="res://asset/texture/tiles/Expose.png" id="3_oecgq"]
+[ext_resource type="Texture2D" uid="uid://dh4opsme32878" path="res://asset/texture/tiles/Frame.png" id="4_337of"]
+[ext_resource type="Script" uid="uid://hwfxa1d102m2" path="res://src/ui/action_button/action_button.gd" id="5_so84a"]
+[ext_resource type="Script" uid="uid://6j5odux1i2to" path="res://src/objects/roles/warships/health_bar.gd" id="7_ub8ni"]
+[ext_resource type="Texture2D" uid="uid://oxj6fo5wp0k8" path="res://asset/texture/vfx/Explosion/explode_areal.png" id="8_mlhr0"]
+[ext_resource type="Script" uid="uid://bg6rdo56d2187" path="res://src/objects/roles/warships/torpedo_bar.gd" id="9_1roi5"]
+[ext_resource type="Texture2D" uid="uid://4omd82fdsstn" path="res://asset/texture/vfx/Explosion/fire_smog2_0000.png" id="9_gsbtu"]
+[ext_resource type="Texture2D" uid="uid://dkv4yfp53riye" path="res://asset/texture/vfx/Explosion/sound_wave_0001.png" id="9_s1brq"]
+[ext_resource type="Texture2D" uid="uid://pyolt6higud4" path="res://asset/texture/vfx/Explosion/fire_smog2_0001.png" id="10_m60qk"]
+[ext_resource type="Texture2D" uid="uid://bsg1fs11noye4" path="res://asset/texture/vfx/Explosion/fire_smog2_0002.png" id="11_vi3at"]
+[ext_resource type="Texture2D" uid="uid://daeox1rnr8yjj" path="res://asset/texture/vfx/Explosion/fire_smog2_0003.png" id="12_qcw0f"]
+[ext_resource type="Texture2D" uid="uid://btjjp3adhpnwi" path="res://asset/texture/vfx/Explosion/fire_smog2_0004.png" id="13_0o53y"]
+[ext_resource type="Texture2D" uid="uid://cacgbf6do6px1" path="res://asset/texture/vfx/Explosion/fire_smog2_0005.png" id="14_qai2a"]
+[ext_resource type="Texture2D" uid="uid://dhwpsuv7rld0q" path="res://asset/texture/vfx/Explosion/fire_smog2_0006.png" id="15_s1brq"]
+[ext_resource type="Texture2D" uid="uid://bwh2lw8rm4pct" path="res://asset/texture/vfx/Explosion/smoke_wave_fire_0001.png" id="17_roick"]
+[ext_resource type="Texture2D" uid="uid://cs4i2qlk3wxqg" path="res://asset/texture/vfx/Explosion/smoke_wave_fire_0002.png" id="18_07bxa"]
+[ext_resource type="Texture2D" uid="uid://bjejl3cbtxuev" path="res://asset/texture/vfx/Explosion/smoke_wave_fire_0003.png" id="19_2s4pj"]
+[ext_resource type="Texture2D" uid="uid://btrjdica35oa3" path="res://asset/texture/vfx/Explosion/smoke_wave_fire_0004.png" id="20_a5gh7"]
+[ext_resource type="Texture2D" uid="uid://ct513hf3h3o76" path="res://asset/texture/vfx/Explosion/smoke_wave_fire_0005.png" id="21_ybdxq"]
+[ext_resource type="Texture2D" uid="uid://dtlglgt54cqy8" path="res://asset/texture/vfx/Explosion/smog_light.png" id="22_s1brq"]
+[ext_resource type="Texture2D" uid="uid://se5l0kuyeae0" path="res://asset/texture/vfx/Explosion/sound_wave_0002.png" id="22_y1wj2"]
+[ext_resource type="Texture2D" uid="uid://kf75acnm844k" path="res://asset/texture/roles/mines/torpedo.png" id="24_roick"]
+
+[sub_resource type="SystemFont" id="SystemFont_roick"]
+font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_mvf5n"]
+font = SubResource("SystemFont_roick")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 16
+outline_color = Color(0.18714097, 0.71999925, 0.662774, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4mne"]
+bg_color = Color(0.6, 0.6, 0.6, 0.40392157)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+border_blend = true
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub8ni"]
+bg_color = Color(1, 0.09411765, 0.003921569, 0.49019608)
+
+[sub_resource type="Gradient" id="Gradient_roick"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_s1brq"]
+resource_name = "Damage"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node2D/Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Node2D/Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.049999997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bn7yu"]
+resource_name = "Explode"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node2D/Explosion:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.59842587, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_gsbtu"), ExtResource("10_m60qk"), ExtResource("11_vi3at"), ExtResource("12_qcw0f"), ExtResource("13_0o53y"), ExtResource("14_qai2a"), ExtResource("15_s1brq"), null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Node2D/Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Node2D/Smoke:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0017890334, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_roick"), ExtResource("18_07bxa"), ExtResource("19_2s4pj"), ExtResource("20_a5gh7"), ExtResource("21_ybdxq"), null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node2D/Smoke:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -50)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Node2D/SoundWave:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_s1brq"), ExtResource("22_y1wj2"), null]
+}
+
+[sub_resource type="Animation" id="Animation_cn74r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Node2D/Explosion:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Node2D/Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Node2D/Smoke:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Node2D/Smoke:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Node2D/SoundWave:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Node2D/Flash:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.181208, 1.1999998)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sdeok"]
+_data = {
+&"Damage": SubResource("Animation_s1brq"),
+&"Explosion": SubResource("Animation_bn7yu"),
+&"RESET": SubResource("Animation_cn74r")
+}
+
+[node name="Warship" type="Node2D"]
+script = ExtResource("1_mvf5n")
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -72.0
+offset_right = 140.0
+offset_bottom = 17.333336
+grow_horizontal = 2
+grow_vertical = 2
+text = "<null>"
+label_settings = SubResource("LabelSettings_mvf5n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PropertySetter" type="Node" parent="Label" node_paths=PackedStringArray("from")]
+script = ExtResource("3_gvf1y")
+from = NodePath("../..")
+property_from = "config:abbreviation"
+property = "text"
+metadata/_custom_type_script = "uid://lxvriaxxdxxs"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(0.08, 0.08)
+
+[node name="PropertySetter" type="Node" parent="Sprite" node_paths=PackedStringArray("from", "proxy_expression_base_instance")]
+script = ExtResource("3_gvf1y")
+from = NodePath("../..")
+property_from = "config:name"
+property = "texture"
+proxy_expression_base_instance = NodePath("../..")
+proxy_expression = "get_texture(x)"
+metadata/_custom_type_script = "uid://lxvriaxxdxxs"
+
+[node name="Expose" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.7254902, 0.57254905, 0.4862745, 1)
+z_index = 2
+texture = ExtResource("3_oecgq")
+
+[node name="PropertySetter" type="Node" parent="Expose" node_paths=PackedStringArray("from")]
+script = ExtResource("3_gvf1y")
+from = NodePath("../..")
+property_from = "is_exposed"
+property = "visible"
+metadata/_custom_type_script = "uid://lxvriaxxdxxs"
+
+[node name="Enemy" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 0.13333334, 0, 1)
+texture = ExtResource("4_337of")
+
+[node name="Icon" type="Sprite2D" parent="Enemy"]
+
+[node name="PropertySetter" type="Node" parent="Enemy" node_paths=PackedStringArray("from")]
+script = ExtResource("3_gvf1y")
+from = NodePath("../..")
+property_from = "as_enemy"
+property = "visible"
+metadata/_custom_type_script = "uid://lxvriaxxdxxs"
+
+[node name="ActionButton" type="TextureButton" parent="."]
+unique_name_in_owner = true
+visible = false
+modulate = Color(0, 1, 0.654902, 1)
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+pivot_offset = Vector2(64, 64)
+texture_normal = ExtResource("4_337of")
+script = ExtResource("5_so84a")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 3
+offset_left = -64.0
+offset_top = 8.0
+offset_right = 64.0
+offset_bottom = 24.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_q4mne")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ub8ni")
+value = 50.0
+show_percentage = false
+script = ExtResource("7_ub8ni")
+
+[node name="Particles" type="CPUParticles2D" parent="HealthBar"]
+visible = false
+position = Vector2(112, -8)
+texture = ExtResource("22_s1brq")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(1, -1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+scale_amount_min = 0.6
+scale_amount_max = 0.9
+split_scale = true
+scale_curve_x = null
+scale_curve_y = null
+color = Color(0.23735574, 0.09591939, 0.072630875, 1)
+color_ramp = SubResource("Gradient_roick")
+
+[node name="TorpedoBar" type="VBoxContainer" parent="."]
+z_index = 3
+offset_left = -72.0
+offset_top = -48.0
+offset_right = -16.0
+offset_bottom = -8.0
+mouse_filter = 2
+script = ExtResource("9_1roi5")
+
+[node name="1" type="TextureRect" parent="TorpedoBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("24_roick")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="2" type="TextureRect" parent="TorpedoBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("24_roick")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="3" type="TextureRect" parent="TorpedoBar"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("24_roick")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+root_node = NodePath("../HealthBar")
+libraries = {
+&"": SubResource("AnimationLibrary_sdeok")
+}
+speed_scale = 0.5
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Smoke" type="Sprite2D" parent="Node2D"]
+
+[node name="Explosion" type="Sprite2D" parent="Node2D"]
+scale = Vector2(1.0666667, 1.1034483)
+
+[node name="Flash" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(1.181208, 1.1999998)
+texture = ExtResource("8_mlhr0")
+
+[node name="SoundWave" type="Sprite2D" parent="Node2D"]
+
+[connection signal="exposed" from="." to="Expose/PropertySetter" method="sync" flags=3]
+[connection signal="health_changed" from="." to="HealthBar" method="set_health"]
+[connection signal="torpedo_changed" from="." to="TorpedoBar" method="set_torpedo"]
+[connection signal="ready" from="Label/PropertySetter" to="Label/PropertySetter" method="sync"]
+[connection signal="ready" from="Sprite/PropertySetter" to="Sprite/PropertySetter" method="sync"]
+[connection signal="ready" from="Enemy/PropertySetter" to="Enemy/PropertySetter" method="sync"]

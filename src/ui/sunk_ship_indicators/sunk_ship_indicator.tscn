@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://qnfmogaswtht"]
+
+[ext_resource type="Script" uid="uid://dvg0vn5qr28rx" path="res://src/ui/sunk_ship_indicators/sunk_ship_indicator.gd" id="1_svdem"]
+[ext_resource type="Texture2D" uid="uid://d57i7lq5coo" path="res://asset/texture/roles/warships/Carrier/CV2.png" id="2_k5tup"]
+[ext_resource type="Texture2D" uid="uid://bfeqbvs48adys" path="res://asset/texture/vfx/Explosion/particle.png" id="3_xlrlw"]
+[ext_resource type="Script" uid="uid://lxvriaxxdxxs" path="res://src/connectors/property_setter.gd" id="4_bam4b"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3te0d"]
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 1, 1, 1)
+
+[node name="SunkShipIndicator" type="Control"]
+custom_minimum_size = Vector2(120, 20)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("1_svdem")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+texture = ExtResource("2_k5tup")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SunkIcon" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("3_xlrlw")
+
+[node name="Type" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "CV"
+label_settings = SubResource("LabelSettings_3te0d")
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "<null>"
+
+[node name="PropertySetter" type="Node" parent="HBoxContainer/Label" node_paths=PackedStringArray("from")]
+script = ExtResource("4_bam4b")
+from = NodePath("../../..")
+property_from = "count"
+property = "text"
+metadata/_custom_type_script = "uid://lxvriaxxdxxs"
+
+[connection signal="count_changed" from="." to="HBoxContainer/Label/PropertySetter" method="sync"]
+[connection signal="ready" from="HBoxContainer/Label/PropertySetter" to="HBoxContainer/Label/PropertySetter" method="sync"]

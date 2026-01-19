@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp0e16sqre7ri"]
+
+[ext_resource type="Script" uid="uid://dqgxtfhpb84ur" path="res://src/ui/menus/pause_menu/help_container.gd" id="1_kkouh"]
+[ext_resource type="Script" uid="uid://dqjigildw2ux" path="res://src/ui/menus/pause_menu/pause_menu.gd" id="1_m86he"]
+[ext_resource type="Script" uid="uid://cen4c6fwatosx" path="res://src/ui/menus/pause_menu/info_label.gd" id="2_67g4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lp5o"]
+bg_color = Color(0, 0, 0, 0.5411765)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.5411765)
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_behavior_recursive = 1
+script = ExtResource("1_m86he")
+
+[node name="MarginContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5lp5o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ShortcutHelp" type="HBoxContainer" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_kkouh")
+
+[node name="Shortcut" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/ShortcutHelp"]
+layout_mode = 2
+
+[node name="Input" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer/ShortcutHelp"]
+layout_mode = 2
+vertical_alignment = 1
+structured_text_bidi_override = 4
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("2_67g4k")
+
+[connection signal="visibility_changed" from="MarginContainer/PanelContainer/VBoxContainer/InfoLabel" to="MarginContainer/PanelContainer/VBoxContainer/InfoLabel" method="_on_visibility_changed"]

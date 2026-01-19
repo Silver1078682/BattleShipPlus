@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WarshipConfig" load_steps=5 format=3 uid="uid://by15h247taedx"]
+
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_7lfpq"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_gdtpk"]
+[ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_iruwl"]
+[ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_qysup"]
+
+[resource]
+resource_name = "Battleship"
+script = ExtResource("1_gdtpk")
+name = "Battleship"
+abbreviation = "BB"
+health = 10
+motility = 2
+aerial_defense = 1
+artillery_distance = 4
+artillery_level = 3
+cost = 3
+arrange_limit = 4
+action_movement = Array[ExtResource("1_7lfpq")]([ExtResource("1_iruwl")])
+action_artillery_attack = Array[ExtResource("1_7lfpq")]([ExtResource("2_qysup")])
+metadata/_custom_type_script = "uid://pixh8p210jgk"

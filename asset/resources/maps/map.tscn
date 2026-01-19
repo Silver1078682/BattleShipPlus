@@ -1,0 +1,155 @@
+[gd_scene load_steps=20 format=3 uid="uid://snlrdafj0w67"]
+
+[ext_resource type="Script" uid="uid://c0x3da8wjjcb7" path="res://src/objects/map/map.gd" id="1_jdj64"]
+[ext_resource type="Script" uid="uid://dwkkb2i15jtpf" path="res://src/objects/map/areas/area_rect.gd" id="2_5qyn7"]
+[ext_resource type="Texture2D" uid="uid://hiow7h0nfv6j" path="res://asset/texture/tiles/Tile.png" id="3_xxvwk"]
+[ext_resource type="Script" uid="uid://5nbyfjom720l" path="res://src/objects/map/sea.gd" id="4_lejf8"]
+[ext_resource type="Script" uid="uid://6vos1ygwwned" path="res://src/objects/map/scope/scope.gd" id="5_3a5kb"]
+[ext_resource type="Texture2D" uid="uid://cb0vly14n3y6t" path="res://asset/texture/tiles/Attack.png" id="6_hult2"]
+[ext_resource type="Script" uid="uid://v8llqd7yqwjd" path="res://src/objects/map/base/base_manager.gd" id="7_gcxw7"]
+[ext_resource type="Texture2D" uid="uid://drf27w153od30" path="res://asset/texture/tiles/Base.png" id="8_gcxw7"]
+[ext_resource type="Script" uid="uid://w6k14ppdabns" path="res://src/objects/map/base/base.gd" id="8_lq10h"]
+[ext_resource type="Script" uid="uid://20x5ygogq6bb" path="res://src/objects/map/base/spawn_point.gd" id="9_372so"]
+
+[sub_resource type="Resource" id="Resource_rvj0u"]
+script = ExtResource("2_5qyn7")
+size = Vector2i(30, 15)
+shrink_edge = true
+metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aq505"]
+texture = ExtResource("3_xxvwk")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_v7a3w"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_aq505")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj0u"]
+texture = ExtResource("6_hult2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c5imv"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_rvj0u")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5imv"]
+texture = ExtResource("6_hult2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_jq7f5"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_c5imv")
+
+[sub_resource type="Resource" id="Resource_6ists"]
+script = ExtResource("2_5qyn7")
+size = Vector2i(10, 10)
+metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
+
+[sub_resource type="Resource" id="Resource_2rv34"]
+script = ExtResource("2_5qyn7")
+size = Vector2i(-10, -10)
+metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
+
+[node name="Map" type="Node2D"]
+z_index = -2
+script = ExtResource("1_jdj64")
+map_area = SubResource("Resource_rvj0u")
+_map_center = Vector2i(15, 7)
+
+[node name="Sea" type="TileMapLayer" parent="."]
+self_modulate = Color(0.4974739, 0.49747366, 0.49747354, 1)
+tile_set = SubResource("TileSet_v7a3w")
+script = ExtResource("4_lejf8")
+
+[node name="Area" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_v7a3w")
+script = ExtResource("5_3a5kb")
+metadata/_custom_type_script = "uid://6vos1ygwwned"
+
+[node name="AerialDefenseScope" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 0.5294118, 0.5176471)
+tile_set = SubResource("TileSet_c5imv")
+script = ExtResource("5_3a5kb")
+metadata/_custom_type_script = "uid://6vos1ygwwned"
+
+[node name="AttackScope" type="TileMapLayer" parent="."]
+modulate = Color(0.91764706, 0.62352943, 0.35686275, 0.49019608)
+tile_set = SubResource("TileSet_jq7f5")
+script = ExtResource("5_3a5kb")
+metadata/_custom_type_script = "uid://6vos1ygwwned"
+
+[node name="Base" type="Node2D" parent="."]
+script = ExtResource("7_gcxw7")
+home_color = Color(1, 1, 1, 1)
+enemy_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
+
+[node name="BaseA" type="Node2D" parent="Base"]
+modulate = Color(0.30588236, 1, 1, 1)
+position = Vector2(3.693087e-06, 4.591085e-06)
+script = ExtResource("8_lq10h")
+area = SubResource("Resource_6ists")
+metadata/_custom_type_script = "uid://w6k14ppdabns"
+
+[node name="MineLayer" type="Node2D" parent="Base/BaseA"]
+script = ExtResource("9_372so")
+warship_type = &"MineLayer"
+coord = Vector2i(1, 0)
+spawn_amount_max = 1
+metadata/_custom_type_script = "uid://20x5ygogq6bb"
+
+[node name="CargoShip" type="Node2D" parent="Base/BaseA"]
+position = Vector2(-3776, -1408)
+script = ExtResource("9_372so")
+warship_type = &"CargoShip"
+coord = Vector2i(0, 1)
+spawn_amount_max = 1
+metadata/_custom_type_script = "uid://20x5ygogq6bb"
+
+[node name="Sprite" type="Sprite2D" parent="Base/BaseA"]
+texture = ExtResource("6_hult2")
+
+[node name="Icon" type="Sprite2D" parent="Base/BaseA/Sprite"]
+use_parent_material = true
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_gcxw7")
+
+[node name="BaseB" type="Node2D" parent="Base"]
+modulate = Color(0.9163771, 0.96828943, 0.52281433, 1)
+position = Vector2(-1.9073486e-06, -9.536743e-07)
+script = ExtResource("8_lq10h")
+coord = Vector2i(22, 14)
+area = SubResource("Resource_2rv34")
+metadata/_custom_type_script = "uid://w6k14ppdabns"
+
+[node name="MineLayer" type="Node2D" parent="Base/BaseB"]
+position = Vector2(-3776, -1408)
+script = ExtResource("9_372so")
+warship_type = &"MineLayer"
+coord = Vector2i(-1, 0)
+spawn_amount_max = 1
+metadata/_custom_type_script = "uid://20x5ygogq6bb"
+
+[node name="CargoShip" type="Node2D" parent="Base/BaseB"]
+position = Vector2(-3776, -1408)
+script = ExtResource("9_372so")
+warship_type = &"CargoShip"
+coord = Vector2i(0, -1)
+spawn_amount_max = 1
+metadata/_custom_type_script = "uid://20x5ygogq6bb"
+
+[node name="Sprite" type="Sprite2D" parent="Base/BaseB"]
+texture = ExtResource("6_hult2")
+
+[node name="Icon" type="Sprite2D" parent="Base/BaseB/Sprite"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_gcxw7")

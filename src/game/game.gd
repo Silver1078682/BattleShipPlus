@@ -1,0 +1,193 @@
+class_name Game
+extends Node2D
+## Main game logic
+##
+## Access to nodes[br]
+## Setting up scenes[br]
+
+#-----------------------------------------------------------------#
+## Node pointers
+## [Camera] singleton
+@onready var camera: Camera = $Camera2D
+## [Cursor] singleton
+@onready var cursor: Cursor = $Cursor
+## [Map] singleton
+@onready var map: Map
+@export var map_scene: PackedScene
+## [UI] singleton
+@onready var ui: UI = %UI
+## [Player] singleton
+@onready var player: Player = $Player
+## [Opponent] singleton
+@onready var opponent: Opponent = $Opponent
+
+#-----------------------------------------------------------------#
+signal setup
+
+
+# Load the scene synchronously
+func _ready() -> void:
+	Log.info("Game instance ready")
+
+	map = map_scene.instantiate()
+	add_child(map)
+	await NodeUtil.ensure_ready(map)
+
+	player.setup()
+	opponent.setup()
+	await NodeUtil.ensure_ready(player)
+	await NodeUtil.ensure_ready(opponent)
+
+	ui.setup()
+	camera.move_to_position(map.get_map_center(), false)
+
+	if Network.is_server():
+		Phase.manager.set_initial_phase()
+	_initialize_readiness_confirmation()
+	_initialize_failure_count()
+
+	## TODO tech_point.max_value for each phase
+	Card.manager.tech_point.max_value = ActionArrange.INITIAL_ARRANGE_MAX_COST
+	setup.emit()
+
+#-----------------------------------------------------------------#
+var readiness_confirmation := Vote.new("ReadinessConfirmation")
+
+
+func _initialize_readiness_confirmation():
+	readiness_confirmation.voted.connect(_on_ready_voted)
+	readiness_confirmation.vote_over.connect(_on_ready_vote_over)
+
+
+func _on_ready_voted(_id: int) -> void:
+	Log.info("Player is ready for the next phase")
+	_disable_action_entry()
+
+
+func _on_ready_vote_over():
+	if Network.is_server():
+		Phase.manager.next_phase_or_turn()
+	readiness_confirmation.vote_max_count = get_required_ready_player_count()
+
+
+func get_required_ready_player_count() -> int:
+	return 1 if Phase.manager.get_phase().should_player_take_turn else Player.MAX_COUNT
+
+
+#-----------------------------------------------------------------#
+## Called right after a turn starts
+@rpc("authority", "call_local")
+func enter_turn() -> void:
+	await Anim.sleep(0.2)
+	await Anim.wait_anim()
+	if Phase.manager.is_turn_of(Player.id):
+		_enter_self_turn()
+	else:
+		_enter_opponent_turn()
+
+
+## Called right after a turn of the the local player starts
+func _enter_self_turn() -> void:
+	Player.fleet.update_ships()
+
+	if not Card.manager.is_empty():
+		return
+	for coord in Player.fleet.get_coords():
+		if Player.fleet.get_ship_at(coord).has_any_action():
+			return
+
+	Anim.pop_up("NOTHING_TO_DO")
+
+
+## Called right after a turn of the your opponent starts
+func _enter_opponent_turn() -> void:
+	Card.manager.clear()
+	Anim.pop_up("NOT_YOUR_TURN")
+
+
+## Called right after a turn of the local player ends.
+func exit_turn() -> void:
+	_disable_action_entry()
+
+
+func _disable_action_entry():
+	Card.manager.clear()
+	for coord in Player.fleet.get_coords():
+		Player.fleet.get_ship_at(coord).action_button.deactivate()
+
+
+## Called right after a whole round ends.
+func exit_round() -> void:
+	var end_condition := _check_game_over()
+	Log.debug("check game over result: ", EndCondition.find_key(end_condition))
+	failure_count.vote(end_condition)
+
+#-----------------------------------------------------------------#
+var failure_count := Vote.new("FailureCount")
+
+
+func _initialize_failure_count():
+	failure_count.vote_over.connect(_on_failure_count_vote_over)
+
+
+func _on_failure_count_vote_over() -> void:
+	var last_vote := failure_count.get_last_vote()
+	var end_condition: EndCondition = last_vote.get(Player.id)
+	last_vote.erase(Player.id)
+	for enemy_id in last_vote:
+		var opponent_end_condition: EndCondition = last_vote.get(enemy_id)
+		if opponent_end_condition and end_condition:
+			end_game(Game.Result.DRAW, end_condition)
+			return
+		if opponent_end_condition and not end_condition:
+			end_game(Game.Result.SUCCESS, opponent_end_condition)
+			return
+		if not opponent_end_condition and end_condition:
+			end_game(Game.Result.FAILURE, end_condition)
+			return
+
+
+func _check_game_over() -> EndCondition:
+	var has_valid_ship := false
+	var has_valid_ship_in_home := false
+	for coord in Player.fleet.get_coords():
+		var ship := Player.fleet.get_ship_at(coord)
+
+		if not ship.config.name in [Warship.CARGO_SHIP, Warship.MINE_LAYER]:
+			has_valid_ship = true
+			if coord in Map.instance.get_scope_home():
+				has_valid_ship_in_home = true
+				break
+
+	if not has_valid_ship:
+		return EndCondition.NO_VALID_SHIP
+	if not has_valid_ship_in_home:
+		pass ## TODO return EndCondition.ENEMY_AT_UNPROTECTED_HOME
+	return EndCondition.NONE
+
+
+enum Result {
+	FAILURE = 0,
+	DRAW = 1,
+	SUCCESS = 2,
+}
+
+enum EndCondition {
+	NONE = 0,
+	NO_VALID_SHIP = 1,
+	ENEMY_AT_UNPROTECTED_HOME = 2,
+}
+
+
+func end_game(result: Result, end_condition: EndCondition):
+	UI.instance.ending_screen.display(result, end_condition)
+	Log.info("Game ends: %s (%s)" % [Result.find_key(result), EndCondition.find_key(end_condition)])
+
+#-----------------------------------------------------------------#
+static var instance: Game
+
+
+func _init() -> void:
+	assert(not instance, "singleton instance initialized")
+	instance = self
+	Log.debug("Game instance initialized")

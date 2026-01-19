@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqyemlxewtatd"]
+
+[ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_occm2"]
+[ext_resource type="Texture2D" uid="uid://yi7tw1lyk2hf" path="res://asset/texture/tiles/Enemy.png" id="2_duejn"]
+[ext_resource type="Script" uid="uid://1xmyi40msqp0" path="res://src/objects/roles/attack_anim/attack_anim_collision.gd" id="2_vmhga"]
+
+[sub_resource type="SystemFont" id="SystemFont_roick"]
+font_names = PackedStringArray("Monospace")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_duejn"]
+font = SubResource("SystemFont_roick")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 16
+outline_color = Color(0.18714097, 0.71999925, 0.662774, 1)
+
+[node name="AttackAnim" instance=ExtResource("1_occm2")]
+script = ExtResource("2_vmhga")
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2(0.08, 0.08)
+texture = null
+
+[node name="Label" type="Label" parent="." index="1"]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -72.0
+offset_right = 140.0
+offset_bottom = 17.333336
+grow_horizontal = 2
+grow_vertical = 2
+text = "<null>"
+label_settings = SubResource("LabelSettings_duejn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnemyIndicator" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_duejn")

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionArrange" load_steps=2 format=3 uid="uid://cdtoumymcr6xd"]
+
+[ext_resource type="Script" uid="uid://d12pwrqcum267" path="res://src/objects/actions/action_arrange/action_arrange.gd" id="1_7gtni"]
+
+[resource]
+resource_name = "Arrange"
+script = ExtResource("1_7gtni")
+revertible = false
+cancel_on_failure = false
+action_name = "Arrange"
+metadata/_custom_type_script = "uid://d12pwrqcum267"

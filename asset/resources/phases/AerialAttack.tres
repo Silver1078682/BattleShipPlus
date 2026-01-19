@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PhaseAerialAttack" load_steps=2 format=3 uid="uid://bsjtgy4cc1shm"]
+
+[ext_resource type="Script" uid="uid://dpywo8quxkavh" path="res://src/objects/phase/phase_aerial_attack.gd" id="1_nx2cf"]
+
+[resource]
+resource_name = "AerialAttack"
+script = ExtResource("1_nx2cf")
+name = "AerialAttack"
+should_player_take_turn = true
+metadata/_custom_type_script = "uid://dpywo8quxkavh"

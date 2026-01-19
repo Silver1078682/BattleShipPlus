@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://chxbo7x5lv5lq"]
+
+[ext_resource type="Script" uid="uid://bjoyylrn2dlk7" path="res://src/ui/menus/setting_menu/setting_menu.gd" id="1_fo5yy"]
+[ext_resource type="Resource" uid="uid://3u2nm4gd0atv" path="res://asset/resources/settings/SettingWindowMode.tres" id="2_3a65t"]
+[ext_resource type="PackedScene" uid="uid://6j517jodedoc" path="res://addons/simple_setting_system/src/ui/option/option.tscn" id="3_fcwo4"]
+[ext_resource type="PackedScene" uid="uid://mgk2n8jrx3dn" path="res://addons/simple_setting_system/src/ui/checkbox/checkbox.tscn" id="3_fo5yy"]
+[ext_resource type="Resource" uid="uid://dm15fa5pbe1lf" path="res://asset/resources/settings/SettingLanguage.tres" id="5_f6fg3"]
+
+[node name="SettingMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fo5yy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="SettingOptions" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CheckBox" parent="MarginContainer/VBoxContainer/SettingOptions" instance=ExtResource("3_fo5yy")]
+layout_mode = 2
+size_flags_vertical = 3
+setting = ExtResource("2_3a65t")
+
+[node name="Option" parent="MarginContainer/VBoxContainer/SettingOptions" instance=ExtResource("3_fcwo4")]
+layout_mode = 2
+size_flags_vertical = 3
+options = Array[String](["system", "en", "zh_CN"])
+setting = ExtResource("5_f6fg3")
+
+[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="hide"]

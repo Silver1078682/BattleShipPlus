@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgqnm4sjkdxk1"]
+
+[ext_resource type="Script" uid="uid://dkyei2qhuy4fq" path="res://addons/simple_setting_system/src/ui/simple_setting_option_container.gd" id="1_ys0m3"]
+[ext_resource type="Script" uid="uid://bydaa6dm28pt6" path="res://addons/simple_setting_system/src/core/setting_modifier.gd" id="2_bfpfr"]
+
+[node name="SettingOptionSlider" type="HBoxContainer" node_paths=PackedStringArray("modifier")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ys0m3")
+modifier = NodePath("SubControl/SettingModifier")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "test text"
+
+[node name="SubControl" type="LineEdit" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 5.0
+
+[node name="SettingModifier" type="Node" parent="SubControl"]
+script = ExtResource("2_bfpfr")
+update_signal = "text_submitted"
+update_value = "text"
+metadata/_custom_type_script = "uid://bydaa6dm28pt6"

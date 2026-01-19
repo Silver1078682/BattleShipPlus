@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=3 uid="uid://bf3jb6othj56w"]
+
+[ext_resource type="Script" uid="uid://1u5dnkf682an" path="res://scr/objects/roles/attack_anim/attack_anim_empty.gd" id="1_sdmtm"]
+[ext_resource type="Texture2D" uid="uid://pvjhqt77uy8u" path="res://asset/texture/vfx/Explosion/black_0001.png" id="2_mo7oo"]
+[ext_resource type="Texture2D" uid="uid://d36l3jcyk1vrs" path="res://asset/texture/vfx/Explosion/black_0002.png" id="3_y206j"]
+[ext_resource type="Texture2D" uid="uid://duw4roogbrt3s" path="res://asset/texture/vfx/Explosion/black_0003.png" id="4_a7am8"]
+[ext_resource type="Texture2D" uid="uid://oxj6fo5wp0k8" path="res://asset/texture/vfx/Explosion/explode_areal.png" id="5_dww6y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c1n7s"]
+load_path = "res://.godot/imported/Fighter.png-25c4f7999cd763d261bddb8177c2515f.ctex"
+
+[sub_resource type="Animation" id="Animation_s1brq"]
+resource_name = "Damage"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Flash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.8, 0.8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Flash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.049999997),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bn7yu"]
+resource_name = "Explode"
+length = 1.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Water:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_mo7oo"), ExtResource("3_y206j"), ExtResource("4_a7am8"), null]
+}
+
+[sub_resource type="Animation" id="Animation_cn74r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Flash:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Water:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Flash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.181208, 1.1999998)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_13liq"]
+_data = {
+&"Damage": SubResource("Animation_s1brq"),
+&"Explosion": SubResource("Animation_bn7yu"),
+&"RESET": SubResource("Animation_cn74r")
+}
+
+[node name="AttackAnim" type="Node2D"]
+z_index = 10
+script = ExtResource("1_sdmtm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_c1n7s")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_13liq")
+}
+speed_scale = 0.5
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="Smoke" type="Sprite2D" parent="Node2D"]
+visible = false
+position = Vector2(0, -50)
+
+[node name="Explosion" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(1.0666667, 1.1034483)
+
+[node name="Flash" type="Sprite2D" parent="Node2D"]
+visible = false
+scale = Vector2(1.181208, 1.1999998)
+texture = ExtResource("5_dww6y")
+
+[node name="Water" type="Sprite2D" parent="Node2D"]

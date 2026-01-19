@@ -1,0 +1,116 @@
+[gd_scene load_steps=21 format=3 uid="uid://b4hy2lm0osuvm"]
+
+[ext_resource type="Script" uid="uid://dnok2glml21yy" path="res://src/game/game.gd" id="1_pxd1g"]
+[ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="2_4r86i"]
+[ext_resource type="Script" uid="uid://vhdyiw58d815" path="res://src/objects/camera/camera.gd" id="2_lk14o"]
+[ext_resource type="Script" uid="uid://dmpeewqaa3cpi" path="res://src/objects/phase/phase_manager.gd" id="3_gnbkw"]
+[ext_resource type="Script" uid="uid://brdvfpcofm2jk" path="res://src/objects/player/mirror_request.gd" id="5_c7grw"]
+[ext_resource type="Script" uid="uid://gm11jl6mjc30" path="res://src/objects/player/fleets/fleet.gd" id="8_67gkr"]
+[ext_resource type="PackedScene" uid="uid://d2coe6xmp6mrk" path="res://src/ui/menus/game_menu/game_menu.tscn" id="9_oe2k8"]
+[ext_resource type="Script" uid="uid://d3h2jdn2bjcqw" path="res://src/objects/cursor/cursor.gd" id="11_2s2jw"]
+[ext_resource type="PackedScene" uid="uid://bp0e16sqre7ri" path="res://src/ui/menus/pause_menu/pause_menu.tscn" id="12_5lp5o"]
+[ext_resource type="Script" uid="uid://b1wn4qo2bld8h" path="res://tools/debug/cursor_debug.gd" id="12_itvmg"]
+[ext_resource type="Script" uid="uid://cwmajiswx0gqm" path="res://src/objects/player/opponent.gd" id="12_kovr4"]
+[ext_resource type="Texture2D" uid="uid://bqoqd3w20jwrh" path="res://asset/texture/tiles/InvalidTile.png" id="13_qtsi8"]
+[ext_resource type="Script" uid="uid://dgxiyaeji0d8k" path="res://src/objects/player/player.gd" id="14_llhjw"]
+[ext_resource type="Script" uid="uid://cgcbtq35xf32f" path="res://tools/debug/unit_test/tests/arrow.gd" id="15_12uh2"]
+[ext_resource type="Script" uid="uid://cfybbaba5sykn" path="res://tools/debug/unit_test/tests/to_phase.gd" id="15_asvgm"]
+[ext_resource type="Script" uid="uid://csapiq4d5bx7k" path="res://src/objects/player/mine_manager.gd" id="15_pktyp"]
+[ext_resource type="Script" uid="uid://5xofei7ii3vf" path="res://tools/debug/unit_test/tests/map_test.gd" id="16_12uh2"]
+[ext_resource type="Script" uid="uid://bjae8au4m76po" path="res://tools/debug/unit_test/tests/mine.gd" id="17_asvgm"]
+[ext_resource type="Script" uid="uid://dwh8im7xnfexd" path="res://tools/debug/unit_test/tests/submar.gd" id="19_04kmm"]
+[ext_resource type="Script" uid="uid://bwjvd66iedxtu" path="res://tools/debug/unit_test/tests/scout.gd" id="20_kovr4"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_pxd1g")
+map_scene = ExtResource("2_4r86i")
+
+[node name="PhaseManager" type="Node" parent="."]
+script = ExtResource("3_gnbkw")
+metadata/_custom_type_script = "uid://dmpeewqaa3cpi"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
+position_smoothing_enabled = true
+script = ExtResource("2_lk14o")
+
+[node name="MirrorRequest" type="Node" parent="."]
+script = ExtResource("5_c7grw")
+
+[node name="Player" type="Node2D" parent="."]
+script = ExtResource("14_llhjw")
+metadata/_custom_type_script = "uid://dgxiyaeji0d8k"
+
+[node name="Fleet" type="Node2D" parent="Player"]
+script = ExtResource("8_67gkr")
+metadata/_custom_type_script = "uid://gm11jl6mjc30"
+
+[node name="Mine" type="Node2D" parent="Player"]
+script = ExtResource("15_pktyp")
+metadata/_custom_type_script = "uid://csapiq4d5bx7k"
+
+[node name="Opponent" type="Node2D" parent="."]
+script = ExtResource("12_kovr4")
+metadata/_custom_type_script = "uid://cwmajiswx0gqm"
+
+[node name="Fleet" type="Node2D" parent="Opponent"]
+script = ExtResource("8_67gkr")
+is_enemy_mirror = true
+metadata/_custom_type_script = "uid://gm11jl6mjc30"
+
+[node name="Mine" type="Node2D" parent="Opponent"]
+script = ExtResource("15_pktyp")
+visible_on_default = false
+metadata/_custom_type_script = "uid://csapiq4d5bx7k"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="UI" instance=ExtResource("9_oe2k8")]
+unique_name_in_owner = true
+
+[node name="Cursor" type="Node2D" parent="."]
+script = ExtResource("11_2s2jw")
+metadata/_custom_type_script = "uid://d3h2jdn2bjcqw"
+
+[node name="Debug" type="Node" parent="Cursor"]
+script = ExtResource("12_itvmg")
+
+[node name="SnappedCursor" type="Node2D" parent="."]
+
+[node name="InvalidTile" type="Sprite2D" parent="SnappedCursor"]
+self_modulate = Color(1, 1, 1, 0.5254902)
+texture = ExtResource("13_qtsi8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_5lp5o")]
+visible = false
+
+[node name="Tests" type="Node" parent="."]
+
+[node name="Arrow" type="Node" parent="Tests"]
+script = ExtResource("15_12uh2")
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="ToPhase" type="Node" parent="Tests"]
+script = ExtResource("15_asvgm")
+to_phase = &"SubmarineScout"
+max_auto_try = 20
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Map" type="Node" parent="Tests"]
+script = ExtResource("16_12uh2")
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Mine" type="Node" parent="Tests"]
+script = ExtResource("17_asvgm")
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Submar" type="Node" parent="Tests"]
+script = ExtResource("19_04kmm")
+spawn_count = 2
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Scout" type="Node" parent="Tests"]
+script = ExtResource("20_kovr4")
+metadata/_custom_type_script = "uid://pepvmwo83nkf"

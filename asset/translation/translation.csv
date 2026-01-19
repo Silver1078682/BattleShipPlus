@@ -1,0 +1,48 @@
+keys,en,zh_CN
+HOST_CREATE_ROOM%s,Host has created a room %s,
+CONNECTING_TO_ROOM%s,Try connecting the room at %s,
+
+NOT_IN_MAP,not in map,不在地图内
+OCCUPIED,The tile is occupied,该格已有舰船
+OCCUPIED_BY_MINE,The tile is occupied by mine,该格已有水雷
+NOT_ENOUGH_FUND,not enough fund,资金不足
+NOT_ENOUGH_SHIP,exceed ship supply limit,舰种供应不足
+CANNOT_ARRANGE_HERE,cannot be arranged here,无法在此处放置
+CANNOT_ARRANGE_BASE,cannot be arranged on the base,无法在基地放置
+CANNOT_MOVE_HERE,cannot be moved here,无法移动到此处
+CANNOT_ATTACK_HERE,cannot attack here,无法在此处攻击
+SPAWN_POINT_OCCUPIED,The spawn point of %s is occupied,%s刷新点已被占用
+SPAWN_REACH_LIMIT,Spawn limit of %s reached,%s刷新已到上限
+NO_WARSHIP,No warship in this tile,该格没有舰船
+NO_REPAIRING_REQUIRED,No repairing is required for the warship,该格舰船无需维修
+,,
+NOTHING_TO_DO,There is no move you can make this phase,本阶段没有可以进行的行动
+NOT_YOUR_TURN,It is not your turn currently,本局不是你的回合
+,,
+NEXT_PHASE,Next Phase,下一阶段
+
+Supply,Supply,补给
+Arrangement,Arrangement,部署
+Movement,Movement,移动
+AerialScout,Aerial Scout,航空侦察
+AerialDefense,Aerial Defense,航空防御
+AerialAttack,Aerial Attack,航空战
+ArtilleryAttack,Artillery Attack,炮击战
+TorpedoAttack,Torpedo Attack,鱼雷战
+SubmarineScout,Submarine Scout,侦察
+SubmarineAttack,Submarine Attack,潜艇战
+
+Move,Move,移动
+Repair,Repair,修复
+LayMine,Lay Mine,布雷
+TorpedoAircraft,Torpedo Aircraft,鱼雷攻击机
+DiveAircraft,Dive Aircraft,俯冲轰炸机
+
+Destroyer,Destroyer,驱逐
+LightCruiser,LightCruiser,轻巡
+HeavyCruiser,HeavyCruiser,重巡
+Battleship,Battleship,战列
+Carrier,Carrier,航母
+Submarine,Submarine,潜艇
+CargoShip,CargoShip,补给船
+MineLayer,MineLayer,布雷艇

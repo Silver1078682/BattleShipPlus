@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ActionRepair" load_steps=4 format=3 uid="uid://bguvshiowpn7t"]
+
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_ysrp4"]
+[ext_resource type="Script" uid="uid://72e1fk7wb03x" path="res://src/objects/actions/action_operation/action_repair.gd" id="2_u3uam"]
+
+[sub_resource type="Resource" id="Resource_jsrwl"]
+script = ExtResource("1_ysrp4")
+radius = 1
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[resource]
+resource_name = "Repair"
+script = ExtResource("2_u3uam")
+is_terminating = true
+action_area = SubResource("Resource_jsrwl")
+revertible = false
+action_name = "Repair"
+metadata/_custom_type_script = "uid://72e1fk7wb03x"

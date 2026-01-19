@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AttackConfig" load_steps=3 format=3 uid="uid://bwmpkeb57ow3d"]
+
+[ext_resource type="PackedScene" uid="uid://cqyemlxewtatd" path="res://asset/resources/attacks/anims/Collision.tscn" id="1_xeoyu"]
+[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://src/objects/attack/attack_config.gd" id="2_xeoyu"]
+
+[resource]
+resource_name = "CollisionConfirm"
+script = ExtResource("2_xeoyu")
+name = "CollisionConfirm"
+anim_scene = ExtResource("1_xeoyu")
+should_explode = true
+metadata/_custom_type_script = "uid://cp6jouck8vku0"

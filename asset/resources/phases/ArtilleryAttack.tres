@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Phase" load_steps=2 format=3 uid="uid://cqrs4hejxq3fe"]
+
+[ext_resource type="Script" uid="uid://34acsxalbuoh" path="res://src/objects/phase/phase.gd" id="1_ayne3"]
+
+[resource]
+resource_name = "ArtilleryAttack"
+script = ExtResource("1_ayne3")
+name = "ArtilleryAttack"
+should_player_take_turn = true
+metadata/_custom_type_script = "uid://r30vo7o4g020"

@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://csrftkg2hanio"]
+
+[ext_resource type="Script" uid="uid://durwnow4c4x3r" path="res://addons/simple_setting_system/src/core/advanced_component.gd" id="1_mipol"]
+
+[node name="Slider" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mipol")
+metadata/_custom_type_script = "uid://durwnow4c4x3r"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 63.0
+offset_top = 312.0
+offset_right = 128.0
+offset_bottom = 335.0
+size_flags_horizontal = 6
+text = "test text"
+
+[node name="SubControl" type="HSlider" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 195.0
+offset_top = 316.0
+offset_right = 1152.0
+offset_bottom = 332.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 5.0
+
+[node name="SettingModifier" type="Node" parent="SubControl"]
+metadata/_custom_type_script = "uid://bydaa6dm28pt6"

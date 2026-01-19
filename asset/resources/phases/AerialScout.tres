@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PhaseAerialScout" load_steps=2 format=3 uid="uid://r5bburul6ji6"]
+
+[ext_resource type="Script" uid="uid://dfbmwrgiuw52a" path="res://src/objects/phase/phase_aerial_scout.gd" id="1_q6k57"]
+
+[resource]
+resource_name = "AerialScout"
+script = ExtResource("1_q6k57")
+name = "AerialScout"
+metadata/_custom_type_script = "uid://dfbmwrgiuw52a"

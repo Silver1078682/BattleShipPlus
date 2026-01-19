@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://mgk2n8jrx3dn"]
+
+[ext_resource type="Script" uid="uid://durwnow4c4x3r" path="res://addons/simple_setting_system/src/core/advanced_component.gd" id="1_10gdl"]
+
+[node name="CheckBox" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+script = ExtResource("1_10gdl")
+metadata/_custom_type_script = "uid://durwnow4c4x3r"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "test text"
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[connection signal="toggled" from="HBoxContainer/CheckButton" to="." method="set_value"]

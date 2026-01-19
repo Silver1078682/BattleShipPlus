@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://dlj8823ennbg"]
+
+[ext_resource type="Script" uid="uid://bt40k6cjo5jwt" path="res://src/objects/roles/mine/mine.gd" id="1_red0s"]
+[ext_resource type="Texture2D" uid="uid://dljer50mkmev1" path="res://asset/texture/roles/mines/mine.png" id="2_27hsl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_27hsl"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1sclr"]
+blend_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_ms8ce"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t7ukm"]
+gradient = SubResource("Gradient_ms8ce")
+fill = 1
+fill_from = Vector2(0.5, 0.4)
+fill_to = Vector2(0.5, 0.90000004)
+metadata/_snap_enabled = true
+
+[node name="Mine" type="Node2D"]
+script = ExtResource("1_red0s")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(8.583069e-06, 7.0000014)
+scale = Vector2(0.8366013, 0.8366012)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup"]
+modulate = Color(0.9999998, 0.7587227, 0.72666526, 1)
+material = SubResource("CanvasItemMaterial_27hsl")
+scale = Vector2(1, 1.0000001)
+texture = ExtResource("2_27hsl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasGroup/Sprite2D"]
+material = SubResource("CanvasItemMaterial_1sclr")
+position = Vector2(4.781243, 1.195323)
+scale = Vector2(4.631836, 2.6894534)
+texture = SubResource("GradientTexture2D_t7ukm")
