@@ -2,7 +2,9 @@ class_name Camera
 extends Camera2D
 ## TODO optimize the camera movement
 
-func _ready() -> void:
+func setup() -> void:
+	var coord := Map.instance.get_base().coord
+	set_deferred(&"position", Map.coord_to_pos(coord))
 	Log.debug("Camera instance ready")
 
 
@@ -25,6 +27,8 @@ func _input(event: InputEvent) -> void:
 
 
 const KEY_SPEED = 100
+const MIN_ZOOM = 0.2
+const MAX_ZOOM = 5.0
 
 
 func _unhandled_input(event) -> void:
@@ -32,6 +36,7 @@ func _unhandled_input(event) -> void:
 		zoom /= 1.1
 	if event.is_action_pressed("zoom_in"):
 		zoom *= 1.1
+	zoom = clamp(zoom, Vector2.ONE * MIN_ZOOM, Vector2.ONE * MAX_ZOOM)
 
 	if event.is_action("right", true):
 		position.x += KEY_SPEED

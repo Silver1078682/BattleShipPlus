@@ -87,6 +87,7 @@ func cancel_ship_at(coord: Vector2i) -> void:
 	var action = _staging[coord]
 	_staging.erase(coord)
 	action.revert()
+	_check_arrange_limit()
 
 
 ## Cancel all arrangement in this phase.

@@ -20,6 +20,9 @@ func run():
 
 
 func run_command():
+	if not OS.is_debug_build():
+		return
+
 	if command_edit.text.begins_with("$"):
 		var text := command_edit.text.right(-1)
 		if text == ">":

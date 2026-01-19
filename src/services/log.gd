@@ -10,7 +10,7 @@ static func _static_init() -> void:
 static var log_file: FileAccess
 
 #-----------------------------------------------------------------#
-static var log_level := Level.INFO
+static var log_level := Level.DEBUG if OS.is_debug_build() else Level.INFO
 static var stack_trace_level := Level.WARNING
 static var debug_pop_up := true
 

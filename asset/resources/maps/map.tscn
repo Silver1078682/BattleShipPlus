@@ -13,7 +13,7 @@
 
 [sub_resource type="Resource" id="Resource_rvj0u"]
 script = ExtResource("2_5qyn7")
-size = Vector2i(30, 15)
+size = Vector2i(60, 20)
 shrink_edge = true
 metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
 
@@ -64,7 +64,7 @@ metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
 z_index = -2
 script = ExtResource("1_jdj64")
 map_area = SubResource("Resource_rvj0u")
-_map_center = Vector2i(15, 7)
+_map_center = Vector2i(30, 10)
 
 [node name="Sea" type="TileMapLayer" parent="."]
 self_modulate = Color(0.4974739, 0.49747366, 0.49747354, 1)
@@ -127,7 +127,7 @@ texture = ExtResource("8_gcxw7")
 modulate = Color(0.9163771, 0.96828943, 0.52281433, 1)
 position = Vector2(-1.9073486e-06, -9.536743e-07)
 script = ExtResource("8_lq10h")
-coord = Vector2i(22, 14)
+coord = Vector2i(50, 19)
 area = SubResource("Resource_2rv34")
 metadata/_custom_type_script = "uid://w6k14ppdabns"
 

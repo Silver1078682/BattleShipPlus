@@ -38,6 +38,7 @@ func _ready() -> void:
 	await NodeUtil.ensure_ready(player)
 	await NodeUtil.ensure_ready(opponent)
 
+	camera.setup()
 	ui.setup()
 	camera.move_to_position(map.get_map_center(), false)
 
@@ -61,7 +62,8 @@ func _initialize_readiness_confirmation():
 
 func _on_ready_voted(_id: int) -> void:
 	Log.info("Player is ready for the next phase")
-	_disable_action_entry()
+	if _id == Player.id:
+		_disable_action_entry()
 
 
 func _on_ready_vote_over():

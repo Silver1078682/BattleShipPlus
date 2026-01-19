@@ -1,4 +1,6 @@
 keys,en,zh_CN
+HOST,host,
+JOIN,join,
 HOST_CREATE_ROOM%s,Host has created a room %s,
 CONNECTING_TO_ROOM%s,Try connecting the room at %s,
 
