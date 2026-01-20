@@ -1,10 +1,10 @@
 class_name HexGrid
 extends Object
 
-## Rotate a point to (0, 0) with (times * PI /3) degrees
+## Rotate a point to (0, 0) with (times * PI /6) degrees
 static func rotate_a_point(point: Vector2i, times: int) -> Vector2i:
 	var cubic := to_cubic(point)
-	var sign_flip := 1 if (times % 2) else -1
+	var sign_flip := -1 if (times % 2) else 1
 	return sign_flip * Vector2i(cubic[posmod(times, 3)], cubic[posmod(times + 1, 3)])
 
 

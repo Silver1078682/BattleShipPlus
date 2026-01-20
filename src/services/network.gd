@@ -6,6 +6,7 @@ const MAX_CLIENTS = 1
 
 #-----------------------------------------------------------------#
 signal player_joined
+signal player_left
 
 
 func start_server() -> Error:
@@ -19,17 +20,30 @@ func start_server() -> Error:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(_on_player_joined)
 	Log.info("Server created at port %s" % PORT)
+	multiplayer.peer_disconnected.connect(_on_player_left)
 	return OK
+
+
+func terminate_server() -> void:
+	multiplayer.peer_connected.disconnect(_on_player_joined)
+	multiplayer.peer_disconnected.disconnect(_on_player_left)
+	Log.info("Server terminated at port %s" % PORT)
+	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 
 
 func _on_player_joined(id: int) -> void:
 	Log.info("Player %d joined!" % id)
 	player_joined.emit()
 
+
+func _on_player_left(id: int) -> void:
+	Log.info("Player %d left!" % id)
+	player_left.emit()
+
 #-----------------------------------------------------------------#
 const CONNECTION_SUCCESS_MESSAGE = "Connected to server %s (unique id: %d)"
 const CONNECTION_FAILURE_MESSAGE = "Connection to server %s failed"
-const DISCONNECTION_MESSAGE = "Connected to server %s (unique id: %d)"
+const DISCONNECTION_MESSAGE = "Disconnected from server %s (unique id: %d)"
 
 
 func start_client(ip_string: String) -> Error:
@@ -50,7 +64,21 @@ func start_client(ip_string: String) -> Error:
 	multiplayer.connected_to_server.connect(Log.info.bind(CONNECTION_SUCCESS_MESSAGE % network_info), CONNECT_ONE_SHOT)
 	multiplayer.connection_failed.connect(Log.error.bind(CONNECTION_FAILURE_MESSAGE % ip_string, CONNECT_ONE_SHOT))
 	multiplayer.server_disconnected.connect(Log.info.bind(DISCONNECTION_MESSAGE % network_info), CONNECT_ONE_SHOT)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	return OK
+
+
+func terminate_client() -> void:
+	multiplayer.server_disconnected.disconnect(_on_server_disconnected)
+	Log.info("Client terminated at port %s" % PORT)
+	multiplayer.multiplayer_peer = null
+
+
+signal server_disconnected
+
+
+func _on_server_disconnected():
+	server_disconnected.emit()
 
 
 #-----------------------------------------------------------------#

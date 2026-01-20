@@ -20,6 +20,7 @@ static var manager: PhaseManager
 #-----------------------------------------------------------------#
 func enter() -> void:
 	Log.info("Entering phase: %s" % self.name)
+	Anim.pop_up(self.name)
 	_enter()
 
 

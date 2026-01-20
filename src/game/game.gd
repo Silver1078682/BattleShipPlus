@@ -44,6 +44,10 @@ func _ready() -> void:
 
 	if Network.is_server():
 		Phase.manager.set_initial_phase()
+		Network.instance.player_left.connect(end_game.bind(Result.SUCCESS, EndCondition.NETWORK_DISCONNECTED))
+	else:
+		Network.instance.server_disconnected.connect(end_game.bind(Result.SUCCESS, EndCondition.NETWORK_DISCONNECTED))
+
 	_initialize_readiness_confirmation()
 	_initialize_failure_count()
 
@@ -69,7 +73,6 @@ func _on_ready_voted(_id: int) -> void:
 func _on_ready_vote_over():
 	if Network.is_server():
 		Phase.manager.next_phase_or_turn()
-	readiness_confirmation.vote_max_count = get_required_ready_player_count()
 
 
 func get_required_ready_player_count() -> int:
@@ -86,6 +89,7 @@ func enter_turn() -> void:
 		_enter_self_turn()
 	else:
 		_enter_opponent_turn()
+	readiness_confirmation.vote_max_count = get_required_ready_player_count()
 
 
 ## Called right after a turn of the the local player starts
@@ -112,6 +116,7 @@ func exit_turn() -> void:
 	_disable_action_entry()
 
 
+# disable all UI entry of committing actions
 func _disable_action_entry():
 	Card.manager.clear()
 	for coord in Player.fleet.get_coords():
@@ -134,19 +139,20 @@ func _initialize_failure_count():
 
 func _on_failure_count_vote_over() -> void:
 	var last_vote := failure_count.get_last_vote()
-	var end_condition: EndCondition = last_vote.get(Player.id)
+	var player_end_condition: EndCondition = last_vote.get(Player.id)
 	last_vote.erase(Player.id)
 	for enemy_id in last_vote:
 		var opponent_end_condition: EndCondition = last_vote.get(enemy_id)
-		if opponent_end_condition and end_condition:
-			end_game(Game.Result.DRAW, end_condition)
-			return
-		if opponent_end_condition and not end_condition:
+
+		var player_has_failed := (player_end_condition != Game.EndCondition.NONE)
+		var opponent_has_failed := (player_end_condition != Game.EndCondition.NONE)
+
+		if opponent_has_failed and player_has_failed:
+			end_game(Game.Result.DRAW, player_end_condition)
+		elif opponent_has_failed and not player_has_failed:
 			end_game(Game.Result.SUCCESS, opponent_end_condition)
-			return
-		if not opponent_end_condition and end_condition:
-			end_game(Game.Result.FAILURE, end_condition)
-			return
+		elif not opponent_has_failed and player_has_failed:
+			end_game(Game.Result.FAILURE, player_end_condition)
 
 
 func _check_game_over() -> EndCondition:
@@ -178,12 +184,16 @@ enum EndCondition {
 	NONE = 0,
 	NO_VALID_SHIP = 1,
 	ENEMY_AT_UNPROTECTED_HOME = 2,
+	NETWORK_DISCONNECTED = 3,
 }
+
+# gdlint-ignore-next-line variable-name
+static var END_CONDITION_ARRAY = EndCondition.keys()
 
 
 func end_game(result: Result, end_condition: EndCondition):
 	UI.instance.ending_screen.display(result, end_condition)
-	Log.info("Game ends: %s (%s)" % [Result.find_key(result), EndCondition.find_key(end_condition)])
+	Log.info("Game ends: %s (%s)" % [Result.find_key(result), END_CONDITION_ARRAY[end_condition]])
 
 #-----------------------------------------------------------------#
 static var instance: Game

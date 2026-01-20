@@ -11,9 +11,7 @@ func _ready() -> void:
 
 
 func run() -> void:
-	if not OS.is_debug_build():
-		return
-	if enabled:
+	if OS.is_debug_build() and enabled:
 		_run()
 
 

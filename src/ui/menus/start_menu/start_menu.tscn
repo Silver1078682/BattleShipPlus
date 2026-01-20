@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbxiodylo8f2m"]
+[gd_scene load_steps=9 format=3 uid="uid://cbxiodylo8f2m"]
 
 [ext_resource type="Script" uid="uid://b31gi8ffyv8qx" path="res://src/ui/menus/start_menu/start_menu.gd" id="1_04v0p"]
 [ext_resource type="Script" uid="uid://j2u6nmkviy8n" path="res://src/ui/menus/start_menu/ip_input.gd" id="2_kv31j"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cyfdnxfyann2y" path="res://asset/texture/ui/SettingIconNormal.png" id="4_0a877"]
 [ext_resource type="Texture2D" uid="uid://bt5mkbnij2owi" path="res://asset/texture/ui/SettingIconPressed.png" id="5_i767y"]
 [ext_resource type="Texture2D" uid="uid://dbff4y3y74scu" path="res://asset/texture/ui/SettingIconHover.png" id="6_m02bj"]
+[ext_resource type="Script" uid="uid://c77ctiskmh5ov" path="res://src/ui/menus/start_menu/version_label.gd" id="6_srgnp"]
 [ext_resource type="PackedScene" uid="uid://chxbo7x5lv5lq" path="res://src/ui/menus/setting_menu/setting_menu.tscn" id="7_i767y"]
 
 [node name="StartMenu" type="Control"]
@@ -63,7 +64,7 @@ caret_blink_interval = 0.5
 script = ExtResource("2_kv31j")
 invalid_color = Color(0.8666667, 0, 0, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="BottomRight" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -79,13 +80,30 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="TextureButton" type="TextureButton" parent="MarginContainer"]
+[node name="TextureButton" type="TextureButton" parent="BottomRight"]
 layout_mode = 2
 texture_normal = ExtResource("4_0a877")
 texture_pressed = ExtResource("5_i767y")
 texture_hover = ExtResource("6_m02bj")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="BottomLeft" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="BottomLeft"]
+layout_mode = 2
+script = ExtResource("6_srgnp")
 
 [node name="Setting" type="CanvasLayer" parent="."]
 
@@ -118,8 +136,25 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="CancelButton" type="Button" parent="WaitingScreen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 10
+text = "Cancel"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="ready" from="CenterContainer/VBoxContainer/HostButton" to="CenterContainer/VBoxContainer/HostButton" method="grab_focus"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/IPEdit" to="CenterContainer/VBoxContainer/IPEdit" method="_on_text_changed"]
-[connection signal="pressed" from="MarginContainer/TextureButton" to="Setting/SettingMenu" method="show"]
+[connection signal="pressed" from="BottomRight/TextureButton" to="Setting/SettingMenu" method="show"]
+[connection signal="pressed" from="WaitingScreen/CancelButton" to="WaitingScreen" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="WaitingScreen/CancelButton" to="WaitingScreen" method="_on_exit_button_pressed"]

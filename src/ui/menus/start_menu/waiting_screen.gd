@@ -7,3 +7,11 @@ extends Control
 func display(text: String) -> void:
 	title_label.text = text
 	show()
+
+
+func _on_cancel_button_pressed() -> void:
+	hide()
+	if Network.is_server():
+		Network.instance.terminate_server()
+	else:
+		Network.instance.terminate_client()
