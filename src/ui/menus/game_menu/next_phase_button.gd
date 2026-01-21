@@ -21,7 +21,6 @@ func _shortcut_input(event: InputEvent) -> void:
 	if event.is_action("next_phase"):
 		_notify_ready()
 
-
 #-----------------------------------------------------------------#
 func _notify_ready() -> void:
 	await Anim.wait_anim()
@@ -36,6 +35,12 @@ const _COUNT_LABEL_FORMAT := "%d/ %d"
 
 
 func _update_count_label() -> void:
+	if Game.instance.readiness_confirmation.has_local_voted():
+		tooltip_text = "READINESS_ALREADY_CONFIRMED"
+	elif not Phase.manager.is_turn_of(Player.id):
+		tooltip_text = "NOT_YOUR_TURN"
+	else:
+		tooltip_text = "CLICK_TO_CONFIRM_READINESS"
 	count_label.text = _COUNT_LABEL_FORMAT % [
 		Game.instance.readiness_confirmation.get_vote_count(),
 		Game.instance.get_required_ready_player_count(),
