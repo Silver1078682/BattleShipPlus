@@ -50,8 +50,10 @@ func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
 
 	return answer
 
-
 #-----------------------------------------------------------------#
+const HEALTH_RECOVER_RATE := 0.5
+
+
 func repair_ship(target: Vector2i) -> bool:
 	var warship := get_ship_at(target)
 	if not warship:
@@ -62,8 +64,8 @@ func repair_ship(target: Vector2i) -> bool:
 	_previous_health = warship.health
 	_previous_torpedo = warship.torpedo
 
-	@warning_ignore("integer_division")
-	warship.health = maxi(warship.config.health / 2, warship.health)
+	var recovered_health := floori(warship.config.health * HEALTH_RECOVER_RATE)
+	warship.health = clampi(warship.health + recovered_health, 0, warship.config.health)
 	warship.torpedo = warship.config.torpedo
 	return true
 
@@ -82,9 +84,8 @@ func _revert_repair_ship() -> bool:
 
 
 func should_repair_ship(warship: Warship) -> bool:
-	@warning_ignore("integer_division")
-	var low_health := warship.health < warship.config.health / 2
-	var low_torpedo := warship.torpedo < warship.config.torpedo
+	var low_health := warship.health != warship.config.health
+	var low_torpedo := warship.torpedo != warship.config.torpedo
 	return low_health or low_torpedo
 
 

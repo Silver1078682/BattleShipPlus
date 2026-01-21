@@ -11,6 +11,6 @@ script = ExtResource("1_mrcs8")
 name = "CargoShip"
 abbreviation = "C"
 health = 1
-motility = 3
+motility = 4
 action_supply = Array[ExtResource("1_hiieo")]([ExtResource("2_bw1be"), ExtResource("3_fq6s4")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"
