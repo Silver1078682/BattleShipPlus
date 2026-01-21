@@ -18,8 +18,9 @@ func _on_pressed() -> void:
 
 
 func _shortcut_input(event: InputEvent) -> void:
-	if event.is_action("next_phase"):
+	if event.is_action("next_phase", true):
 		_notify_ready()
+
 
 #-----------------------------------------------------------------#
 func _notify_ready() -> void:

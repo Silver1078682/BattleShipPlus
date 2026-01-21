@@ -2,28 +2,57 @@
 
 [ext_resource type="Script" uid="uid://cyl2qm1y87rky" path="res://src/ui/menus/ending_screen/ending_screen.gd" id="1_jp1p5"]
 
-[node name="EndingScreen" type="PanelContainer"]
+[node name="EndingScreen" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_behavior_recursive = 2
 script = ExtResource("1_jp1p5")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="EndingScreen" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="EndingScreen"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndingScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="ResultLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="ResultLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "FAILURE"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="EndingScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="EndConditionLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="EndConditionLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="BackButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

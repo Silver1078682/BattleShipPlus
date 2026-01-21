@@ -19,5 +19,6 @@ metadata/_custom_type_script = "uid://7abhrh6ag1pg"
 [node name="StartMenu" type="CanvasLayer" parent="."]
 
 [node name="StartMenu" parent="StartMenu" instance=ExtResource("1_re4jl")]
+unique_name_in_owner = true
 
 [connection signal="player_joined" from="Network" to="." method="_on_network_player_joined"]

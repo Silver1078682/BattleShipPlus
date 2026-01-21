@@ -45,7 +45,7 @@ func _ready() -> void:
 	if Network.is_server():
 		Phase.manager.set_initial_phase()
 		Network.instance.player_left.connect(end_game.bind(Result.SUCCESS, EndCondition.NETWORK_DISCONNECTED))
-	else:
+	elif Network.is_client():
 		Network.instance.server_disconnected.connect(end_game.bind(Result.SUCCESS, EndCondition.NETWORK_DISCONNECTED))
 
 	_initialize_readiness_confirmation()

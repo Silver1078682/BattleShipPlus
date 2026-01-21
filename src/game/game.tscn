@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b4hy2lm0osuvm"]
+[gd_scene load_steps=22 format=3 uid="uid://b4hy2lm0osuvm"]
 
 [ext_resource type="Script" uid="uid://dnok2glml21yy" path="res://src/game/game.gd" id="1_pxd1g"]
 [ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="2_4r86i"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bjae8au4m76po" path="res://tools/debug/unit_test/tests/mine.gd" id="17_asvgm"]
 [ext_resource type="Script" uid="uid://dwh8im7xnfexd" path="res://tools/debug/unit_test/tests/submar.gd" id="19_04kmm"]
 [ext_resource type="Script" uid="uid://bwjvd66iedxtu" path="res://tools/debug/unit_test/tests/scout.gd" id="20_kovr4"]
+[ext_resource type="Script" uid="uid://bwkjjgccrrx4e" path="res://tools/debug/unit_test/tests/no_end.gd" id="21_x1f1g"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_pxd1g")
@@ -100,6 +101,7 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="Map" type="Node" parent="Tests"]
 script = ExtResource("16_12uh2")
+auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="Mine" type="Node" parent="Tests"]
@@ -109,8 +111,15 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 [node name="Submar" type="Node" parent="Tests"]
 script = ExtResource("19_04kmm")
 spawn_count = 2
+auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="Scout" type="Node" parent="Tests"]
 script = ExtResource("20_kovr4")
+auto_start = true
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="NoEnd" type="Node" parent="Tests"]
+script = ExtResource("21_x1f1g")
+auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"

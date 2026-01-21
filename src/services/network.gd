@@ -83,15 +83,19 @@ func _on_server_disconnected():
 
 #-----------------------------------------------------------------#
 static func is_server() -> bool:
+	if instance.multiplayer.multiplayer_peer == null:
+		return false
 	if instance.multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		return false
 	return instance.multiplayer.is_server()
 
 
 static func is_client() -> bool:
+	if instance.multiplayer.multiplayer_peer == null:
+		return false
 	if instance.multiplayer.multiplayer_peer.get_connection_status() == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		return false
-	return instance.multiplayer.is_server()
+	return not instance.multiplayer.is_server()
 
 
 #-----------------------------------------------------------------#
