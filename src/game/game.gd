@@ -154,8 +154,14 @@ func _on_failure_count_vote_over() -> void:
 		elif not opponent_has_failed and player_has_failed:
 			end_game(Game.Result.FAILURE, player_end_condition)
 
+# Never end the game (expect for network disconnection), for debug purpose
+var never_end_game := false
+
 
 func _check_game_over() -> EndCondition:
+	if OS.is_debug_build() and Game.instance.never_end_game:
+		return EndCondition.NONE
+
 	var has_valid_ship := false
 	var has_valid_ship_in_home := false
 	for coord in Player.fleet.get_coords():
