@@ -31,6 +31,8 @@ func _handle_attack(
 ) -> Attack.Result:
 	var hit_ships := Player.fleet.get_hit_ships(attack_damages, attack)
 	push_mirror_request(hit_ships)
+	if hit_ships.is_empty():
+		return Attack.Result.MISS
 	return Attack.Result.SUCCESS
 
 

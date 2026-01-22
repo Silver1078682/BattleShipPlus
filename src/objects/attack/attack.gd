@@ -61,11 +61,12 @@ var result: Result:
 		return true
 
 enum Result {
-	NOT_FINISHED,
-	SUCCESS,
-	HALF_SUCCESS,
-	FAILURE,
-	TIMEOUT,
+	NOT_FINISHED = 0, ## Attack is still running and result is unknown
+	SUCCESS, ## Attack succeeded and at least one opponent is hit
+	HALF_SUCCESS, ## Attack succeeded but cannot cause maximum damage due to game rules
+	FAILURE, ## Attack Failed due to game rules
+	MISS, ## No opponent is hit
+	TIMEOUT, ## Attack timeout, due to network issue
 }
 
 
