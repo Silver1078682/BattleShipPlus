@@ -1,10 +1,10 @@
 class_name Player
-extends Node2D
+extends Participant
 
 static var fleet: Fleet
 static var mine: MineManager
-static var instance: Player = null
 static var sunk: Sunk
+static var instance: Player = null
 
 #-----------------------------------------------------------------#
 ## id for the player, 0 for host; 1 for client
@@ -21,18 +21,5 @@ static func get_next_player(player_id: int) -> int:
 
 #-----------------------------------------------------------------#
 func _ready() -> void:
-	fleet = $Fleet
-	mine = $Mine
 	Player.instance = self
-	Log.debug("Player instance ready")
-
-
-func setup() -> void:
-	Log.info("Player instance setup")
-	_setup()
-
-
-func _setup() -> void:
-	fleet.setup()
-	sunk = UI.instance.sunk.get_node("Player")
-	Phase.manager.phase_changed.connect(mine.push_mines.unbind(1))
+	super()

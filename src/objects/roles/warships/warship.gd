@@ -47,8 +47,10 @@ func handle_attack(damage: int, attack: Attack) -> bool:
 	if health <= 0:
 		if not is_exposed:
 			is_exposed = true
+			is_highlighted = true
 			return true
-	is_exposed = attack.scouting
+	is_highlighted = is_highlighted or attack.scouting
+	is_exposed = is_exposed or attack.scouting
 	return true
 
 
@@ -240,6 +242,19 @@ var as_enemy := false:
 		if not fleet or fleet is not Fleet:
 			return false
 		return fleet.is_enemy_mirror
+
+#-----------------------------------------------------------------#
+signal highlighted
+signal unhighlighted
+## If the ship is highlight mode, a ship will be highlighted for a round after exposure.
+## A highlighted ship will display its type label and health by default
+var is_highlighted := false:
+	set(p_is_highlighted):
+		if p_is_highlighted and not is_highlighted:
+			highlighted.emit()
+		if is_highlighted and not p_is_highlighted:
+			unhighlighted.emit()
+		is_highlighted = p_is_highlighted
 
 #-----------------------------------------------------------------#
 const WARSHIP_SCENE = preload("uid://0104oo2lacg")

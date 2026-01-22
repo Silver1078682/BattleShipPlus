@@ -101,7 +101,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Label" type="Label" parent="BottomLeft"]
+[node name="VersionLabel" type="Label" parent="BottomLeft"]
 layout_mode = 2
 script = ExtResource("6_srgnp")
 

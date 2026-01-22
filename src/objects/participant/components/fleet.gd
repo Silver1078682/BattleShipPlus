@@ -10,7 +10,7 @@ func setup() -> void:
 
 
 func _setup() -> void:
-	Phase.manager.round_over.connect(remove_type_labels)
+	Phase.manager.round_over.connect(unhighlight_all_warships)
 
 
 #-----------------------------------------------------------------#
@@ -101,10 +101,10 @@ var warship_destroyed: Array[StringName]
 var warships_just_hit: Array[Warship]
 
 
-func remove_type_labels() -> void:
-	for ship in warships_just_hit:
-		if is_instance_valid(ship):
-			ship.label.hide()
+func unhighlight_all_warships() -> void:
+	for warship in warships_just_hit:
+		if is_instance_valid(warship):
+			warship.is_highlighted = false
 	warships_just_hit.clear()
 
 
@@ -139,7 +139,6 @@ func get_hit_ships(attack_damages: Dictionary, attack: Attack) -> Dictionary[Vec
 	for coord in Player.fleet.get_coords():
 		if coord in attack_damages:
 			hit_coords.append(coord)
-
 	for coord in hit_coords:
 		var warship := Player.fleet.get_ship_at(coord)
 		var damage := (attack_damages[coord] as int) + attack.base_damage
