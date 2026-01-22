@@ -401,7 +401,9 @@ texture = ExtResource("8_mlhr0")
 
 [connection signal="exposed" from="." to="Expose/PropertySetter" method="sync" flags=3]
 [connection signal="health_changed" from="." to="HealthBar" method="set_health"]
+[connection signal="highlighted" from="." to="Label" method="show"]
 [connection signal="torpedo_changed" from="." to="TorpedoBar" method="set_torpedo"]
+[connection signal="unhighlighted" from="." to="Label" method="hide"]
 [connection signal="ready" from="Label/PropertySetter" to="Label/PropertySetter" method="sync"]
 [connection signal="ready" from="Sprite/PropertySetter" to="Sprite/PropertySetter" method="sync"]
 [connection signal="ready" from="Enemy/PropertySetter" to="Enemy/PropertySetter" method="sync"]

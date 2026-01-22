@@ -10,7 +10,7 @@ func setup() -> void:
 
 
 func _setup() -> void:
-	Phase.manager.round_over.connect(remove_type_labels)
+	Phase.manager.round_over.connect(unhighlight_all_warships)
 
 
 #-----------------------------------------------------------------#
@@ -101,10 +101,10 @@ var warship_destroyed: Array[StringName]
 var warships_just_hit: Array[Warship]
 
 
-func remove_type_labels() -> void:
+func unhighlight_all_warships() -> void:
 	for warship in warships_just_hit:
 		if is_instance_valid(warship):
-			warship.label.hide()
+			warship.is_highlighted = false
 	warships_just_hit.clear()
 
 

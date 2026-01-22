@@ -111,7 +111,6 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 [node name="Submar" type="Node" parent="Tests"]
 script = ExtResource("19_04kmm")
 spawn_count = 2
-auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="Scout" type="Node" parent="Tests"]

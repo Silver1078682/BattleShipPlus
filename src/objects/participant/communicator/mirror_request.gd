@@ -32,8 +32,7 @@ func create_mirrors_from_list(serialized_warships: Dictionary, highlight := true
 
 
 func _highlight_mirror_ship(warship: Warship) -> void:
-	if warship.label:
-		warship.label.show()
+	warship.is_highlighted = true
 	Opponent.fleet.warships_just_hit.append(warship)
 
 
