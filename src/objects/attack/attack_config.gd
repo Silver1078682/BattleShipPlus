@@ -36,6 +36,11 @@ func _handle_attack(
 	return Attack.Result.SUCCESS
 
 
+func _end_attack(attack: Attack) -> void:
+	if attack.result in [Attack.Result.SUCCESS, Attack.Result.HALF_SUCCESS]:
+		Anim.pop_up("ATTACK_HIT")
+
+
 #-----------------------------------------------------------------#
 func push_mirror_request(warships_hit: Dictionary[Vector2i, Warship]) -> void:
 	if warships_hit.is_empty():
@@ -73,6 +78,10 @@ func handle_attack(
 	attack.result = _handle_attack(attack_damages, attack)
 	_reply_remote_attack(attack.id, attack.result)
 	Log.debug("...Attack handled")
+
+
+func end_attack(attack: Attack):
+	_end_attack(attack)
 
 
 #-----------------------------------------------------------------#

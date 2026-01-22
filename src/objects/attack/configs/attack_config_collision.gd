@@ -12,4 +12,6 @@ func _handle_attack(
 		collision_attack.meta["attacker_type"] = warship.config.name
 		collision_attack.center = warship.coord
 		collision_attack.push({ coord: warship.config.health * 2 })
+	if hit_ships.is_empty():
+		return Attack.Result.MISS
 	return Attack.Result.SUCCESS

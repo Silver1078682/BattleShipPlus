@@ -1,6 +1,6 @@
 class_name AttackAnim
 extends Node2D
-## Animation of an attack
+## Animation of an attack with some premade behaviour
 
 @onready var sprite: Sprite2D = $Sprite
 @onready var animation: AnimationPlayer = $Animation

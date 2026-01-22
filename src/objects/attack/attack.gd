@@ -76,6 +76,7 @@ static func end(session_id: int, session_result: Result) -> void:
 		return
 	var attack := sessions[session_id]
 	attack.result = session_result
+	attack.config.end_attack(attack)
 	sessions.erase(session_id)
 
 
