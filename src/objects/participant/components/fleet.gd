@@ -122,16 +122,6 @@ func get_aerial_defense_level_at(coord: Vector2i) -> int:
 
 
 #-----------------------------------------------------------------#
-func handle_attack(attack_damages: Dictionary, serialized_attack: Dictionary) -> void:
-	var attack := Attack.deserialize_from(serialized_attack)
-	attack.config.handle_attack(attack_damages, attack)
-
-
-func end_attack(session_id: int, session_result: Attack.Result) -> void:
-	Attack.end(session_id, session_result)
-
-
-#-----------------------------------------------------------------#
 func get_hit_ships(attack_damages: Dictionary, attack: Attack) -> Dictionary[Vector2i, Warship]:
 	var hit_ships: Dictionary[Vector2i, Warship] = { }
 

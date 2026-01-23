@@ -63,7 +63,7 @@ func _attack_at(coord: Vector2i) -> Attack:
 	var attack := _get_attack(coord)
 	var coords := _get_attack_damages(coord)
 	_play_attack_anim(coords, attack)
-	attack.push(coords)
+	attack.launch(coords)
 	return attack
 
 

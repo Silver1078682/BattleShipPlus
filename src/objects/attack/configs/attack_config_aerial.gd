@@ -7,7 +7,7 @@ func _push_attack(
 		attack_damages: Dictionary[Vector2i, int],
 		attack: Attack,
 ) -> void:
-	_call_remote_handle(attack_damages, attack.serialized())
+	super(attack_damages, attack)
 	attack.finished.connect(_on_attack_finished.bind(attack))
 
 #-----------------------------------------------------------------#

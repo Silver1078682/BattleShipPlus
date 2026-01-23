@@ -10,4 +10,4 @@ func _enter() -> void:
 			var area := AreaHex.new()
 			area.radius = 2
 			area.offset = coord
-			attack.push(area.get_coords())
+			attack.launch(area.get_coords())

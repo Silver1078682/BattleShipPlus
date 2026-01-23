@@ -22,11 +22,9 @@ func create_attack_anim() -> AttackAnim:
 
 
 #-----------------------------------------------------------------#
-## Push the attack to the your opponent
-func push(attack_damages: Dictionary[Vector2i, int]) -> void:
+## Lauch an attack.
+func launch(attack_damages: Dictionary[Vector2i, int]) -> void:
 	config.push_attack(attack_damages, self)
-	sessions[id] = self
-	set_timeout()
 	if config.friendly_fire:
 		config.handle_attack(attack_damages, self)
 
@@ -40,7 +38,7 @@ func _init() -> void:
 	id = Main.generate_id()
 
 #-----------------------------------------------------------------#
-static var sessions: Dictionary[int, Attack] = { }
+
 signal finished
 var _result: Result = Result.NOT_FINISHED
 var result: Result:
@@ -55,9 +53,8 @@ var result: Result:
 			return false
 
 		_result = p_result
-		Log.debug("%s finished with result id: %d" % [self, p_result])
 		finished.emit()
-		sessions.erase(id)
+		AttackRequest.sessions.erase(id)
 		return true
 
 enum Result {
@@ -71,15 +68,6 @@ enum Result {
 
 
 #-----------------------------------------------------------------#
-static func end(session_id: int, session_result: Result) -> void:
-	if not session_id in sessions:
-		return
-	var attack := sessions[session_id]
-	attack.result = session_result
-	attack.config.end_attack(attack)
-	sessions.erase(session_id)
-
-
 func has_finished() -> bool:
 	return _result != Result.NOT_FINISHED
 

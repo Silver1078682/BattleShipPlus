@@ -12,9 +12,6 @@ func _ready() -> void:
 	Opponent.instance = self
 	super()
 
-## warships that is hit at least once this round.
-var warships_just_hit: Array[Warship]
-
 
 #-----------------------------------------------------------------#
 func handle_death_request(type: StringName) -> void:

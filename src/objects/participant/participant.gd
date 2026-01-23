@@ -1,5 +1,12 @@
 class_name Participant
 extends Node2D
+## Participant of the game, referring to a player
+
+# Include following static variables in subclasses
+# static var fleet: Fleet
+# static var mine: MineManager
+# static var sunk: Sunk
+# static var instance: Opponent = null
 
 func _ready() -> void:
 	set("fleet", $Fleet)

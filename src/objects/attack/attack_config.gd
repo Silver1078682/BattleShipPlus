@@ -50,7 +50,7 @@ func push_mirror_request(warships_hit: Dictionary[Vector2i, Warship]) -> void:
 
 
 #-----------------------------------------------------------------#
-## Invoked by [method Attack.push()]
+# Used internally
 func push_attack(
 		attack_damages: Dictionary[Vector2i, int],
 		attack: Attack,
@@ -59,7 +59,6 @@ func push_attack(
 		return
 	Log.debug("pushing attack %s @ %s ..." % [attack, attack.center])
 	_push_attack(attack_damages, attack)
-	Log.debug("...          Attack pushed")
 
 
 ## Invoked by push_attack called by your opponent
@@ -89,11 +88,11 @@ func _call_remote_handle(
 		attack_damages: Dictionary,
 		serialized_attack: Dictionary,
 ) -> void:
-	Network.instance.rpc_call(^"Player/Fleet", &"handle_attack", attack_damages, serialized_attack)
+	Network.instance.rpc_call(^"AttackRequest", &"handle_attack", attack_damages, serialized_attack)
 
 
 func _reply_remote_attack(attack_id: int, result: Attack.Result) -> void:
-	Network.instance.rpc_call(^"Player/Fleet", &"end_attack", attack_id, result)
+	Network.instance.rpc_call(^"AttackRequest", &"end_attack", attack_id, result)
 
 
 #-----------------------------------------------------------------#

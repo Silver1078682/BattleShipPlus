@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://b4hy2lm0osuvm"]
+[gd_scene load_steps=23 format=3 uid="uid://b4hy2lm0osuvm"]
 
 [ext_resource type="Script" uid="uid://dnok2glml21yy" path="res://src/game/game.gd" id="1_pxd1g"]
 [ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="2_4r86i"]
 [ext_resource type="Script" uid="uid://vhdyiw58d815" path="res://src/objects/camera/camera.gd" id="2_lk14o"]
 [ext_resource type="Script" uid="uid://dmpeewqaa3cpi" path="res://src/objects/phase/phase_manager.gd" id="3_gnbkw"]
 [ext_resource type="Script" uid="uid://brdvfpcofm2jk" path="res://src/objects/participant/communicator/mirror_request.gd" id="5_c7grw"]
+[ext_resource type="Script" uid="uid://ddik16p73f0tw" path="res://src/objects/participant/communicator/attack_request.gd" id="6_72t65"]
 [ext_resource type="Script" uid="uid://gm11jl6mjc30" path="res://src/objects/participant/components/fleet.gd" id="8_67gkr"]
 [ext_resource type="PackedScene" uid="uid://d2coe6xmp6mrk" path="res://src/ui/menus/game_menu/game_menu.tscn" id="9_oe2k8"]
 [ext_resource type="Script" uid="uid://d3h2jdn2bjcqw" path="res://src/objects/cursor/cursor.gd" id="11_2s2jw"]
@@ -37,6 +38,10 @@ script = ExtResource("2_lk14o")
 
 [node name="MirrorRequest" type="Node" parent="."]
 script = ExtResource("5_c7grw")
+
+[node name="AttackRequest" type="Node" parent="."]
+script = ExtResource("6_72t65")
+metadata/_custom_type_script = "uid://ddik16p73f0tw"
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("14_llhjw")

@@ -34,7 +34,7 @@ func _attack_at(coord: Vector2i) -> Attack:
 	remote_attack.center = coord
 	remote_attack.dice_result = dice_result
 	remote_attack.meta["artillery_level"] = _ship.config.artillery_level
-	remote_attack.push(coords)
+	remote_attack.launch(coords)
 	return remote_attack
 
 
