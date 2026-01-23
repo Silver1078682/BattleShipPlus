@@ -16,10 +16,10 @@ const ATTACK_FAILURE_PUNISHMENT = 1
 
 ## The attack source should be set as the id of the carrier
 func _on_attack_finished(attack: Attack):
-	var attacker_id: int = attack.local_meta["attacker_id"]
-	var warship: Warship = Player.fleet.get_node_or_null("Warship%s" % attacker_id)
+	var source_ship_id: int = attack.meta["source_ship_id"]
+	var warship: Warship = Player.fleet.get_node_or_null("Warship%s" % source_ship_id)
 	if not warship:
-		Log.error("Invalid warship id: %s" % attacker_id)
+		Log.error("Invalid warship id: %s" % source_ship_id)
 	elif attack.result == Attack.Result.FAILURE:
 		warship.health -= ATTACK_FAILURE_PUNISHMENT
 

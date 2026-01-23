@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WarshipConfig" load_steps=21 format=3 uid="uid://ce313vm662kbq"]
+[gd_resource type="Resource" script_class="WarshipConfig" load_steps=17 format=3 uid="uid://ce313vm662kbq"]
 
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_g76gs"]
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_h2aut"]
@@ -9,8 +9,7 @@
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="5_w4x53"]
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]
-[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="7_70tnn"]
-[ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="8_6e78m"]
+[ext_resource type="Resource" uid="uid://bbal4e4uwotea" path="res://asset/resources/actions/AerialScout.tres" id="8_6yqui"]
 
 [sub_resource type="Resource" id="Resource_c1s03"]
 script = ExtResource("2_8bprf")
@@ -57,26 +56,6 @@ revertible = false
 action_name = "TorpedoAircraft"
 metadata/_custom_type_script = "uid://d3npu18ujrako"
 
-[sub_resource type="Resource" id="Resource_70tnn"]
-script = ExtResource("2_8bprf")
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_6yqui"]
-script = ExtResource("2_8bprf")
-radius = 3
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_8bprf"]
-resource_name = "AerialScout"
-script = ExtResource("7_70tnn")
-attack_area = SubResource("Resource_6yqui")
-attack_follow_mouse = true
-attack_config = ExtResource("8_6e78m")
-action_area = SubResource("Resource_70tnn")
-follow_mouse = true
-action_name = "AerialScout"
-metadata/_custom_type_script = "uid://bmybf2l7grmym"
-
 [resource]
 resource_name = "Carrier"
 script = ExtResource("1_g76gs")
@@ -89,7 +68,7 @@ artillery_level = 1
 cost = 3
 arrange_limit = 2
 action_movement = Array[ExtResource("1_h2aut")]([ExtResource("4_gda3e")])
-action_aerial_scout = Array[ExtResource("1_h2aut")]([SubResource("Resource_8bprf")])
+action_aerial_scout = Array[ExtResource("1_h2aut")]([ExtResource("8_6yqui")])
 action_aerial_defense = Array[ExtResource("1_h2aut")]([ExtResource("3_2lo8t")])
 action_aerial_attack = Array[ExtResource("1_h2aut")]([SubResource("Resource_by1fw"), SubResource("Resource_pievy")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"

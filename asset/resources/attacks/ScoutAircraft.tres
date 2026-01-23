@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="AttackConfig" load_steps=4 format=3 uid="uid://qcfjhxh77d5s"]
+[gd_resource type="Resource" script_class="AttackConfigAerialScout" load_steps=4 format=3 uid="uid://qcfjhxh77d5s"]
 
-[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://src/objects/attack/attack_config.gd" id="1_eajtu"]
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_f17jk"]
 [ext_resource type="Texture2D" uid="uid://cwbsnp147m0ym" path="res://asset/texture/roles/aircraft/ScoutAircraft.png" id="2_3hcie"]
+[ext_resource type="Script" uid="uid://dujguwgjdxarp" path="res://src/objects/attack/attack_config_aerial_scout.gd" id="2_f17jk"]
 
 [resource]
 resource_name = "ScoutAircraft"
-script = ExtResource("1_eajtu")
+script = ExtResource("2_f17jk")
 name = "ScoutAircraft"
 texture = ExtResource("2_3hcie")

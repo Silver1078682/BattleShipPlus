@@ -67,6 +67,7 @@ func _attack_at(coord: Vector2i) -> Attack:
 	return attack
 
 
+# play action locally
 func _play_attack_anim(coords: Dictionary[Vector2i, int], attack: Attack) -> AttackAnim:
 	var attack_anim := attack.create_attack_anim()
 	if attack_anim:

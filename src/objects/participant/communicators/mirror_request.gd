@@ -36,6 +36,7 @@ func _highlight_mirror_ship(warship: Warship) -> void:
 
 
 #-----------------------------------------------------------------#
+# Notify that the remote mirror is successfully created
 @rpc("any_peer", "call_remote", "reliable")
 func _on_remote_mirror_created(warship_id: int) -> void:
 	var local_name := "Warship" + str(warship_id)

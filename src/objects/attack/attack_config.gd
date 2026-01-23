@@ -4,6 +4,7 @@ extends Resource
 @export var name: String
 
 @export var friendly_fire := false
+
 @export_group("anim")
 @export var anim_scene: PackedScene = preload("uid://b1yerg1ur6ei8")
 @export var texture: Texture2D
@@ -21,7 +22,7 @@ func _push_attack(
 		attack_damages: Dictionary[Vector2i, int],
 		attack: Attack,
 ) -> void:
-	_call_remote_handle(attack_damages, attack.serialized())
+	_call_remote_handle(attack_damages, attack)
 
 
 ## Handle an attack and return its result
@@ -76,7 +77,7 @@ func handle_attack(
 
 	attack.result = _handle_attack(attack_damages, attack)
 	_reply_remote_attack(attack.id, attack.result)
-	Log.debug("...Attack handled")
+	Log.debug("...Attack %s handled" % attack)
 
 
 func end_attack(attack: Attack):
@@ -84,11 +85,19 @@ func end_attack(attack: Attack):
 
 
 #-----------------------------------------------------------------#
+# Don't call this function directly!  call [Attack.get_exposure_key] instead.
+## In some cases, an exposure can be reverted.
+## An exposure key is required to identify which exposure are the one to be reverted.
+func get_exposure_key(_attack: Attack) -> String:
+	return "Exposure" ## by default, the exposure is not revertible. Override this method if it is the case.
+
+
+#-----------------------------------------------------------------#
 func _call_remote_handle(
 		attack_damages: Dictionary,
-		serialized_attack: Dictionary,
+		attack: Attack,
 ) -> void:
-	Network.instance.rpc_call(^"AttackRequest", &"handle_attack", attack_damages, serialized_attack)
+	(Game.instance.get_node(^"AttackRequest") as AttackRequest).push_attack(attack_damages, attack)
 
 
 func _reply_remote_attack(attack_id: int, result: Attack.Result) -> void:

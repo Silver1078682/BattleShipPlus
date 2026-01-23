@@ -22,7 +22,7 @@ func create_attack_anim() -> AttackAnim:
 
 
 #-----------------------------------------------------------------#
-## Lauch an attack.
+## Launch an attack.
 func launch(attack_damages: Dictionary[Vector2i, int]) -> void:
 	config.push_attack(attack_damages, self)
 	if config.friendly_fire:
@@ -77,6 +77,12 @@ func set_timeout() -> void:
 		await Anim.sleep(10)
 		_result = Result.TIMEOUT
 		finished.emit()
+
+
+#-----------------------------------------------------------------#
+## See [AttackConfig.get_exposure_key]
+func get_exposure_key():
+	return config.get_exposure_key(self)
 
 
 #-----------------------------------------------------------------#

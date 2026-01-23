@@ -6,7 +6,7 @@ static var sessions: Dictionary[int, Attack] = { }
 
 ## Push an attack to your opponent
 func push_attack(attack_damages: Dictionary, attack: Attack) -> void:
-	attack.config.push_attack(attack_damages, attack)
+	Network.instance.rpc_call(^"AttackRequest", &"handle_attack", attack_damages, attack.serialized())
 	sessions[attack.id] = attack
 	attack.set_timeout()
 

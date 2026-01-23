@@ -45,12 +45,12 @@ func handle_attack(damage: int, attack: Attack) -> bool:
 
 	health -= damage
 	if health <= 0:
-		if not is_exposed:
-			is_exposed = true
+		if not is_exposed():
+			apply_exposure(attack)
 			is_highlighted = true
 			return true
 	is_highlighted = is_highlighted or attack.scouting
-	is_exposed = is_exposed or attack.scouting
+	apply_exposure(attack)
 	return true
 
 
@@ -69,7 +69,7 @@ func update() -> void:
 	_update_actions()
 
 	# push state ----------------
-	if not as_enemy and is_exposed and health > 0:
+	if not as_enemy and is_exposed() and health > 0:
 		# this update the mirror warship
 		call_mirror("deserialized", serialized())
 
@@ -138,7 +138,7 @@ func leave_stage(with_explosion: bool = false) -> void:
 	assert(fleet and fleet.get_ship_at(coord) == self)
 
 	fleet.remove_ship(self)
-	if is_exposed:
+	if is_exposed():
 		call_mirror(&"leave_stage", with_explosion)
 
 	stage_left.emit()
@@ -147,9 +147,12 @@ func leave_stage(with_explosion: bool = false) -> void:
 
 ## Call a function on the mirror of this ship, if it exists (for ships that are exposed to the opponent)
 func call_mirror(function_name: StringName, ...args) -> void:
-	if not is_exposed:
+	if not is_exposed():
 		Log.error("Trying to call_mirror on an unexposed warship, which does not has a mirror")
 		return
+	if as_enemy:
+		Log.error("Trying to call_mirror on a mirror warship, which itself is a mirror")
+
 	for i in 5:
 		if has_mirror:
 			var node_path: = NodePath("Opponent/Fleet/Warship" + str(id))
@@ -157,7 +160,7 @@ func call_mirror(function_name: StringName, ...args) -> void:
 			return
 		await Anim.sleep(2 ** i / 2.0)
 		if i == 4:
-			Log.error("Mirror call failed after 5 tries")
+			Log.error("call_mirror ", function_name, " on ", self, "failed after 5 tries")
 
 #-----------------------------------------------------------------#
 ## Health
@@ -224,13 +227,36 @@ func handle_mine_attack() -> bool:
 
 #-----------------------------------------------------------------#
 signal exposed
-## is the warship exposed (Discovered by opponent).
-var is_exposed := false:
-	set(p_is_exposed):
-		if not is_exposed and p_is_exposed:
-			Log.debug("%s is exposed" % self)
-			exposed.emit()
-		is_exposed = p_is_exposed
+signal concealed
+var exposure_reasons: Dictionary[StringName, Variant]
+
+
+func apply_exposure(attack: Attack):
+	if not attack.scouting:
+		return
+	if exposure_reasons.is_empty():
+		Log.debug("%s is exposed" % self)
+		exposed.emit()
+	exposure_reasons[attack.get_exposure_key()] = null
+
+
+func revert_exposure(key: StringName) -> void:
+	exposure_reasons.erase(key)
+	if exposure_reasons.is_empty():
+		concealed.emit()
+
+
+func is_exposed():
+	return not exposure_reasons.is_empty()
+
+# #-----------------------------------------------------------------#
+# ## is the warship exposed (Discovered by opponent).
+# var is_exposed := false:
+# 	set(p_is_exposed):
+# 		if not is_exposed and p_is_exposed:
+# 			Log.debug("%s is exposed" % self)
+# 			exposed.emit()
+# 		is_exposed = p_is_exposed
 
 ## If we can be assertive that a mirror peer instance is created
 var has_mirror := false
@@ -303,9 +329,9 @@ func deserialized(prop_list: Dictionary[StringName, Variant]) -> void:
 	# manually update id & name
 	id = prop_list.id
 	name = "Warship" + str((prop_list.id as int))
-	# set _health to avoid trigerring setter
+	# set _health to avoid triggering setter
 	_health = prop_list.health
-	# use move_ship_to on neccessary
+	# use move_ship_to on necessary
 	if coord != prop_list.coord:
 		if self.is_node_ready():
 			if not (get_parent() as Fleet).move_ship_to(self, prop_list.coord):
@@ -349,4 +375,22 @@ const NAMES: PackedStringArray = [
 # <as_enemy?abbr [health / max_health] @(coord) id>
 func _to_string() -> String:
 	var ship_name = config.abbreviation
-	return "<%s%s [%d / %d] @%s %d>" % ["!" if as_enemy else " ", ship_name, health, config.health, coord, id]
+	return "<%s%s%s HP[%d / %d] TOR[%d/%d] @%s %d>" % [
+		"!" if as_enemy else "-",
+		_get_expose_indicator_char(),
+		ship_name,
+		health,
+		config.health,
+		torpedo,
+		config.torpedo,
+		coord,
+		id,
+	]
+
+
+func _get_expose_indicator_char() -> String:
+	if is_exposed() and has_mirror:
+		return "*"
+	if is_exposed() and not has_mirror:
+		return "?"
+	return "-"

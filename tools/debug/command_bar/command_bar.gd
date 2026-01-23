@@ -28,7 +28,20 @@ func run_command():
 		if text == ">":
 			Phase.manager.next_phase_or_turn()
 			return
-		Phase.manager.enter_phase_by_name(text)
+
+		var candicate := ""
+		for phase_name in Phase.manager.phases:
+			if phase_name.to_lower().begins_with(text):
+				if candicate:
+					Anim.pop_up("bad phase name")
+					return
+				candicate = phase_name
+
+		if not candicate:
+			Anim.pop_up("bad phase name")
+			return
+
+		Phase.manager.enter_phase_by_name(candicate)
 		Game.instance.enter_turn.rpc()
 		return
 

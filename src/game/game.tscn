@@ -14,7 +14,6 @@
 [ext_resource type="Script" uid="uid://cwmajiswx0gqm" path="res://src/objects/participant/opponent.gd" id="12_kovr4"]
 [ext_resource type="Texture2D" uid="uid://bqoqd3w20jwrh" path="res://asset/texture/tiles/InvalidTile.png" id="13_qtsi8"]
 [ext_resource type="Script" uid="uid://dgxiyaeji0d8k" path="res://src/objects/participant/player.gd" id="14_llhjw"]
-[ext_resource type="Script" uid="uid://cgcbtq35xf32f" path="res://tools/debug/unit_test/tests/arrow.gd" id="15_12uh2"]
 [ext_resource type="Script" uid="uid://cfybbaba5sykn" path="res://tools/debug/unit_test/tests/to_phase.gd" id="15_asvgm"]
 [ext_resource type="Script" uid="uid://csapiq4d5bx7k" path="res://src/objects/participant/components/mine_manager.gd" id="15_pktyp"]
 [ext_resource type="Script" uid="uid://5xofei7ii3vf" path="res://tools/debug/unit_test/tests/map_test.gd" id="16_12uh2"]
@@ -22,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dwh8im7xnfexd" path="res://tools/debug/unit_test/tests/submar.gd" id="19_04kmm"]
 [ext_resource type="Script" uid="uid://bwjvd66iedxtu" path="res://tools/debug/unit_test/tests/scout.gd" id="20_kovr4"]
 [ext_resource type="Script" uid="uid://bwkjjgccrrx4e" path="res://tools/debug/unit_test/tests/no_end.gd" id="21_x1f1g"]
+[ext_resource type="Script" uid="uid://m3gp3dpmilvx" path="res://tools/debug/unit_test/tests/ship_test.gd" id="23_xowm4"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_pxd1g")
@@ -94,10 +94,6 @@ visible = false
 
 [node name="Tests" type="Node" parent="."]
 
-[node name="Arrow" type="Node" parent="Tests"]
-script = ExtResource("15_12uh2")
-metadata/_custom_type_script = "uid://pepvmwo83nkf"
-
 [node name="ToPhase" type="Node" parent="Tests"]
 script = ExtResource("15_asvgm")
 to_phase = &"SubmarineScout"
@@ -125,5 +121,10 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="NoEnd" type="Node" parent="Tests"]
 script = ExtResource("21_x1f1g")
+auto_start = true
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Ship" type="Node" parent="Tests"]
+script = ExtResource("23_xowm4")
 auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"
