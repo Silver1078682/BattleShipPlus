@@ -18,10 +18,3 @@ func _run():
 	_add_warship(nearest_point - Vector2i(dire) * 2, "Battleship")
 	_add_warship(nearest_point - HexGrid.rotate_a_point(dire, 2), "Destroyer")
 	_add_warship(nearest_point - HexGrid.rotate_a_point(dire, -2), "Destroyer")
-
-
-func _add_warship(coord: Vector2i, warship_name: String) -> void:
-	var warship := Warship.create_from_name(warship_name)
-	warship.coord = coord
-	if not Player.fleet.has_ship_at(coord):
-		Player.fleet.add_ship(warship, true)

@@ -332,7 +332,17 @@ const CARRIER = "Carrier"
 const SUBMARINE = "Submarine"
 const CARGO_SHIP = "CargoShip"
 const MINE_LAYER = "MineLayer"
-const NAMES = [DESTROYER, LIGHT_CRUISER, HEAVY_CRUISER, BATTLESHIP, CARRIER, SUBMARINE, CARGO_SHIP, MINE_LAYER]
+
+const NAMES: PackedStringArray = [
+	DESTROYER,
+	LIGHT_CRUISER,
+	HEAVY_CRUISER,
+	BATTLESHIP,
+	CARRIER,
+	SUBMARINE,
+	CARGO_SHIP,
+	MINE_LAYER,
+]
 
 
 #-----------------------------------------------------------------#

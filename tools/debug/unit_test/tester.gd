@@ -17,3 +17,12 @@ func run() -> void:
 
 func _run() -> void:
 	pass
+
+
+#-----------------------------------------------------------------#
+## below are some util functions
+func _add_warship(coord: Vector2i, warship_name: String) -> void:
+	var warship := Warship.create_from_name(warship_name)
+	warship.coord = coord
+	if not Player.fleet.has_ship_at(coord):
+		Player.fleet.add_ship(warship, true)
