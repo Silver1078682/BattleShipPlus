@@ -9,7 +9,7 @@ extends Area
 			size = p_size
 			request_update()
 
-## This will make the result look as if it is 0.5 grids thiner
+## This will make the result look as if it is 0.5 grids thinner
 @export var shrink_edge: bool:
 	set(p_shrink_edge):
 		if shrink_edge != p_shrink_edge:

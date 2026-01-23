@@ -1,5 +1,6 @@
 class_name MineManager
 extends Node2D
+## Manage all mines on one side.
 
 var mines: Dictionary[Vector2i, Mine]
 var _staged_additions: Dictionary[Vector2i, Mine]

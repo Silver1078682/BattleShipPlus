@@ -1,15 +1,14 @@
 @tool
 class_name AreaHex
 extends Area
-
-# CREDIT: https://www.redblobgames.com/grids/hexagons/
+## Area representing a hexagon.
 
 @export_range(0, 60) var radius: int:
 	set(p_radius):
 		radius = p_radius
 		request_update()
 
-# A Hexadgon is just several Rings
+# A Hexagon is just several Rings
 static var _calculator := AreaRing.new()
 
 

@@ -1,5 +1,8 @@
 class_name Setting
 extends Resource
+## A setting of the game.
+##
+## _applied will be called when the setting is applied.
 
 @export var default: Variant
 @export var name: String
@@ -12,7 +15,7 @@ func apply(p_value):
 	Log.debug(self, " is applied")
 
 
-func _apply(p_value):
+func _apply(_p_value):
 	pass
 
 

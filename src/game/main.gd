@@ -1,5 +1,6 @@
 class_name Main
 extends Node
+## Main application logic.
 
 const GAME_SCENE = preload("uid://b4hy2lm0osuvm")
 @onready var start_menu: Control = %StartMenu
@@ -20,6 +21,7 @@ func _on_network_player_joined() -> void:
 	start_game.rpc()
 
 
+## Start a game
 @rpc("any_peer", "call_local", "reliable")
 func start_game() -> void:
 	## No more connection after game started
@@ -31,6 +33,7 @@ func start_game() -> void:
 	start_menu.hide()
 
 
+## Back to the main game menu
 func back_to_main_menu() -> void:
 	if Game.instance:
 		Game.instance.queue_free()

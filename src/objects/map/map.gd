@@ -1,5 +1,6 @@
 class_name Map
 extends Node2D
+## Game map
 
 ## Node pointer
 @onready var scope: Scope = $Area

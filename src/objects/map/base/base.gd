@@ -1,5 +1,6 @@
 class_name Base
 extends Node2D
+## The base of the game
 
 @onready var sprite: Sprite2D = $Sprite
 

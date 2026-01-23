@@ -1,7 +1,7 @@
 class_name Vote
 extends Node
-
 ## collects vote from players. Automatically restart when all players have voted.
+
 var _result: Dictionary[int, Variant]
 var _last_result: Dictionary[int, Variant]
 

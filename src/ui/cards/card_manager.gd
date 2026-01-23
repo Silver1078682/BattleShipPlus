@@ -1,5 +1,8 @@
 class_name CardManager
 extends Node
+## Manages the Cards in the game
+##
+## Holds all the Cards and provides methods to interact with them
 
 ## The actual container that holds all Cards
 @export var container: Container

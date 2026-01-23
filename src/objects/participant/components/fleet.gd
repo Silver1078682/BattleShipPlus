@@ -1,5 +1,6 @@
 class_name Fleet
 extends Node2D
+## Fleet class managing a group of ships.
 
 var _warships: Dictionary[Vector2i, Warship] = { }
 @export var is_enemy_mirror := false

@@ -1,6 +1,9 @@
 class_name HexGrid
 extends Object
 
+## A function library for hexagonal grids.
+# CREDIT: https://www.redblobgames.com/grids/hexagdons/
+
 ## Rotate a point to (0, 0) with (times * PI /6) degrees
 static func rotate_a_point(point: Vector2i, times: int) -> Vector2i:
 	var cubic := to_cubic(point)

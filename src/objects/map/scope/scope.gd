@@ -1,21 +1,22 @@
 class_name Scope
 extends TileMapLayer
-
-# A highlighted area indicating the scope or area of action
+## A highlighted area indicating the scope or area of action
 
 @export var default_operation_mode: OperationMode
 enum OperationMode {
-	SET,
-	ADD,
-	ERASE,
+	SET, ## Set the area to this value.
+	ADD, ## The union of the existing area and this value.
+	ERASE, ## The subtraction of this value from the existing area.
 }
 
 
 #-----------------------------------------------------------------#
+## Set the Scope to a specific area
 func set_area(area: Area, clamped := true, operation := OperationMode.SET) -> void:
 	set_dict(area.get_coords(), clamped, operation)
 
 
+## Set the Scope to a hash set(Dictionary) of coordinates
 func set_dict(coords: Dictionary[Vector2i, int], clamped := true, operation := OperationMode.SET) -> void:
 	match operation:
 		OperationMode.SET:
@@ -31,9 +32,9 @@ func set_dict(coords: Dictionary[Vector2i, int], clamped := true, operation := O
 		if clamped and not (coord) in Game.instance.map.get_coords():
 			continue
 		if operation == OperationMode.ERASE:
-			erase_tile(coord)
+			_erase_tile(coord)
 		else:
-			set_tile(coord)
+			_set_tile(coord)
 
 
 #-----------------------------------------------------------------#
@@ -54,9 +55,11 @@ func get_coords() -> Dictionary[Vector2i, int]:
 
 
 #-----------------------------------------------------------------#
-func set_tile(coords: Vector2i, source_id := 0, atlas_coords := Vector2i.ZERO, alternative_tile: int = 0) -> void:
+# wrapper for setting a tile
+func _set_tile(coords: Vector2i, source_id := 0, atlas_coords := Vector2i.ZERO, alternative_tile: int = 0) -> void:
 	set_cell(coords, source_id, atlas_coords, alternative_tile)
 
 
-func erase_tile(coords: Vector2i) -> void:
+# wrapper for erasing a tile
+func _erase_tile(coords: Vector2i) -> void:
 	erase_cell(coords)

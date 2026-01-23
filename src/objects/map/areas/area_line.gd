@@ -1,6 +1,7 @@
 @tool
 class_name AreaLine
 extends Area
+## Area representing a line.
 
 @export var start: Vector2i:
 	set(p_start):

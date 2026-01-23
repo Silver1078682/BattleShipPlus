@@ -1,7 +1,6 @@
 class_name MirrorRequest
 extends Node
 
-#-----------------------------------------------------------------#
 func _get_or_create_mirror(serialized_warship: Dictionary[StringName, Variant]) -> Warship:
 	var mirror_name := "Warship" + str(serialized_warship.id)
 	var mirror: Warship = Opponent.fleet.get_node_or_null(mirror_name)

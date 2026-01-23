@@ -1,5 +1,6 @@
 class_name CmdLineInterface
 extends RefCounted
+## Handles command line arguments for the game.
 
 static var network: PackedStringArray = []
 static var log_level: PackedStringArray = []
