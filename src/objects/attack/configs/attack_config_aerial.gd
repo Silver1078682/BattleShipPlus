@@ -16,6 +16,8 @@ const ATTACK_FAILURE_PUNISHMENT = 1
 
 ## The attack source should be set as the id of the carrier
 func _on_attack_finished(attack: Attack):
+	if not attack.check_meta("source_ship_id"):
+		return
 	var source_ship_id: int = attack.meta["source_ship_id"]
 	var warship: Warship = Player.fleet.get_node_or_null("Warship%s" % source_ship_id)
 	if not warship:

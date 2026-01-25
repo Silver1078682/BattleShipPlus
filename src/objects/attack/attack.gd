@@ -6,11 +6,19 @@ extends Resource
 @export var scouting := true
 var base_damage := 0
 var dice_result := -1
+
 ## Some extra information describing the attack, will be sent to your opponent's side
 ## useful for custom attack handler requiring info from attacker's side
 var meta := { }
 ## Local meta that won't be sent to your opponent's side
 var local_meta := { }
+
+
+func check_meta(meta_name: String) -> bool:
+	if not meta_name in meta:
+		Log.warning(meta_name, " not found in meta list of ", self)
+		return false
+	return true
 
 
 func create_attack_anim() -> AttackAnim:

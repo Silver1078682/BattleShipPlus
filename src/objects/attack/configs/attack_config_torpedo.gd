@@ -10,10 +10,12 @@ func _handle_attack(
 		attack: Attack,
 ) -> Attack.Result:
 	attack.base_damage += attack.dice_result
+	if not attack.check_meta("direction"):
+		return Attack.Result.FAILURE
+	var attack_direction: Vector2i = attack.meta["direction"]
 
 	for coord: Vector2i in attack_damages:
 		var coord_direction := coord - attack.center
-		var attack_direction: Vector2i = attack.meta["direction"]
 		## If the center of the cell go through the attack line
 		if coord_direction.x * attack_direction.y != coord_direction.y * attack_direction.x:
 			attack_damages[coord] = _damage_reduction_modifier.call(attack_damages[coord])

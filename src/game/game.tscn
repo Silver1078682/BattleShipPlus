@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b4hy2lm0osuvm"]
+[gd_scene load_steps=24 format=3 uid="uid://b4hy2lm0osuvm"]
 
 [ext_resource type="Script" uid="uid://dnok2glml21yy" path="res://src/game/game.gd" id="1_pxd1g"]
 [ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="2_4r86i"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://dwh8im7xnfexd" path="res://tools/debug/unit_test/tests/submar.gd" id="19_04kmm"]
 [ext_resource type="Script" uid="uid://bwjvd66iedxtu" path="res://tools/debug/unit_test/tests/scout.gd" id="20_kovr4"]
 [ext_resource type="Script" uid="uid://bwkjjgccrrx4e" path="res://tools/debug/unit_test/tests/no_end.gd" id="21_x1f1g"]
+[ext_resource type="Script" uid="uid://denof6w2bpy4t" path="res://tools/debug/unit_test/tests/attack_test.gd" id="23_eveok"]
 [ext_resource type="Script" uid="uid://m3gp3dpmilvx" path="res://tools/debug/unit_test/tests/ship_test.gd" id="23_xowm4"]
 
 [node name="Game" type="Node2D"]
@@ -31,17 +32,17 @@ map_scene = ExtResource("2_4r86i")
 script = ExtResource("3_gnbkw")
 metadata/_custom_type_script = "uid://dmpeewqaa3cpi"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.25, 0.25)
-position_smoothing_enabled = true
-script = ExtResource("2_lk14o")
-
 [node name="MirrorRequest" type="Node" parent="."]
 script = ExtResource("5_c7grw")
 
 [node name="AttackRequest" type="Node" parent="."]
 script = ExtResource("6_72t65")
 metadata/_custom_type_script = "uid://ddik16p73f0tw"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.25, 0.25)
+position_smoothing_enabled = true
+script = ExtResource("2_lk14o")
 
 [node name="Player" type="Node2D" parent="."]
 script = ExtResource("14_llhjw")
@@ -116,7 +117,6 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="Scout" type="Node" parent="Tests"]
 script = ExtResource("20_kovr4")
-auto_start = true
 metadata/_custom_type_script = "uid://pepvmwo83nkf"
 
 [node name="NoEnd" type="Node" parent="Tests"]
@@ -127,4 +127,8 @@ metadata/_custom_type_script = "uid://pepvmwo83nkf"
 [node name="Ship" type="Node" parent="Tests"]
 script = ExtResource("23_xowm4")
 auto_start = true
+metadata/_custom_type_script = "uid://pepvmwo83nkf"
+
+[node name="Attack" type="Node" parent="Tests"]
+script = ExtResource("23_eveok")
 metadata/_custom_type_script = "uid://pepvmwo83nkf"

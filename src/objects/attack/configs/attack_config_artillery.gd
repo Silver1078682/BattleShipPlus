@@ -5,6 +5,8 @@ func _handle_attack(
 		attack_damages: Dictionary,
 		attack: Attack,
 ) -> Attack.Result:
+	if not attack.check_meta("artillery_level"):
+		return Attack.Result.FAILURE
 	var attack_level: int = attack.meta["artillery_level"]
 
 	for coord in attack_damages:
