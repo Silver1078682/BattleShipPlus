@@ -11,7 +11,7 @@ extends Node2D
 func _ready() -> void:
 	set("fleet", $Fleet)
 	set("mine", $Mine)
-	Log.debug(name, "instance ready")
+	Log.debug(name, " instance ready")
 
 
 func setup() -> void:

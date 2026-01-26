@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1euftun8aqg7"]
+[gd_scene load_steps=4 format=3 uid="uid://b1euftun8aqg7"]
 
 [ext_resource type="Script" uid="uid://7abhrh6ag1pg" path="res://src/services/network.gd" id="1_2kiso"]
 [ext_resource type="Script" uid="uid://bte1af5ry4flt" path="res://src/game/main.gd" id="1_3443n"]
 [ext_resource type="PackedScene" uid="uid://cbxiodylo8f2m" path="res://src/ui/menus/start_menu/start_menu.tscn" id="1_re4jl"]
-[ext_resource type="PackedScene" uid="uid://cttn1t08nw74i" path="res://tools/debug/command_bar/command_bar.tscn" id="3_3443n"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3443n")
@@ -11,10 +10,6 @@ script = ExtResource("1_3443n")
 [node name="Network" type="Node" parent="."]
 script = ExtResource("1_2kiso")
 metadata/_custom_type_script = "uid://7abhrh6ag1pg"
-
-[node name="Command" type="CanvasLayer" parent="."]
-
-[node name="CommandBar" parent="Command" instance=ExtResource("3_3443n")]
 
 [node name="StartMenu" type="CanvasLayer" parent="."]
 

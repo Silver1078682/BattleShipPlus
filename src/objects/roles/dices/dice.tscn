@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq6g12x1ng2q3"]
 
-[ext_resource type="Script" uid="uid://cb51temh2sqwc" path="res://src/objects/roles/dices/dice.gd" id="1_4wyce"]
+[ext_resource type="Script" uid="uid://cb51temh2sqwc" path="res://tools/objects/roles/dices/dice.gd" id="1_4wyce"]
 [ext_resource type="Texture2D" uid="uid://dh4opsme32878" path="res://asset/texture/tiles/Frame.png" id="2_s6jjh"]
 
 [node name="Dice" type="Node2D"]

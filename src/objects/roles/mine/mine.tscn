@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlj8823ennbg"]
 
-[ext_resource type="Script" uid="uid://bt40k6cjo5jwt" path="res://src/objects/roles/mine/mine.gd" id="1_red0s"]
+[ext_resource type="Script" uid="uid://bt40k6cjo5jwt" path="res://tools/objects/roles/mine/mine.gd" id="1_red0s"]
 [ext_resource type="Texture2D" uid="uid://dljer50mkmev1" path="res://asset/texture/roles/mines/mine.png" id="2_27hsl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_27hsl"]

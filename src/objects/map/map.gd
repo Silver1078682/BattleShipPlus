@@ -6,7 +6,7 @@ extends Node2D
 @onready var scope: Scope = $Area
 @onready var aerial_defense_scope: Scope = $AerialDefenseScope
 @onready var attack_scope: Scope = $AttackScope
-@onready var sea: Sea = $Sea
+@onready var sea: Sea = %Sea
 @onready var base_manager: BaseManager = $Base
 
 ## Map layout

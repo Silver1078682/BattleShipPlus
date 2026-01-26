@@ -17,7 +17,8 @@ func _ready() -> void:
 
 
 static func sleep(duration: float) -> void:
-	await instance.get_tree().create_timer(duration).timeout
+	if duration:
+		await instance.get_tree().create_timer(duration).timeout
 
 #-----------------------------------------------------------------#
 signal anim_finished
