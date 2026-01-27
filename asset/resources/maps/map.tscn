@@ -1,21 +1,55 @@
-[gd_scene load_steps=20 format=3 uid="uid://snlrdafj0w67"]
+[gd_scene load_steps=25 format=3 uid="uid://snlrdafj0w67"]
 
-[ext_resource type="Script" uid="uid://c0x3da8wjjcb7" path="res://src/objects/map/map.gd" id="1_jdj64"]
-[ext_resource type="Script" uid="uid://dwkkb2i15jtpf" path="res://src/objects/map/areas/area_rect.gd" id="2_5qyn7"]
+[ext_resource type="Script" uid="uid://c0x3da8wjjcb7" path="res://tools/objects/map/map.gd" id="1_jdj64"]
+[ext_resource type="Script" uid="uid://dwkkb2i15jtpf" path="res://tools/objects/map/areas/area_rect.gd" id="2_5qyn7"]
+[ext_resource type="Shader" uid="uid://sdnyu0blwkwk" path="res://asset/shaders/main.gdshader" id="3_erps6"]
+[ext_resource type="Texture2D" uid="uid://dcj37g2hhgl7q" path="res://asset/texture/tiles/Sea.png" id="3_hlvam"]
 [ext_resource type="Texture2D" uid="uid://hiow7h0nfv6j" path="res://asset/texture/tiles/Tile.png" id="3_xxvwk"]
-[ext_resource type="Script" uid="uid://5nbyfjom720l" path="res://src/objects/map/sea.gd" id="4_lejf8"]
-[ext_resource type="Script" uid="uid://6vos1ygwwned" path="res://src/objects/map/scope/scope.gd" id="5_3a5kb"]
+[ext_resource type="Script" uid="uid://5nbyfjom720l" path="res://tools/objects/map/sea.gd" id="4_lejf8"]
+[ext_resource type="Script" uid="uid://6vos1ygwwned" path="res://tools/objects/map/scope/scope.gd" id="5_3a5kb"]
 [ext_resource type="Texture2D" uid="uid://cb0vly14n3y6t" path="res://asset/texture/tiles/Attack.png" id="6_hult2"]
-[ext_resource type="Script" uid="uid://v8llqd7yqwjd" path="res://src/objects/map/base/base_manager.gd" id="7_gcxw7"]
+[ext_resource type="Script" uid="uid://v8llqd7yqwjd" path="res://tools/objects/map/base/base_manager.gd" id="7_gcxw7"]
 [ext_resource type="Texture2D" uid="uid://drf27w153od30" path="res://asset/texture/tiles/Base.png" id="8_gcxw7"]
-[ext_resource type="Script" uid="uid://w6k14ppdabns" path="res://src/objects/map/base/base.gd" id="8_lq10h"]
-[ext_resource type="Script" uid="uid://20x5ygogq6bb" path="res://src/objects/map/base/spawn_point.gd" id="9_372so"]
+[ext_resource type="Script" uid="uid://w6k14ppdabns" path="res://tools/objects/map/base/base.gd" id="8_lq10h"]
+[ext_resource type="Script" uid="uid://20x5ygogq6bb" path="res://tools/objects/map/base/spawn_point.gd" id="9_372so"]
 
 [sub_resource type="Resource" id="Resource_rvj0u"]
 script = ExtResource("2_5qyn7")
 size = Vector2i(60, 20)
 shrink_edge = true
 metadata/_custom_type_script = "uid://dwkkb2i15jtpf"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_erps6"]
+shader = ExtResource("3_erps6")
+shader_parameter/color = Color(0.10022221, 0.8342289, 0.73251796, 1)
+shader_parameter/frequency = 3.0
+shader_parameter/magnitude = 0.2999999932944
+shader_parameter/compress = 1.0
+shader_parameter/add_light = 1.999999955296
+shader_parameter/scale = 0.7999999821184
+shader_parameter/speed = 0.49997763682404184
+shader_parameter/x_angle = 1.57
+shader_parameter/y_angle = 1.57
+shader_parameter/base_alpha = 0.4999999441199998
+shader_parameter/refraction_ratio = 10.0
+shader_parameter/clear = 0.499999988824
+shader_parameter/surf_sinpowder = 8.0
+shader_parameter/surf_speed = 1.0
+shader_parameter/surf_angle = 1.57
+shader_parameter/surf_magnitude = 0.0
+shader_parameter/s11 = 2.221
+shader_parameter/sinpowder = 8.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_33pvc"]
+texture = ExtResource("3_hlvam")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hlvam"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_33pvc")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aq505"]
 texture = ExtResource("3_xxvwk")
@@ -66,9 +100,12 @@ script = ExtResource("1_jdj64")
 map_area = SubResource("Resource_rvj0u")
 _map_center = Vector2i(30, 10)
 
-[node name="Sea" type="TileMapLayer" parent="."]
-self_modulate = Color(0.4974739, 0.49747366, 0.49747354, 1)
-tile_set = SubResource("TileSet_v7a3w")
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+material = SubResource("ShaderMaterial_erps6")
+
+[node name="Sea" type="TileMapLayer" parent="CanvasGroup"]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("4_lejf8")
 
 [node name="Area" type="TileMapLayer" parent="."]

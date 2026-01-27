@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AttackConfig" load_steps=3 format=3 uid="uid://d1jqofjvo4ley"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_y7p7y"]
-[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://src/objects/attack/attack_config.gd" id="2_b6ofv"]
+[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://tools/objects/attack/attack_config.gd" id="2_b6ofv"]
 
 [resource]
 resource_name = "DestroyerScout"

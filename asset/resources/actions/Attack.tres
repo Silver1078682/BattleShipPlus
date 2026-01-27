@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ActionAttack" load_steps=6 format=3 uid="uid://igdlv1bws4km"]
 
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_efgfd"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="1_efgfd"]
 [ext_resource type="Resource" uid="uid://d0dpusquoqm0b" path="res://asset/resources/attacks/Default.tres" id="2_x38sv"]
-[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="3_4c4rw"]
+[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://tools/objects/actions/action_operation/action_attack.gd" id="3_4c4rw"]
 
 [sub_resource type="Resource" id="Resource_aejnv"]
 script = ExtResource("1_efgfd")

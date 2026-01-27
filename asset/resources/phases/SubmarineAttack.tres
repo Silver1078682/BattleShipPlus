@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PhaseSubmarineAttack" load_steps=2 format=3 uid="uid://dqw2dg301yonk"]
 
-[ext_resource type="Script" uid="uid://ptt60qe2gu0o" path="res://src/objects/phase/phase_submarine_attack.gd" id="1_84335"]
+[ext_resource type="Script" uid="uid://ptt60qe2gu0o" path="res://tools/objects/phase/phase_submarine_attack.gd" id="1_84335"]
 
 [resource]
 resource_name = "SubmarineAttack"

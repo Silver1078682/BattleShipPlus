@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ActionArtilleryAttack" load_steps=6 format=3 uid="uid://d16f576xrpmd8"]
 
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_s47qh"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="1_s47qh"]
 [ext_resource type="Resource" uid="uid://8lyq4dfoq6tp" path="res://asset/resources/attacks/ArtilleryAttack.tres" id="2_s47qh"]
-[ext_resource type="Script" uid="uid://cn6w5p3n3qnb5" path="res://src/objects/actions/action_operation/action_artillery_attack.gd" id="3_4q7u8"]
+[ext_resource type="Script" uid="uid://cn6w5p3n3qnb5" path="res://tools/objects/actions/action_operation/action_artillery_attack.gd" id="3_4q7u8"]
 
 [sub_resource type="Resource" id="Resource_s47qh"]
 script = ExtResource("1_s47qh")

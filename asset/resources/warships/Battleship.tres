@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="WarshipConfig" load_steps=11 format=3 uid="uid://by15h247taedx"]
 
-[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_7lfpq"]
-[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_gdtpk"]
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://tools/objects/actions/action.gd" id="1_7lfpq"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://tools/objects/roles/warships/warship_config.gd" id="1_gdtpk"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_iruwl"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_4xdm8"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="2_4xdm8"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_qysup"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="3_un0w7"]
-[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="4_dyoki"]
+[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://tools/objects/actions/action_operation/action_attack.gd" id="4_dyoki"]
 
 [sub_resource type="Resource" id="Resource_lcoh8"]
 script = ExtResource("2_4xdm8")

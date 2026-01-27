@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PhaseTorpedoAttack" load_steps=2 format=3 uid="uid://bbgf3qd7y658"]
 
-[ext_resource type="Script" uid="uid://bwpt680m2nbc2" path="res://src/objects/phase/phase_torpedo_attack.gd" id="1_m42pt"]
+[ext_resource type="Script" uid="uid://bwpt680m2nbc2" path="res://tools/objects/phase/phase_torpedo_attack.gd" id="1_m42pt"]
 
 [resource]
 resource_name = "TorpedoAttack"

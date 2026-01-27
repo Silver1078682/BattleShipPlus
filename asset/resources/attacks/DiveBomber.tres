@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="AttackConfigDiveAircraft" load_steps=4 format=3 uid="uid://cqb26x6iiomrq"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_wbx50"]
-[ext_resource type="Script" uid="uid://dnl5yajowhjvn" path="res://src/objects/attack/configs/attack_config_dive_aircraft.gd" id="2_bxbl3"]
+[ext_resource type="Script" uid="uid://dnl5yajowhjvn" path="res://tools/objects/attack/configs/attack_config_dive_aircraft.gd" id="2_bxbl3"]
 [ext_resource type="Texture2D" uid="uid://dul0s8nixh8kb" path="res://asset/texture/roles/aircraft/DiveBomber.png" id="2_wbx50"]
 
 [resource]

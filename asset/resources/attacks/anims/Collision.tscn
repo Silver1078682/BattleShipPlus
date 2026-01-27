@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_occm2"]
 [ext_resource type="Texture2D" uid="uid://yi7tw1lyk2hf" path="res://asset/texture/tiles/Enemy.png" id="2_duejn"]
-[ext_resource type="Script" uid="uid://1xmyi40msqp0" path="res://src/objects/roles/attack_anim/attack_anim_collision.gd" id="2_vmhga"]
+[ext_resource type="Script" uid="uid://1xmyi40msqp0" path="res://tools/objects/roles/attack_anim/attack_anim_collision.gd" id="2_vmhga"]
 
 [sub_resource type="SystemFont" id="SystemFont_roick"]
 font_names = PackedStringArray("Monospace")

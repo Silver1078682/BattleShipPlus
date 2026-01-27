@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c80xg7jt3vomw"]
 
 [ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="1_0m23t"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_r5l22"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="2_r5l22"]
 
 [sub_resource type="Resource" id="Resource_gsc18"]
 script = ExtResource("2_r5l22")

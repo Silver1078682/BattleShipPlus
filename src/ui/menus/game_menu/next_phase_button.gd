@@ -32,7 +32,7 @@ func _notify_ready() -> void:
 	Game.instance.readiness_confirmation.vote(true)
 
 #-----------------------------------------------------------------#
-const _COUNT_LABEL_FORMAT := "%d/ %d"
+const _COUNT_LABEL_FORMAT := "%d/%d"
 
 
 func _update_count_label() -> void:

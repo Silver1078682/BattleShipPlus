@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ActionAerialAttack" load_steps=6 format=3 uid="uid://bbal4e4uwotea"]
 
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_w1fw6"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="1_w1fw6"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="2_7lfg3"]
-[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="3_w1fw6"]
+[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://tools/objects/actions/action_operation/action_aerial_attack.gd" id="3_w1fw6"]
 
 [sub_resource type="Resource" id="Resource_7lfg3"]
 script = ExtResource("1_w1fw6")

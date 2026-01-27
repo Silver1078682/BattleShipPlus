@@ -25,7 +25,7 @@ static var manager: CardManager
 @onready var revert_icon: TextureRect = %Revert
 
 #-----------------------------------------------------------------#
-const _AMOUNT_LABEL_FORMAT := "%d/ %d"
+const _AMOUNT_LABEL_FORMAT := "%d/%d"
 
 
 func update() -> void:

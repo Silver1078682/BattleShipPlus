@@ -99,6 +99,7 @@ metadata/_custom_type_script = "uid://dtu0ibko00sxm"
 layout_mode = 2
 size_flags_horizontal = 8
 mouse_behavior_recursive = 2
+mouse_default_cursor_shape = 2
 text = "NEXT_PHASE"
 script = ExtResource("6_nme5g")
 

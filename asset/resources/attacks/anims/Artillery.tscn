@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bf3jb6othj56w"]
 
-[ext_resource type="Script" uid="uid://1u5dnkf682an" path="res://src/objects/roles/attack_anim/attack_anim_empty.gd" id="1_sdmtm"]
+[ext_resource type="Script" uid="uid://1u5dnkf682an" path="res://tools/objects/roles/attack_anim/attack_anim_empty.gd" id="1_sdmtm"]
 [ext_resource type="Texture2D" uid="uid://pvjhqt77uy8u" path="res://asset/texture/vfx/Explosion/black_0001.png" id="2_mo7oo"]
 [ext_resource type="Texture2D" uid="uid://d36l3jcyk1vrs" path="res://asset/texture/vfx/Explosion/black_0002.png" id="3_y206j"]
 [ext_resource type="Texture2D" uid="uid://duw4roogbrt3s" path="res://asset/texture/vfx/Explosion/black_0003.png" id="4_a7am8"]

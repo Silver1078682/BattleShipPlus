@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ActionTorpedoAttack" load_steps=7 format=3 uid="uid://coefqffem7op3"]
 
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_43jnu"]
-[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="2_km0cf"]
-[ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://src/objects/actions/action_operation/action_torpedo_attack.gd" id="3_43jnu"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="1_43jnu"]
+[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://tools/objects/map/areas/area_line.gd" id="2_km0cf"]
+[ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://tools/objects/actions/action_operation/action_torpedo_attack.gd" id="3_43jnu"]
 [ext_resource type="Resource" uid="uid://mvuswue8762a" path="res://asset/resources/attacks/Torpedo.tres" id="3_km0cf"]
 
 [sub_resource type="Resource" id="Resource_43jnu"]

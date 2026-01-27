@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PhaseMovement" load_steps=2 format=3 uid="uid://b2qrxvukldihp"]
 
-[ext_resource type="Script" uid="uid://r30vo7o4g020" path="res://src/objects/phase/phase_movement.gd" id="1_8r51o"]
+[ext_resource type="Script" uid="uid://r30vo7o4g020" path="res://tools/objects/phase/phase_movement.gd" id="1_8r51o"]
 
 [resource]
 resource_name = "Movement"

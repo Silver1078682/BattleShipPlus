@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Phase" load_steps=2 format=3 uid="uid://cqrs4hejxq3fe"]
 
-[ext_resource type="Script" uid="uid://34acsxalbuoh" path="res://src/objects/phase/phase.gd" id="1_ayne3"]
+[ext_resource type="Script" uid="uid://34acsxalbuoh" path="res://tools/objects/phase/phase.gd" id="1_ayne3"]
 
 [resource]
 resource_name = "ArtilleryAttack"
