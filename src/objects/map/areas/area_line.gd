@@ -22,7 +22,7 @@ func is_parallel_to_axis() -> bool:
 
 func cube_linedraw(a: Vector2i, b: Vector2i) -> PackedVector3Array:
 	var n = HexGrid.distance(a, b)
-	var results : PackedVector3Array
+	var results: PackedVector3Array
 	for i in range(n + 1):
 		results.append(
 			cube_round(
