@@ -14,3 +14,8 @@ func _ready() -> void:
 		var command_file: GDScript = load(PATH + command_file_name)
 		var command_node = command_file.new()
 		add_child(command_node)
+
+	await Anim.sleep(0.1)
+	if OS.has_feature("template"):
+		return
+	Game.instance.never_end_game = true

@@ -13,3 +13,13 @@ func _add_command(callable: Callable, command_name: StringName, description: Str
 func _exit_tree() -> void:
 	for i in _commands:
 		LimboConsole.unregister_command(i)
+
+
+static func get_name_match(to_match: String, list: PackedStringArray) -> String:
+	var candidate := ""
+	for option in list:
+		if option.to_lower().begins_with(to_match.to_lower()):
+			if candidate:
+				return ""
+			candidate = option
+	return candidate

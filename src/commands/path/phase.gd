@@ -55,13 +55,3 @@ func check_client(subcommand := "") -> bool:
 
 	LimboConsole.warn("phase " + subcommand + " command is not available on client side")
 	return false
-
-
-static func get_name_match(to_match: String, list: PackedStringArray) -> String:
-	var candidate := ""
-	for option in list:
-		if option.to_lower().begins_with(to_match.to_lower()):
-			if candidate:
-				return ""
-			candidate = option
-	return candidate

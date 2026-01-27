@@ -24,20 +24,12 @@ func _warship_add(coord: Vector2i, warship_name: String) -> void:
 	var warship := Warship.create_from_name(warship_name)
 	if not warship:
 		LimboConsole.warn("bad warship name")
+		return
 	warship.coord = coord
 	if not Player.fleet.has_ship_at(coord):
 		Player.fleet.add_ship(warship, true)
 
 
-func _warship_remove(at: Vector2i) -> void:
-	Player.fleet.get_ship_at(at).leave_stage()
-
-
-static func get_name_match(to_match: String, list: PackedStringArray) -> String:
-	var candidate := ""
-	for option in list:
-		if option.to_lower().begins_with(to_match.to_lower()):
-			if candidate:
-				return ""
-			candidate = option
-	return candidate
+func _warship_remove(coord: Vector2i) -> void:
+	if Player.fleet.has_ship_at(coord):
+		Player.fleet.get_ship_at(coord).leave_stage()
