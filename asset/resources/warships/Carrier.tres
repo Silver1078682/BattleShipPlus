@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="WarshipConfig" load_steps=17 format=3 uid="uid://ce313vm662kbq"]
 
-[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://tools/objects/roles/warships/warship_config.gd" id="1_g76gs"]
-[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://tools/objects/actions/action.gd" id="1_h2aut"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="2_8bprf"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_g76gs"]
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_h2aut"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_8bprf"]
 [ext_resource type="Resource" uid="uid://ddpnfst3o5mnn" path="res://asset/resources/actions/AerialDefense.tres" id="3_2lo8t"]
 [ext_resource type="Resource" uid="uid://cqb26x6iiomrq" path="res://asset/resources/attacks/DiveBomber.tres" id="3_8bprf"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="4_gda3e"]
-[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://tools/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
-[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://tools/objects/map/areas/area_line.gd" id="5_w4x53"]
+[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
+[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="5_w4x53"]
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]
 [ext_resource type="Resource" uid="uid://bbal4e4uwotea" path="res://asset/resources/actions/AerialScout.tres" id="8_6yqui"]
 

@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="WarshipConfig" load_steps=11 format=3 uid="uid://pyf5obsjhc7v"]
 
-[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://tools/objects/actions/action.gd" id="1_6gdbh"]
-[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://tools/objects/roles/warships/warship_config.gd" id="1_i2ij7"]
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_6gdbh"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_i2ij7"]
 [ext_resource type="Resource" uid="uid://c6cshsld2by0b" path="res://asset/resources/actions/SubmarineMove.tres" id="2_o2v3k"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="3_namkn"]
-[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://tools/objects/map/areas/area_line.gd" id="4_af3ng"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="3_namkn"]
+[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="4_af3ng"]
 [ext_resource type="Resource" uid="uid://mvuswue8762a" path="res://asset/resources/attacks/Torpedo.tres" id="5_65ayq"]
-[ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://tools/objects/actions/action_operation/action_torpedo_attack.gd" id="6_xh8sw"]
+[ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://src/objects/actions/action_operation/action_torpedo_attack.gd" id="6_xh8sw"]
 
 [sub_resource type="Resource" id="Resource_43jnu"]
 script = ExtResource("3_namkn")

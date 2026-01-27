@@ -1,5 +1,6 @@
 @tool
 extends EditorScript
+
 func _run() -> void:
 	print("making pointing hand buttons")
 	var roots := EditorInterface.get_open_scene_roots()
