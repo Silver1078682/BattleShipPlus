@@ -1,12 +1,12 @@
-extends Node
+extends Command
 ## Commands
 
 func _init() -> void:
-	LimboConsole.register_command(_warship, "warship", "warship management")
-	LimboConsole.register_command(_warship_list, "warship ls", "list all types of warship")
-	LimboConsole.register_command(_warship_add, "warship add", "add warship")
+	_add_command(_warship, "warship", "warship management")
+	_add_command(_warship_list, "warship ls", "list all types of warship")
+	_add_command(_warship_add, "warship add", "add warship")
 	LimboConsole.add_argument_autocomplete_source("warship add", 1, func(): return Warship.NAMES)
-	LimboConsole.register_command(_warship_remove, "warship remove", "remove warship")
+	_add_command(_warship_remove, "warship remove", "remove warship")
 
 
 #-----------------------------------------------------------------#

@@ -1,11 +1,10 @@
-extends Node
-## Commands
+extends Command
 
-func _init() -> void:
-	LimboConsole.register_command(_phase, "phase", "phase management")
-	LimboConsole.register_command(_phase_next, "phase next", "go to next phase")
-	LimboConsole.register_command(_phase_list, "phase ls", "list all phases")
-	LimboConsole.register_command(_phase_goto, "phase goto", "Go to certain phase")
+func _enter_tree() -> void:
+	_add_command(_phase, "phase", "phase management")
+	_add_command(_phase_next, "phase next", "go to next phase")
+	_add_command(_phase_list, "phase ls", "list all phases")
+	_add_command(_phase_goto, "phase goto", "Go to certain phase")
 	LimboConsole.add_argument_autocomplete_source("phase goto", 0, func(): return Phase.manager.phases.keys())
 
 
@@ -30,7 +29,7 @@ func _phase_list() -> void:
 	LimboConsole.print_line("\n".join(Phase.manager.phases.keys()))
 
 
-func _phase_goto(target_phase: String, wait_interval := 0) -> void:
+func _phase_goto(target_phase: String, wait_interval := 0.0) -> void:
 	if not check_client("goto"):
 		return
 

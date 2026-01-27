@@ -1,8 +1,8 @@
-extends Node
-## Commands
+extends Command
 
-func _init() -> void:
-	LimboConsole.register_command(_setting, "setting", "setting management")
+func _enter_tree() -> void:
+	_add_command(_setting, "setting", "setting management")
+
 
 #-----------------------------------------------------------------#
 func _setting(option: String = "", value: Variant = null):

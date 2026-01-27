@@ -1,6 +1,6 @@
 extends Node
 
-const PATH := "res://src/commands/"
+const PATH := "res://src/commands/path/"
 
 
 func _ready() -> void:
@@ -12,4 +12,5 @@ func _ready() -> void:
 		if not command_file_name.ends_with(".gd"):
 			continue
 		var command_file: GDScript = load(PATH + command_file_name)
-		command_file.new()
+		var command_node = command_file.new()
+		add_child(command_node)
