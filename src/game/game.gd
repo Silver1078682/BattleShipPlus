@@ -59,7 +59,7 @@ func _ready() -> void:
 var readiness_confirmation := Vote.new("ReadinessConfirmation")
 
 
-func _initialize_readiness_confirmation():
+func _initialize_readiness_confirmation() -> void:
 	readiness_confirmation.voted.connect(_on_ready_voted)
 	readiness_confirmation.vote_over.connect(_on_ready_vote_over)
 
@@ -70,7 +70,7 @@ func _on_ready_voted(_id: int) -> void:
 		_disable_action_entry()
 
 
-func _on_ready_vote_over():
+func _on_ready_vote_over() -> void:
 	if Network.is_server():
 		Phase.manager.next_phase_or_turn()
 
@@ -117,7 +117,7 @@ func exit_turn() -> void:
 
 
 # disable all UI entry of committing actions
-func _disable_action_entry():
+func _disable_action_entry() -> void:
 	Card.manager.clear()
 	for coord in Player.fleet.get_coords():
 		Player.fleet.get_ship_at(coord).action_button.deactivate()
@@ -133,7 +133,7 @@ func exit_round() -> void:
 var failure_count := Vote.new("FailureCount")
 
 
-func _initialize_failure_count():
+func _initialize_failure_count() -> void:
 	failure_count.vote_over.connect(_on_failure_count_vote_over)
 
 
@@ -197,7 +197,7 @@ enum EndCondition {
 static var END_CONDITION_ARRAY = EndCondition.keys()
 
 
-func end_game(result: Result, end_condition: EndCondition):
+func end_game(result: Result, end_condition: EndCondition) -> void:
 	UI.instance.ending_screen.display(result, end_condition)
 	Log.info("Game ends: %s (%s)" % [Result.find_key(result), END_CONDITION_ARRAY[end_condition]])
 

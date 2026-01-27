@@ -89,7 +89,7 @@ func set_timeout() -> void:
 
 #-----------------------------------------------------------------#
 ## See [AttackConfig.get_exposure_key]
-func get_exposure_key():
+func get_exposure_key() -> String:
 	return config.get_exposure_key(self)
 
 

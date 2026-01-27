@@ -27,14 +27,14 @@ var _value
 
 
 func update(p_value) -> void:
-	Saver.save_setting(setting, p_value)
+	SettingSaver.save_setting(setting, p_value)
 	Setting.set_value(setting.name, p_value)
 	setting.apply(p_value)
 
 
 func _ready() -> void:
 	assert(setting)
-	_value = Saver.load_setting(setting)
+	_value = SettingSaver.load_setting(setting)
 	update(_value)
 	_update_display()
 

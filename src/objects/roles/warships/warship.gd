@@ -231,7 +231,7 @@ signal concealed
 var exposure_reasons: Dictionary[StringName, Variant]
 
 
-func apply_exposure(attack: Attack):
+func apply_exposure(attack: Attack) -> void:
 	if not attack.scouting:
 		return
 	if exposure_reasons.is_empty():
@@ -246,7 +246,7 @@ func revert_exposure(key: StringName) -> void:
 		concealed.emit()
 
 
-func is_exposed():
+func is_exposed() -> bool:
 	return not exposure_reasons.is_empty()
 
 # #-----------------------------------------------------------------#

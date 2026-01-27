@@ -71,7 +71,7 @@ func clear() -> void:
 		card.queue_free()
 
 
-func _update_all():
+func _update_all() -> void:
 	for card in get_cards():
 		card.update()
 

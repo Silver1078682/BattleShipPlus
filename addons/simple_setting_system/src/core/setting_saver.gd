@@ -1,7 +1,7 @@
 @tool
 extends RefCounted
 
-class_name Saver
+class_name SettingSaver
 
 const _FILE_PATH: String = "user://settings.cfg"
 

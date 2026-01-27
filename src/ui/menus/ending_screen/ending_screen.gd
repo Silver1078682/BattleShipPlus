@@ -7,11 +7,11 @@ extends Control
 const RESULT_MESSAGES := ["FAILURE", "DRAW", "SUCCESS"]
 
 
-func display(result: Game.Result, end_screen: Game.EndCondition):
+func display(result: Game.Result, end_screen: Game.EndCondition)-> void:
 	_display(RESULT_MESSAGES[result], Game.END_CONDITION_ARRAY[end_screen])
 
 
-func _display(result_message: String, end_condition_message: String):
+func _display(result_message: String, end_condition_message: String)-> void:
 	result_label.text = result_message
 	end_condition_label.text = end_condition_message
 	show()

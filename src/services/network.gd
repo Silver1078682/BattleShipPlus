@@ -77,7 +77,7 @@ func terminate_client() -> void:
 signal server_disconnected
 
 
-func _on_server_disconnected():
+func _on_server_disconnected() -> void:
 	server_disconnected.emit()
 
 

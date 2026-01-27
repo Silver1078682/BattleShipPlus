@@ -80,7 +80,7 @@ func handle_attack(
 	Log.debug("...Attack %s handled" % attack)
 
 
-func end_attack(attack: Attack):
+func end_attack(attack: Attack) -> void:
 	_end_attack(attack)
 
 

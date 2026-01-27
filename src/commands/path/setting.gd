@@ -5,7 +5,7 @@ func _enter_tree() -> void:
 
 
 #-----------------------------------------------------------------#
-func _setting(option: String = "", value: Variant = null):
+func _setting(option: String = "", value: Variant = null) -> void:
 	if option == "":
 		for setting_name in Setting.settings:
 			LimboConsole.print_line(setting_name + " " + str(Setting.settings[setting_name]))

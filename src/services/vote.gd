@@ -14,7 +14,7 @@ func get_last_vote() -> Dictionary[int, Variant]:
 	return _last_result.duplicate()
 
 
-func reset():
+func reset() -> void:
 	_last_result = _result.duplicate()
 	_result.clear()
 
@@ -24,12 +24,12 @@ signal vote_over(result)
 var vote_max_count := Player.MAX_COUNT
 
 
-func vote(value):
+func vote(value) -> void:
 	_vote.rpc(Player.id, value)
 
 
 @rpc("any_peer", "call_local")
-func _vote(player_id: int, value):
+func _vote(player_id: int, value) -> void:
 	if player_id in _result:
 		_debug_print("Vote Channel %s: Already voted locally" % name)
 		return
@@ -41,11 +41,11 @@ func _vote(player_id: int, value):
 		vote_over.emit()
 
 
-func has_local_voted():
+func has_local_voted() -> bool:
 	return Player.id in _result
 
 
-func get_vote_count():
+func get_vote_count() -> int:
 	return _result.size()
 
 
@@ -59,6 +59,6 @@ func _init(p_name: String) -> void:
 var verbose_debug := true
 
 
-func _debug_print(variant):
+func _debug_print(variant) -> void:
 	if verbose_debug:
 		Log.debug(variant)

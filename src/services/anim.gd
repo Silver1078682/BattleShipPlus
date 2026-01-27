@@ -49,22 +49,22 @@ class AnimProcess:
 	var _anim_count = 0
 
 
-	func wait():
+	func wait() -> void:
 		if _anim_count > 0:
 			await anim_finished
 
 
-	func start():
+	func start() -> void:
 		if _anim_count == 0:
 			Anim.add_anim_reference()
 		_anim_count += 1
 
 
-	func is_playing():
+	func is_playing() -> bool:
 		return _anim_count > 0
 
 
-	func end():
+	func end() -> void:
 		_anim_count -= 1
 		if _anim_count <= 0:
 			Anim.delete_anim_reference()

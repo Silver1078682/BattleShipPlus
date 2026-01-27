@@ -64,5 +64,5 @@ func _anim_once(progress: float) -> void:
 const DICE_SCENE = preload("uid://cq6g12x1ng2q3")
 
 
-static func create():
+static func create() -> Dice:
 	return DICE_SCENE.instantiate()
