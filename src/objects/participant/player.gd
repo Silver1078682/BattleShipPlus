@@ -1,9 +1,16 @@
 class_name Player
 extends Participant
 
-static var fleet: Fleet
-static var mine: MineManager
-static var sunk: Sunk
+static var fleet: Fleet:
+	get:
+		return instance._fleet
+static var mine: MineManager:
+	get:
+		return instance._mine
+static var sunk: Sunk:
+	get:
+		return instance._sunk
+
 static var instance: Player = null
 
 #-----------------------------------------------------------------#

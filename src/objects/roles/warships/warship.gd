@@ -125,41 +125,44 @@ func is_leaving_stage() -> bool:
 
 func leave_stage(with_explosion: bool = false) -> void:
 	if _is_leaving_stage:
-		Log.warning("%s already leaving the stage, skipping" % self)
+		Log.warning("%s is already leaving the stage, skipping" % self)
 		return
 	_is_leaving_stage = true
+
 	if with_explosion:
 		animation.play("Explosion")
 		await animation.animation_finished
 	await anim_process.wait()
 
-	Log.info("%s leaving the stage" % self)
 	var fleet: Fleet = get_parent()
-	assert(fleet and fleet.get_ship_at(coord) == self)
+	assert(fleet, "an Orphan ship leaving the stage")
+	assert(fleet.get_ship_at(coord) == self, "ship leaving the stage but not registered at its position")
 
-	fleet.remove_ship(self)
-	if is_exposed():
+	fleet.unregister_ship(self)
+	if is_exposed() and not as_enemy:
 		call_mirror(&"leave_stage", with_explosion)
 
 	stage_left.emit()
 	queue_free()
+	Log.info("%s left the stage" % self)
 
 
 ## Call a function on the mirror of this ship, if it exists (for ships that are exposed to the opponent)
 func call_mirror(function_name: StringName, ...args) -> void:
+	const MAX_TRY = 5
 	if not is_exposed():
 		Log.error("Trying to call_mirror on an unexposed warship, which does not has a mirror")
 		return
 	if as_enemy:
-		Log.error("Trying to call_mirror on a mirror warship, which itself is a mirror")
+		Log.error("Trying to call_mirror on a warship which itself is a mirror")
 
-	for i in 5:
+	for i in MAX_TRY:
 		if has_mirror:
 			var node_path: = NodePath("Opponent/Fleet/Warship" + str(id))
 			Network.instance.rpc_callv(node_path, function_name, args)
 			return
 		await Anim.sleep(2 ** i / 2.0)
-		if i == 4:
+		if i == MAX_TRY - 1:
 			Log.error("call_mirror ", function_name, " on ", self, "failed after 5 tries")
 
 #-----------------------------------------------------------------#
@@ -184,8 +187,8 @@ func _on_death() -> void:
 	assert(self.is_node_ready()) ## In case a ship dies immediately on spawn
 	Log.info("%s is destroyed" % self)
 	leave_stage(true)
-	Player.sunk.add_sunk_ship(config.name)
-	Network.instance.rpc_call(^"Opponent", &"handle_death_request", config.name)
+	Player.instance.handle_death(id, config.name)
+	Network.instance.rpc_call(^"Opponent", &"handle_death", id, config.name)
 
 #-----------------------------------------------------------------#
 ## Torpedo

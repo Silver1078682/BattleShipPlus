@@ -7,13 +7,12 @@ func _init() -> void:
 	_add_command(_warship_add, "warship add", "add warship")
 	LimboConsole.add_argument_autocomplete_source("warship add", 1, func(): return Warship.NAMES)
 	_add_command(_warship_remove, "warship remove", "remove warship")
+	_add_command(_warship_all, "warship all", "add all type of warship")
 
 
 #-----------------------------------------------------------------#
 func _warship() -> void:
-	for sub: String in ["ls", "add"]:
-		var full := "warship " + sub
-		LimboConsole.print_line("%-20s%s" % [full, LimboConsole.get_command_description(full)])
+	_print_commands()
 
 
 func _warship_list() -> void:
@@ -28,6 +27,20 @@ func _warship_add(coord: Vector2i, warship_name: String) -> void:
 	warship.coord = coord
 	if not Player.fleet.has_ship_at(coord):
 		Player.fleet.add_ship(warship, true)
+
+
+func _warship_all(coord: Vector2i, dire: Vector2i) -> void:
+	var type_count := Warship.NAMES.size()
+	var a = ceili(sqrt(type_count))
+
+	dire = dire.sign()
+	var rect = AreaRect.new()
+	rect.offset = coord + dire
+	rect.size = dire * a
+
+	var coords := rect.get_coords().keys()
+	for i in type_count:
+		_warship_add(coords[i], Warship.NAMES[i])
 
 
 func _warship_remove(coord: Vector2i) -> void:

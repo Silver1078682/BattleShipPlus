@@ -10,9 +10,7 @@ func _enter_tree() -> void:
 
 #-----------------------------------------------------------------#
 func _phase() -> void:
-	for sub: String in ["next", "ls", "goto"]:
-		var full := "phase " + sub
-		LimboConsole.print_line("%-20s%s" % [full, LimboConsole.get_command_description(full)])
+	_print_commands()
 
 
 func _phase_next(count: int = 1, wait_interval: float = 1.0) -> void:

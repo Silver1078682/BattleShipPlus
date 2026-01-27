@@ -15,6 +15,7 @@ func _exit_tree() -> void:
 		LimboConsole.unregister_command(i)
 
 
+#-----------------------------------------------------------------#
 static func get_name_match(to_match: String, list: PackedStringArray) -> String:
 	var candidate := ""
 	for option in list:
@@ -23,3 +24,8 @@ static func get_name_match(to_match: String, list: PackedStringArray) -> String:
 				return ""
 			candidate = option
 	return candidate
+
+
+func _print_commands():
+	for sub: String in _commands:
+		LimboConsole.print_line("%-20s%s" % [sub, LimboConsole.get_command_description(sub)])

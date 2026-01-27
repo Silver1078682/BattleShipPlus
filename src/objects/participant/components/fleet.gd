@@ -19,10 +19,15 @@ func get_coords() -> Array[Vector2i]:
 	return _warships.keys()
 
 
+func get_ships() -> Array[Warship]:
+	return _warships.values()
+
+
 func get_ship_at(coord: Vector2i) -> Warship:
 	return _warships.get(coord, null)
 
 
+#-----------------------------------------------------------------#
 ## Add a ship, assign it with a new unique identifier by default
 func add_ship(ship: Warship, auto_indexing := true) -> void:
 	if ship.coord in _warships:
@@ -43,15 +48,15 @@ func has_ship_at(coord: Vector2i) -> bool:
 
 
 #-----------------------------------------------------------------#
-## Remove the ship from the fleet list.
+## Erase the ship from the fleet list.
 ## This does not destroy or free the warship
-func remove_ship(ship: Warship) -> void:
-	remove_ship_at(ship.coord)
+func unregister_ship(ship: Warship) -> void:
+	unregister_ship_at(ship.coord)
 
 
-## Remove the ship at [param coord].
-## See [func remove_ship]
-func remove_ship_at(coord: Vector2i) -> void:
+## Erase the ship at [param coord].
+## See [func unregister_ship]
+func unregister_ship_at(coord: Vector2i) -> void:
 	_warships.erase(coord)
 
 

@@ -82,7 +82,7 @@ func cancel_ship_at(coord: Vector2i) -> void:
 
 	var warship := Player.fleet.get_ship_at(coord)
 	warship.leave_stage()
-	Player.fleet.remove_ship_at(coord)
+	Player.fleet.unregister_ship_at(coord)
 
 	var action = _staging[coord]
 	_staging.erase(coord)

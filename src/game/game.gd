@@ -98,8 +98,8 @@ func _enter_self_turn() -> void:
 
 	if not Card.manager.is_empty():
 		return
-	for coord in Player.fleet.get_coords():
-		if Player.fleet.get_ship_at(coord).has_any_action():
+	for ship in Player.fleet.get_ships():
+		if ship.has_any_action():
 			return
 
 	Anim.pop_up("NOTHING_TO_DO")
@@ -119,8 +119,8 @@ func exit_turn() -> void:
 # disable all UI entry of committing actions
 func _disable_action_entry() -> void:
 	Card.manager.clear()
-	for coord in Player.fleet.get_coords():
-		Player.fleet.get_ship_at(coord).action_button.deactivate()
+	for ship in Player.fleet.get_ships():
+		ship.action_button.deactivate()
 
 
 ## Called right after a whole round ends.
@@ -164,12 +164,10 @@ func _check_game_over() -> EndCondition:
 
 	var has_valid_ship := false
 	var has_valid_ship_in_home := false
-	for coord in Player.fleet.get_coords():
-		var ship := Player.fleet.get_ship_at(coord)
-
+	for ship in Player.fleet.get_ships():
 		if not ship.config.name in [Warship.CARGO_SHIP, Warship.MINE_LAYER]:
 			has_valid_ship = true
-			if coord in Map.instance.get_scope_home():
+			if ship.coord in Map.instance.get_scope_home():
 				has_valid_ship_in_home = true
 				break
 
