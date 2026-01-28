@@ -22,6 +22,10 @@ extends Node2D
 ## Coordinate of the ship
 var coord: Vector2i:
 	set(p_coord):
+		var fleet: Fleet = get_parent()
+		if fleet != null and fleet.has_ship_at(coord):
+			Log.warning("a Warship in fleet is moved directly, call Fleet.move_ship_to instead")
+
 		position = Map.coord_to_pos(p_coord)
 		coord = p_coord
 
@@ -113,6 +117,8 @@ func _update_actions() -> void:
 			action.ship = self
 
 #-----------------------------------------------------------------#
+# The stage_left signal should be connected to
+# [method Fleet._erase_ship.bind(ship.coord)]
 ## leave stage (on death or anything else)
 signal stage_left
 
@@ -124,9 +130,9 @@ func is_leaving_stage() -> bool:
 
 
 func leave_stage(with_explosion: bool = false) -> void:
-	if _is_leaving_stage:
-		Log.warning("%s is already leaving the stage, skipping" % self)
+	if not _check_leave_stage():
 		return
+
 	_is_leaving_stage = true
 
 	if with_explosion:
@@ -134,11 +140,6 @@ func leave_stage(with_explosion: bool = false) -> void:
 		await animation.animation_finished
 	await anim_process.wait()
 
-	var fleet: Fleet = get_parent()
-	assert(fleet, "an Orphan ship leaving the stage")
-	assert(fleet.get_ship_at(coord) == self, "ship leaving the stage but not registered at its position")
-
-	fleet.unregister_ship(self)
 	if is_exposed() and not as_enemy:
 		call_mirror(&"leave_stage", with_explosion)
 
@@ -147,6 +148,21 @@ func leave_stage(with_explosion: bool = false) -> void:
 	Log.info("%s left the stage" % self)
 
 
+func _check_leave_stage() -> bool:
+	if _is_leaving_stage:
+		Log.warning("%s is already leaving the stage, skipping" % self)
+		return false
+	var fleet: Fleet = get_parent()
+	if fleet == null:
+		Log.warning("an Orphan ship leaving the stage")
+		return false
+	if fleet.get_ship_at(coord) != self:
+		Log.warning("ship leaving the stage but not registered at its position")
+		return false
+	return true
+
+
+#-----------------------------------------------------------------#
 ## Call a function on the mirror of this ship, if it exists (for ships that are exposed to the opponent)
 func call_mirror(function_name: StringName, ...args) -> void:
 	const MAX_TRY = 5
@@ -184,11 +200,9 @@ signal death
 
 
 func _on_death() -> void:
-	assert(self.is_node_ready()) ## In case a ship dies immediately on spawn
-	Log.info("%s is destroyed" % self)
+	(get_parent().get_parent() as Participant).handle_death(self)
 	leave_stage(true)
-	Player.instance.handle_death(id, config.name)
-	Network.instance.rpc_call(^"Opponent", &"handle_death", id, config.name)
+	Log.info("%s died" % self)
 
 #-----------------------------------------------------------------#
 ## Torpedo
@@ -377,6 +391,8 @@ const NAMES: PackedStringArray = [
 #-----------------------------------------------------------------#
 # <as_enemy?abbr [health / max_health] @(coord) id>
 func _to_string() -> String:
+	if not config:
+		return "<SHIP %d>" % id
 	var ship_name = config.abbreviation
 	return "<%s%s%s HP[%d / %d] TOR[%d/%d] @%s %d>" % [
 		"!" if as_enemy else "-",

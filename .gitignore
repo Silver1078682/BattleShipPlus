@@ -6,9 +6,7 @@
 # addons
 addons/gdscript_formatter
 addons/resources_spreadsheet_view
-
-# Godot common
-test/
+addons/gut
 
 # Godot 4+ specific ignores
 .godot/
@@ -28,3 +26,8 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+
+# project-specific
+build/
+tmp/

@@ -40,7 +40,7 @@ func _is_in_shape(at: Vector2i) -> bool:
 
 
 #-----------------------------------------------------------------#
-## Rotate the shape to (0, 0) with (times * PI /3) degrees,
+## Rotate the shape to (0, 0) with (times * PI /3) degrees clockwise,
 ## please override the [method _rotate] to impolement a rotation
 func rotate(times: int) -> void:
 	_rotate(posmod(times, 6))
@@ -48,9 +48,6 @@ func rotate(times: int) -> void:
 
 func _rotate(_times: int) -> void:
 	pass
-
-
-
 
 #-----------------------------------------------------------------#
 var _shape_need_updating := true

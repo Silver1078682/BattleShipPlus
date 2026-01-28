@@ -30,3 +30,7 @@ static func get_next_player(player_id: int) -> int:
 func _ready() -> void:
 	Player.instance = self
 	super()
+
+
+func get_the_other_side() -> Participant:
+	return Opponent.instance

@@ -5,7 +5,9 @@ const PORT = 4433
 const MAX_CLIENTS = 1
 
 #-----------------------------------------------------------------#
+## Only emitted on server
 signal player_joined
+## Only emitted on server
 signal player_left
 
 
@@ -141,11 +143,11 @@ static var instance: Network
 
 
 func _init() -> void:
-	assert(not instance, "a singleton already exists")
+	#assert(not instance, "a singleton already exists")
 	instance = self
 
 
 func _to_string() -> String:
-	if not multiplayer.multiplayer_peer.get_connection_status():
+	if not multiplayer or not multiplayer.multiplayer_peer.get_connection_status():
 		return str(null)
 	return ("Server" if multiplayer.is_server() else "Client")

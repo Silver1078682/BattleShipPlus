@@ -43,16 +43,19 @@ run/main_run_args="debug"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/limbo_console/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/simple_setting_system/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/limbo_console/plugin.cfg", "res://addons/resources_spreadsheet_view/plugin.cfg", "res://addons/simple_setting_system/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://addons/": "red",
 "res://asset/": "yellow",
+"res://build/": "gray",
 "res://scr/objects/roles/warships/resources/": "blue",
 "res://src/": "teal",
-"res://tools/": "green",
+"res://tests/": "green",
+"res://tmp/": "gray",
+"res://tools/": "blue",
 "res://tools/objects/actions/": "blue",
 "res://tools/objects/attack/configs/": "blue",
 "res://tools/objects/phase/": "blue",

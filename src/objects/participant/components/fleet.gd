@@ -30,13 +30,38 @@ func get_ship_at(coord: Vector2i) -> Warship:
 #-----------------------------------------------------------------#
 ## Add a ship, assign it with a new unique identifier by default
 func add_ship(ship: Warship, auto_indexing := true) -> void:
-	if ship.coord in _warships:
-		Log.error("The tile is occupied")
+	if not _add_ship_check(ship, ship.coord):
 		return
+	_add_ship(ship, auto_indexing)
+
+
+## Add a ship at certain coord
+func add_ship_at(ship: Warship, coord: Vector2i, auto_indexing := true) -> void:
+	if not _add_ship_check(ship, coord):
+		return
+	ship.coord = coord
+	_add_ship(ship, auto_indexing)
+
+
+# used internally
+func _add_ship_check(ship: Warship, coord: Vector2i) -> bool:
+	if ship.get_parent() != null:
+		Log.error("ship already in fleet")
+		return false
+	if coord in _warships:
+		Log.error("The tile is occupied")
+		return false
+	return true
+
+
+# used internally
+func _add_ship(ship: Warship, auto_indexing := true) -> void:
 	if auto_indexing:
 		ship.id = Main.generate_id()
 		ship.name = "Warship" + str(ship.id)
+
 	NodeUtil.set_parent_of(ship, self)
+	ship.stage_left.connect(_erase_ship.bind(ship.coord))
 	_warships[ship.coord] = ship
 
 	Log.debug("warship added %s" % ship)
@@ -45,19 +70,6 @@ func add_ship(ship: Warship, auto_indexing := true) -> void:
 ## Returns true if the cell at [param coord] is occupied by a ship in this fleet.
 func has_ship_at(coord: Vector2i) -> bool:
 	return coord in _warships
-
-
-#-----------------------------------------------------------------#
-## Erase the ship from the fleet list.
-## This does not destroy or free the warship
-func unregister_ship(ship: Warship) -> void:
-	unregister_ship_at(ship.coord)
-
-
-## Erase the ship at [param coord].
-## See [func unregister_ship]
-func unregister_ship_at(coord: Vector2i) -> void:
-	_warships.erase(coord)
 
 
 #-----------------------------------------------------------------#
@@ -72,8 +84,15 @@ func move_ship_to(ship: Warship, coord: Vector2i) -> bool:
 		Log.warning("There is already a ship at %s" % [ship.coord])
 		return false
 	_warships.erase(ship.coord)
+	ship.stage_left.disconnect(_erase_ship)
+	ship.coord = coord
+	ship.stage_left.connect(_erase_ship.bind(coord))
 	_warships[coord] = ship
 	return true
+
+
+func _erase_ship(coord: Vector2i) -> void:
+	_warships.erase(coord)
 
 
 #-----------------------------------------------------------------#

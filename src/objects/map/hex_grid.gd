@@ -4,7 +4,7 @@ extends Object
 ## A function library for hexagonal grids.
 # CREDIT: https://www.redblobgames.com/grids/hexagdons/
 
-## Rotate a point to (0, 0) with (times * PI /6) degrees
+## Rotate a point to (0, 0) with (times * PI /6) degrees clockwise
 static func rotate_a_point(point: Vector2i, times: int) -> Vector2i:
 	var cubic := to_cubic(point)
 	var sign_flip := -1 if (times % 2) else 1

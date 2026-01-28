@@ -1,10 +1,15 @@
 class_name Attack
 extends Resource
 
-@export var center: Vector2i
 @export var config: AttackConfig
+## center of the [Attack], ONLY used as meta data.
+## will NOT affect the actual attack landing point
+@export var center: Vector2i
+## Whether the attack can scout the enemy's fleet.
+## i.e highlight the warships in attack target area
 @export var scouting := true
 var base_damage := 0
+## If the [Attack] rolls a dice, the result will be stored here
 var dice_result := -1
 
 ## Some extra information describing the attack, will be sent to your opponent's side
@@ -30,7 +35,8 @@ func create_attack_anim() -> AttackAnim:
 
 
 #-----------------------------------------------------------------#
-## Launch an attack.
+## Launch an attack at certain coords
+## If [memeber config] has [friendly_fire] set true, also attack your own fleet
 func launch(attack_damages: Dictionary[Vector2i, int]) -> void:
 	config.push_attack(attack_damages, self)
 	if config.friendly_fire:

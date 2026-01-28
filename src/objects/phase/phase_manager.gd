@@ -120,8 +120,9 @@ func set_current_player(player_id: int) -> void:
 
 
 ## Get the current player's id.
+## Returns -1 when it is not a turn based phase
 func get_current_player() -> int:
-	return _current_player
+	return _current_player if _phase.should_player_take_turn else -1
 
 
 @rpc("authority", "call_local")

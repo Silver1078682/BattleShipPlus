@@ -18,3 +18,7 @@ static var instance: Opponent = null
 func _ready() -> void:
 	Opponent.instance = self
 	super()
+
+
+func get_the_other_side() -> Participant:
+	return Player.instance

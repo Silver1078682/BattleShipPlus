@@ -10,7 +10,7 @@ extends Node2D
 #-----------------------------------------------------------------#
 func _ready() -> void:
 	assert(base != null and base is Base)
-	assert(Warship.create_from_name(warship_type))
+	assert(warship_type in Warship.NAMES)
 
 	if base == (base.get_parent() as BaseManager).get_base(Player.id):
 		Log.debug("SpawnPoint %s activated" % self)
