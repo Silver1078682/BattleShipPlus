@@ -24,7 +24,7 @@ resources_spreadsheet_view/freeze_first_column=true
 [application]
 
 config/name="BattleShipPlus"
-config/version="0.1.0"
+config/version="0.1.1"
 run/main_scene="uid://b1euftun8aqg7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
