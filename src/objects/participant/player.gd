@@ -34,3 +34,10 @@ func _ready() -> void:
 
 func get_the_other_side() -> Participant:
 	return Opponent.instance
+
+
+func handle_death(dead_ship: Warship) -> void:
+	super(dead_ship)
+	if not dead_ship.config.action_aerial_scout.is_empty():
+		var key_to_revert := AttackConfigAerialScout.EXPOSURE_KEY + str(dead_ship.id)
+		Network.instance.rpc_call(^"Player/Fleet", &"revert_exposure", key_to_revert)

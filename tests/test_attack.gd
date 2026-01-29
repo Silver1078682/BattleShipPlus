@@ -48,7 +48,8 @@ func test_attack_dice_result():
 
 func test_attack_wont_push():
 	Attack.new().launch({ })
-	Attack.create_from_name("Default")
+	Attack.create_from_name("Default").launch({ })
+	assert_not_called(pd.push_attack)
 
 
 func test_attack_client():

@@ -129,7 +129,7 @@ func is_leaving_stage() -> bool:
 	return _is_leaving_stage
 
 
-func leave_stage(with_explosion: bool = false) -> void:
+func leave_stage(with_explosion := false) -> void:
 	if not _check_leave_stage():
 		return
 
@@ -138,6 +138,8 @@ func leave_stage(with_explosion: bool = false) -> void:
 	if with_explosion:
 		animation.play("Explosion")
 		await animation.animation_finished
+		(get_parent().get_parent() as Participant).handle_death(self)
+
 	await anim_process.wait()
 
 	if is_exposed() and not as_enemy:
@@ -200,7 +202,6 @@ signal death
 
 
 func _on_death() -> void:
-	(get_parent().get_parent() as Participant).handle_death(self)
 	leave_stage(true)
 	Log.info("%s died" % self)
 
@@ -251,32 +252,46 @@ var exposure_reasons: Dictionary[StringName, Variant]
 func apply_exposure(attack: Attack) -> void:
 	if not attack.scouting:
 		return
+	if as_enemy:
+		Log.warning("mirror_ship don't record exposure, but apply_exposure is called on ", self)
+		return
+
+	var key := attack.get_exposure_key()
+	if key.is_empty():
+		Log.warning("an empty exposure key is applied to ", self)
+	Log.debug(self, " apply exposure ", key)
 	if exposure_reasons.is_empty():
-		Log.debug("%s is exposed" % self)
 		exposed.emit()
-	exposure_reasons[attack.get_exposure_key()] = null
+	exposure_reasons[key] = null
 
 
 func revert_exposure(key: StringName) -> void:
+	if as_enemy:
+		Log.warning("mirror_ship don't record exposure, but apply_exposure is called on ", self)
+		return
+	if not key in exposure_reasons:
+		return
+	var will_be_concealed := (exposure_reasons.size() == 1)
+	# call mirror to leave stage BEFORE we actually erase the key (conceal the ship)
+	if will_be_concealed:
+		call_mirror(&"leave_stage")
 	exposure_reasons.erase(key)
-	if exposure_reasons.is_empty():
+	if will_be_concealed:
+		Log.debug(self, " is concealed")
 		concealed.emit()
 
 
 func is_exposed() -> bool:
 	return not exposure_reasons.is_empty()
 
-# #-----------------------------------------------------------------#
-# ## is the warship exposed (Discovered by opponent).
-# var is_exposed := false:
-# 	set(p_is_exposed):
-# 		if not is_exposed and p_is_exposed:
-# 			Log.debug("%s is exposed" % self)
-# 			exposed.emit()
-# 		is_exposed = p_is_exposed
-
+#-----------------------------------------------------------------#
 ## If we can be assertive that a mirror peer instance is created
-var has_mirror := false
+var has_mirror := false:
+	set(p_has_mirror):
+		if as_enemy:
+			Log.error("can not set has_mirror on a mirror ship")
+			has_mirror = false
+		has_mirror = p_has_mirror
 
 ## is the warship an enemy mirror.
 var as_enemy := false:
@@ -394,7 +409,7 @@ func _to_string() -> String:
 	if not config:
 		return "<SHIP %d>" % id
 	var ship_name = config.abbreviation
-	return "<%s%s%s HP[%d / %d] TOR[%d/%d] @%s %d>" % [
+	return "<%s%s%s HP[%d/%d] TOR[%d/%d] @%s %d>" % [
 		"!" if as_enemy else "-",
 		_get_expose_indicator_char(),
 		ship_name,

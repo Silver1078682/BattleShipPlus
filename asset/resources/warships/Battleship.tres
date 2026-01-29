@@ -1,32 +1,10 @@
-[gd_resource type="Resource" script_class="WarshipConfig" load_steps=11 format=3 uid="uid://by15h247taedx"]
+[gd_resource type="Resource" script_class="WarshipConfig" load_steps=6 format=3 uid="uid://by15h247taedx"]
 
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_7lfpq"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_gdtpk"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_iruwl"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_4xdm8"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_qysup"]
-[ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="3_un0w7"]
-[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="4_dyoki"]
-
-[sub_resource type="Resource" id="Resource_lcoh8"]
-script = ExtResource("2_4xdm8")
-radius = 9
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_8vkgd"]
-script = ExtResource("2_4xdm8")
-radius = 2
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_m6hon"]
-resource_name = "AerialScout"
-script = ExtResource("4_dyoki")
-attack_area = SubResource("Resource_8vkgd")
-attack_follow_mouse = true
-attack_config = ExtResource("3_un0w7")
-action_area = SubResource("Resource_lcoh8")
-action_name = "AerialScout"
-metadata/_custom_type_script = "uid://bmybf2l7grmym"
+[ext_resource type="Resource" uid="uid://bbal4e4uwotea" path="res://asset/resources/actions/AerialScout.tres" id="2_so3xq"]
 
 [resource]
 resource_name = "Battleship"
@@ -41,6 +19,6 @@ artillery_level = 3
 cost = 3
 arrange_limit = 4
 action_movement = Array[ExtResource("1_7lfpq")]([ExtResource("1_iruwl")])
-action_aerial_scout = Array[ExtResource("1_7lfpq")]([SubResource("Resource_m6hon")])
+action_aerial_scout = Array[ExtResource("1_7lfpq")]([ExtResource("2_so3xq")])
 action_artillery_attack = Array[ExtResource("1_7lfpq")]([ExtResource("2_qysup")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"

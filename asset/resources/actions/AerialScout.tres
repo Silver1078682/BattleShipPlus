@@ -6,11 +6,12 @@
 
 [sub_resource type="Resource" id="Resource_7lfg3"]
 script = ExtResource("1_w1fw6")
+radius = 9
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
 [sub_resource type="Resource" id="Resource_w1fw6"]
 script = ExtResource("1_w1fw6")
-radius = 3
+radius = 2
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
 [resource]
@@ -20,7 +21,6 @@ attack_area = SubResource("Resource_w1fw6")
 attack_follow_mouse = true
 attack_config = ExtResource("2_7lfg3")
 action_area = SubResource("Resource_7lfg3")
-follow_mouse = true
 revertible = false
 check_cursor_fleet = false
 check_cursor_mine = false

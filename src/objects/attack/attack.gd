@@ -36,7 +36,7 @@ func create_attack_anim() -> AttackAnim:
 
 #-----------------------------------------------------------------#
 ## Launch an attack at certain coords
-## If [memeber config] has [friendly_fire] set true, also attack your own fleet
+## If [member config] has [friendly_fire] set true, also attack your own fleet
 func launch(attack_damages: Dictionary[Vector2i, int]) -> void:
 	config.push_attack(attack_damages, self)
 	if config.friendly_fire:

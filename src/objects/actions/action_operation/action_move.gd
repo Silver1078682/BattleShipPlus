@@ -42,6 +42,5 @@ func _move_ship_to(target: Vector2i) -> bool:
 		Anim.pop_up("OCCUPIED")
 		return false
 	if Player.fleet.move_ship_to(ship, target):
-		ship.coord = target
 		return true
 	return false

@@ -160,3 +160,9 @@ func get_hit_ships(attack_damages: Dictionary, attack: Attack) -> Dictionary[Vec
 		if warship.handle_attack(damage, attack):
 			hit_ships[coord] = warship
 	return hit_ships
+
+
+func revert_exposure(exposure_key: String):
+	Log.debug("reverting exposure_key ", exposure_key, " on fleet")
+	for ship: Warship in Player.fleet.get_ships():
+		ship.revert_exposure(exposure_key)

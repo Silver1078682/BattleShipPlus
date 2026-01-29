@@ -1,7 +1,6 @@
 class_name AttackConfigAerialScout
 extends AttackConfig
 
-const AERIAL_SCOUTER = ["Carrier", "Battleship"]
 const EXPOSURE_KEY = "AerialScoutFrom"
 
 
