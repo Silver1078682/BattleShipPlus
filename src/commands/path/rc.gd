@@ -13,8 +13,10 @@ area base "warship all $ (-1 -1)"
 
 
 func _enter_tree() -> void:
-	var commands: String
+	if OS.has_feature("template"):
+		return
 
+	var commands: String
 	if Network.is_server():
 		commands = server_commands
 	elif Network.is_client():
