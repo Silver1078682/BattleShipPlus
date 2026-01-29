@@ -112,7 +112,6 @@ visible = false
 
 [node name="WaitingScreen" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -136,17 +135,25 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="CancelButton" type="Button" parent="WaitingScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="WaitingScreen"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -37.0
-offset_top = -31.0
+offset_left = -79.0
+offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CancelButton" type="Button" parent="WaitingScreen/MarginContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
 text = "Cancel"
@@ -156,5 +163,5 @@ text = "Cancel"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
 [connection signal="text_changed" from="CenterContainer/VBoxContainer/IPEdit" to="CenterContainer/VBoxContainer/IPEdit" method="_on_text_changed"]
 [connection signal="pressed" from="BottomRight/TextureButton" to="Setting/SettingMenu" method="show"]
-[connection signal="pressed" from="WaitingScreen/CancelButton" to="WaitingScreen" method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="WaitingScreen/CancelButton" to="WaitingScreen" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="WaitingScreen/MarginContainer/CancelButton" to="WaitingScreen" method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="WaitingScreen/MarginContainer/CancelButton" to="WaitingScreen" method="_on_exit_button_pressed"]

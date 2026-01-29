@@ -6,7 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://mgk2n8jrx3dn" path="res://addons/simple_setting_system/src/ui/checkbox/checkbox.tscn" id="3_fo5yy"]
 [ext_resource type="Resource" uid="uid://dm15fa5pbe1lf" path="res://asset/resources/settings/SettingLanguage.tres" id="5_f6fg3"]
 
-[node name="SettingMenu" type="PanelContainer"]
+[node name="SettingMenu" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,7 +16,11 @@ grow_vertical = 2
 script = ExtResource("1_fo5yy")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 2
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 1146.0
+offset_bottom = 644.0
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
@@ -38,10 +43,27 @@ size_flags_vertical = 3
 options = Array[String](["system", "en", "zh_CN"])
 setting = ExtResource("5_f6fg3")
 
-[node name="ExitButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BottomRight" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="ExitButton" type="Button" parent="BottomRight"]
+custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 10
 text = "Exit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/ExitButton" to="." method="hide"]
+[connection signal="pressed" from="BottomRight/ExitButton" to="." method="hide"]
