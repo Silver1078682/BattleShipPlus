@@ -5,7 +5,7 @@ func _enter_tree() -> void:
 	LimboConsole.add_argument_autocomplete_source("area", 0, func(): return AREA_TYPE)
 
 
-const AREA_TYPE := ["home", "public", "base", "circle", "line"]
+const AREA_TYPE := ["home", "public", "base", "circle", "line", "rect"]
 
 
 func _area(type: String, subcommand: String):
@@ -35,7 +35,9 @@ func _area(type: String, subcommand: String):
 			coords = parse_arg(AreaHex.new(), args)
 		"line":
 			coords = parse_arg(AreaLine.new(), args)
-		"":
+		"rect":
+			coords = parse_arg(AreaRect.new(), args)
+		_:
 			return
 
 	for coord in coords:

@@ -7,6 +7,7 @@ func _init() -> void:
 	_add_command(_warship_add, "warship add", "add warship")
 	LimboConsole.add_argument_autocomplete_source("warship add", 1, func(): return Warship.NAMES)
 	_add_command(_warship_remove, "warship remove", "remove warship")
+	_add_command(_warship_kill, "warship kill", "kill warship")
 	_add_command(_warship_all, "warship all", "add all type of warship")
 
 
@@ -20,10 +21,11 @@ func _warship_list() -> void:
 
 
 func _warship_add(coord: Vector2i, warship_name: String) -> void:
-	var warship := Warship.create_from_name(warship_name)
-	if not warship:
+	warship_name = get_name_match(warship_name, Warship.NAMES)
+	if not warship_name:
 		LimboConsole.warn("bad warship name")
 		return
+	var warship := Warship.create_from_name(warship_name)
 	warship.coord = coord
 	if not Player.fleet.has_ship_at(coord):
 		Player.fleet.add_ship(warship, true)
@@ -46,3 +48,8 @@ func _warship_all(coord: Vector2i, dire: Vector2i) -> void:
 func _warship_remove(coord: Vector2i) -> void:
 	if Player.fleet.has_ship_at(coord):
 		Player.fleet.get_ship_at(coord).leave_stage()
+
+
+func _warship_kill(coord: Vector2i) -> void:
+	if Player.fleet.has_ship_at(coord):
+		Player.fleet.get_ship_at(coord).health = 0
