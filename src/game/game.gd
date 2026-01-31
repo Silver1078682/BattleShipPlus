@@ -119,8 +119,9 @@ func exit_turn() -> void:
 # disable all UI entry of committing actions
 func _disable_action_entry() -> void:
 	Card.manager.clear()
+	ActionButton.selected_button = null
 	for ship in Player.fleet.get_ships():
-		ship.action_button.deactivate()
+		ship.action_button.hide()
 
 
 ## Called right after a whole round ends.

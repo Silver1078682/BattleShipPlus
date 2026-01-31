@@ -29,3 +29,7 @@ func _get_attack_damages(offset: Vector2i) -> Dictionary[Vector2i, int]:
 	var damages := super(offset)
 	damages.erase(_ship.coord)
 	return damages
+
+
+func has_reached_commit_limit() -> bool:
+	return super() or _ship.torpedo <= 0

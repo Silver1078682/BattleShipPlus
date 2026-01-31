@@ -108,7 +108,7 @@ func get_actions() -> Array[Action]:
 
 func _update_actions() -> void:
 	action_button.reset()
-	action_button.is_activated = has_any_action()
+	action_button.visible = has_any_action()
 	for action in _actions:
 		if not action:
 			Log.error("trying to assign an nil as action to ship type %s" % config.name)

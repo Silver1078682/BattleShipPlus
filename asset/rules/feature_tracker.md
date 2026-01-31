@@ -7,13 +7,14 @@
 - [x] UI 皮肤
 - [x] 水纹效果地图
 - [x] Exposure系统
+- [x] ActionButton显示逻辑
+- [x] 鱼雷用完后仍可攻击
 ---
 - [x] Basic Unit tests
 - [x] 指令系统
 
 ## 0.1.2
 - [ ] 补给船C&布雷艇ML：在基地周围被敌方棋子占用仍然生成。
-- [ ] 鱼雷用完后仍可攻击
 - [ ] 移动撤回反馈优化
 - [ ] ActionButton 抢夺鼠标焦点
 - [ ] BB CA 自带侦察

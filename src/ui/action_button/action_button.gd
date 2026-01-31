@@ -4,43 +4,7 @@ extends TextureButton
 ##
 ## An [ActionButton] will display all [Action]s available in current [Phase]
 ## from corresponding [Warship] as [Card]s on pressed.
-## If the [Warship] does not have any [Action]s available, it will be deactivated and hidden.
-
-#-----------------------------------------------------------------#
-## An button can be activated or deactivated.
-## An button is only visible when it's activate
-signal activated
-var is_activated := false:
-	set(p_is_activated):
-		if p_is_activated != is_activated:
-			if p_is_activated:
-				_activated()
-			else:
-				_deactivated()
-			activated.emit()
-			is_activated = p_is_activated
-
-
-# WARNING Don't use internally
-## Interface for activating the button.
-## Equivalent to setting is_activated true
-func activate() -> void:
-	is_activated = true
-
-
-## Interface for deactivating the button.
-## Equivalent to setting is_activated false
-func deactivate() -> void:
-	_revert_mode = false
-	is_activated = false
-
-
-func _activated() -> void:
-	show()
-
-
-func _deactivated() -> void:
-	hide()
+## If the [Warship] does not have any [Action]s available, it will be hidden.
 
 #-----------------------------------------------------------------#
 ## emitted when selected
@@ -49,7 +13,6 @@ signal selected
 signal deselected
 static var _selected_button: ActionButton
 
-## A button can be only selected when it's activated.
 ## Only one button can be selected at the same time.
 ## Deselect all buttons when value set null.
 static var selected_button: ActionButton:
@@ -58,9 +21,8 @@ static var selected_button: ActionButton:
 	set(p_selected_button):
 		if selected_button == p_selected_button:
 			return
-		_selected_button = null
-		if selected_button:
-			selected_button.deselected.emit()
+		if _selected_button:
+			_selected_button.deselected.emit()
 		_selected_button = p_selected_button
 		if p_selected_button:
 			p_selected_button.selected.emit()
@@ -108,14 +70,16 @@ func _get_warship() -> Warship:
 
 #-----------------------------------------------------------------#
 func reset() -> void:
-	deactivate()
-	_update_color(is_selected())
+	hide()
+	_update_color(false)
 
 
 #-----------------------------------------------------------------#
 func _ready() -> void:
 	pressed.connect(_on_pressed)
 	_update_color(false)
+	selected.connect(_update_color.bind(true))
+	deselected.connect(_update_color.bind(false))
 
 
 func _on_pressed() -> void:
