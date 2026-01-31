@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://dytvnkxxn85r2"
+path="res://.godot/imported/FrameMask.png-40fb4f79a10b9964eb22382970253044.res"
+
+[deps]
+
+source_file="res://asset/texture/tiles/FrameMask.png"
+dest_files=["res://.godot/imported/FrameMask.png-40fb4f79a10b9964eb22382970253044.res"]
+
+[params]
+
+create_from=0
+threshold=0.8
