@@ -4,7 +4,7 @@ var server_commands := """
 area base "warship all $ (1 1)"
 area rect "a=(40,15) size=(2,2)--warship add $ Des"
 area rect "a=(40,10) size=(2,2)--warship add $ Batt"
-phase goto Torpe
+phase goto Mov
 """
 
 var client_commands := """
