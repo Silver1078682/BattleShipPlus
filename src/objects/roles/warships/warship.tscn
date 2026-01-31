@@ -1,9 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://0104oo2lacg"]
+[gd_scene load_steps=35 format=3 uid="uid://0104oo2lacg"]
 
 [ext_resource type="Script" uid="uid://buc7r34h0b5an" path="res://src/objects/roles/warships/warship.gd" id="1_mvf5n"]
 [ext_resource type="Script" uid="uid://lxvriaxxdxxs" path="res://src/connectors/property_setter.gd" id="3_gvf1y"]
 [ext_resource type="Texture2D" uid="uid://c8btkw1o0ybis" path="res://asset/texture/tiles/Expose.png" id="3_oecgq"]
 [ext_resource type="Texture2D" uid="uid://dh4opsme32878" path="res://asset/texture/tiles/Frame.png" id="4_337of"]
+[ext_resource type="BitMap" uid="uid://dytvnkxxn85r2" path="res://asset/texture/tiles/FrameMask.png" id="5_bse7x"]
 [ext_resource type="Script" uid="uid://hwfxa1d102m2" path="res://src/ui/action_button/action_button.gd" id="5_so84a"]
 [ext_resource type="Script" uid="uid://6j5odux1i2to" path="res://src/objects/roles/warships/health_bar.gd" id="7_ub8ni"]
 [ext_resource type="Texture2D" uid="uid://oxj6fo5wp0k8" path="res://asset/texture/vfx/Explosion/explode_areal.png" id="8_mlhr0"]
@@ -298,6 +299,7 @@ offset_right = 64.0
 offset_bottom = 64.0
 pivot_offset = Vector2(64, 64)
 texture_normal = ExtResource("4_337of")
+texture_click_mask = ExtResource("5_bse7x")
 script = ExtResource("5_so84a")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
