@@ -3,6 +3,7 @@ class_name Component
 extends MarginContainer
 
 signal setting_changed()
+
 @export var setting: Setting:
 	set(p_setting):
 		if not p_setting:
@@ -28,13 +29,13 @@ var _value
 
 func update(p_value) -> void:
 	SettingSaver.save_setting(setting, p_value)
-	Setting.set_value(setting.name, p_value)
 	setting.apply(p_value)
 
 
 func _ready() -> void:
 	assert(setting)
 	_value = SettingSaver.load_setting(setting)
+	Setting.register_setting(setting)
 	update(_value)
 	_update_display()
 
