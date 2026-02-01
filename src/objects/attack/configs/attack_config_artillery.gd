@@ -13,8 +13,7 @@ func _handle_attack(
 		var damage := _get_damage(coord, attack_level)
 		attack_damages[coord] = damage
 
-	super(attack_damages, attack)
-	return Attack.Result.SUCCESS
+	return super(attack_damages, attack)
 
 
 func _get_damage(coord: Vector2i, attack_level: int) -> int:

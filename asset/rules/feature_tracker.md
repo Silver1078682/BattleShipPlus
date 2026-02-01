@@ -16,6 +16,7 @@
 ## 0.1.2
 - [ ] 补给船C&布雷艇ML：在基地周围被敌方棋子占用仍然生成。
 - [x] 移动撤回反馈优化
+- [x] ActionButton FilterMask
 - [ ] ActionButton 抢夺鼠标焦点
 - [ ] BB CA 自带侦察
 
