@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PhaseSupply" load_steps=2 format=3 uid="uid://b4vcq7ujaa5op"]
+[gd_resource type="Resource" script_class="PhaseSupply" format=3 uid="uid://b4vcq7ujaa5op"]
 
-[ext_resource type="Script" uid="uid://oj2wc64lsmtw" path="res://tools/objects/phase/phase_supply.gd" id="1_1un7g"]
+[ext_resource type="Script" uid="uid://oj2wc64lsmtw" path="res://src/objects/phase/phase_supply.gd" id="1_1un7g"]
 
 [resource]
 resource_name = "Supply"

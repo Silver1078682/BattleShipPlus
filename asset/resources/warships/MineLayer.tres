@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="WarshipConfig" load_steps=5 format=3 uid="uid://d4fcemoh40txp"]
+[gd_resource type="Resource" script_class="WarshipConfig" format=3 uid="uid://d4fcemoh40txp"]
 
-[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://tools/objects/actions/action.gd" id="1_33olk"]
-[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://tools/objects/roles/warships/warship_config.gd" id="1_irdc5"]
+[ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_33olk"]
+[ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_irdc5"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_oedpd"]
 [ext_resource type="Resource" uid="uid://tajho1xd43o8" path="res://asset/resources/actions/LayMine.tres" id="3_33olk"]
 

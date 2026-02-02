@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="AttackConfigAerial" load_steps=4 format=3 uid="uid://c55g33kqf3dot"]
+[gd_resource type="Resource" script_class="AttackConfigAerial" format=3 uid="uid://c55g33kqf3dot"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_db6nv"]
-[ext_resource type="Script" uid="uid://ddtatwsdcbq6f" path="res://tools/objects/attack/configs/attack_config_aerial.gd" id="2_35ylw"]
+[ext_resource type="Script" uid="uid://ddtatwsdcbq6f" path="res://src/objects/attack/configs/attack_config_aerial.gd" id="2_35ylw"]
 [ext_resource type="Texture2D" uid="uid://bgeionag2tpj3" path="res://asset/texture/roles/aircraft/TorpedoBomber.png" id="2_db6nv"]
 
 [resource]

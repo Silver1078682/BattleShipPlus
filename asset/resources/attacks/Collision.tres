@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="AttackConfigCollision" load_steps=3 format=3 uid="uid://bftulvarbe3x4"]
+[gd_resource type="Resource" script_class="AttackConfigCollision" format=3 uid="uid://bftulvarbe3x4"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_665rx"]
-[ext_resource type="Script" uid="uid://pfpca7dukhng" path="res://tools/objects/attack/configs/attack_config_collision.gd" id="2_665rx"]
+[ext_resource type="Script" uid="uid://pfpca7dukhng" path="res://src/objects/attack/configs/attack_config_collision.gd" id="2_665rx"]
 
 [resource]
 resource_name = "Collision"

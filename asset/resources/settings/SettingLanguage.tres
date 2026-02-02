@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="SettingLanguage" load_steps=2 format=3 uid="uid://dm15fa5pbe1lf"]
+[gd_resource type="Resource" script_class="SettingLanguage" format=3 uid="uid://dm15fa5pbe1lf"]
 
-[ext_resource type="Script" uid="uid://bvwydeo55uf6e" path="res://tools/objects/settings/setting_language.gd" id="1_3od4s"]
+[ext_resource type="Script" uid="uid://bvwydeo55uf6e" path="res://src/objects/settings/setting_language.gd" id="1_3od4s"]
 
 [resource]
 resource_name = "SettingLanguage"
 script = ExtResource("1_3od4s")
 default = "system"
 name = "SettingLanguage"
+value = null
 metadata/_custom_type_script = "uid://cpp0ti4bdncu8"

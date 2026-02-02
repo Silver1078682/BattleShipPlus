@@ -1,7 +1,7 @@
-[gd_resource type="Resource" script_class="AttackConfig" load_steps=3 format=3 uid="uid://d0dpusquoqm0b"]
+[gd_resource type="Resource" script_class="AttackConfig" format=3 uid="uid://d0dpusquoqm0b"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_qehhq"]
-[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://tools/objects/attack/attack_config.gd" id="2_5qiq5"]
+[ext_resource type="Script" uid="uid://cp6jouck8vku0" path="res://src/objects/attack/attack_config.gd" id="2_5qiq5"]
 
 [resource]
 resource_name = "Default"

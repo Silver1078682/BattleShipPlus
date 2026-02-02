@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackConfigAerialScout" load_steps=4 format=3 uid="uid://qcfjhxh77d5s"]
+[gd_resource type="Resource" script_class="AttackConfigAerialScout" format=3 uid="uid://qcfjhxh77d5s"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_f17jk"]
 [ext_resource type="Texture2D" uid="uid://cwbsnp147m0ym" path="res://asset/texture/roles/aircraft/ScoutAircraft.png" id="2_3hcie"]

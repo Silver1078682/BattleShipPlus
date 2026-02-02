@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="ActionAttack" load_steps=7 format=3 uid="uid://dlbdw2wf0ikbi"]
+[gd_resource type="Resource" script_class="ActionAttack" format=3 uid="uid://dlbdw2wf0ikbi"]
 
-[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://tools/objects/map/areas/area_line.gd" id="1_afhst"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://tools/objects/map/areas/area_hex.gd" id="3_65kgj"]
+[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="1_afhst"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="3_65kgj"]
 [ext_resource type="Resource" uid="uid://d0dpusquoqm0b" path="res://asset/resources/attacks/Default.tres" id="3_p08rq"]
-[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://tools/objects/actions/action_operation/action_attack.gd" id="4_8w7fh"]
+[ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="4_8w7fh"]
 
 [sub_resource type="Resource" id="Resource_tkuld"]
 script = ExtResource("3_65kgj")

@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PhaseSubmarineScout" load_steps=2 format=3 uid="uid://blopxum3mmmqd"]
+[gd_resource type="Resource" script_class="PhaseSubmarineScout" format=3 uid="uid://blopxum3mmmqd"]
 
-[ext_resource type="Script" uid="uid://c4jwo8a2y8571" path="res://tools/objects/phase/phase_submarine_scout.gd" id="1_l7ed7"]
+[ext_resource type="Script" uid="uid://c4jwo8a2y8571" path="res://src/objects/phase/phase_submarine_scout.gd" id="1_l7ed7"]
 
 [resource]
 resource_name = "SubmarineScout"

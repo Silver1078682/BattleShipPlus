@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PhaseArrangement" load_steps=2 format=3 uid="uid://blhel4umec3dq"]
+[gd_resource type="Resource" script_class="PhaseArrangement" format=3 uid="uid://blhel4umec3dq"]
 
-[ext_resource type="Script" uid="uid://dpkp2iurmpqhv" path="res://tools/objects/phase/phase_arrangement.gd" id="1_sxyjo"]
+[ext_resource type="Script" uid="uid://dpkp2iurmpqhv" path="res://src/objects/phase/phase_arrangement.gd" id="1_sxyjo"]
 
 [resource]
 resource_name = "Arrangement"

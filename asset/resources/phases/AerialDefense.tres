@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="PhaseAerialDefense" load_steps=2 format=3 uid="uid://bac4wg0odlals"]
+[gd_resource type="Resource" script_class="PhaseAerialDefense" format=3 uid="uid://bac4wg0odlals"]
 
-[ext_resource type="Script" uid="uid://ba21vo73of6ht" path="res://tools/objects/phase/phase_aerial_defense.gd" id="1_721sj"]
+[ext_resource type="Script" uid="uid://ba21vo73of6ht" path="res://src/objects/phase/phase_aerial_defense.gd" id="1_721sj"]
 
 [resource]
 resource_name = "AerialDefense"
