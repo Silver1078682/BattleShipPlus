@@ -5,6 +5,18 @@ func before_all():
 	assert_not_null(Phase.manager)
 
 
+func before_each():
+	## double the AttackRequest node.
+	var attack_request = AttackRequest.new()
+	assert_not_null(attack_request)
+	if Game.instance.has_node("AttackRequest"):
+		replace_node(Game.instance, "AttackRequest", attack_request)
+	else:
+		attack_request.name = "AttackRequest"
+		Game.instance.add_child(attack_request, true)
+	assert_true(Game.instance.has_node("AttackRequest"))
+
+
 func test_next():
 	if not Network.is_server():
 		pass_test("not server side")

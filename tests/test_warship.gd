@@ -1,5 +1,9 @@
 extends GutTest
 
+func before_all():
+	clear_fleet()
+
+
 #-----------------------------------------------------------------#
 func test_warship_init():
 	var ship := Warship.new()
@@ -70,6 +74,7 @@ func test_bad_add():
 
 
 func test_multi_add():
+	clear_fleet()
 	var ship := Warship.create_from_name(type)
 	fleet.add_ship_at(ship, Vector2i(1, 2))
 	assert_sync(ship)
@@ -77,7 +82,7 @@ func test_multi_add():
 	fleet.add_ship(ship)
 	assert_push_error("ship already")
 	fleet.add_ship_at(ship, Vector2i(2, 2))
-	assert_push_error(2)
+	assert_push_error_count(2)
 
 	assert_sync(ship)
 
@@ -94,14 +99,14 @@ func test_remove():
 func test_bad_remove():
 	var ship := Warship.create_from_name(type)
 	ship.leave_stage()
-	assert_engine_error("orphan ship leaving")
+	assert_push_warning("orphan ship leaving")
 	fleet.add_ship_at(ship, Vector2i.ZERO)
 	assert_sync(ship)
 
 	ship.leave_stage()
 	assert_is_leaving(ship)
 	ship.leave_stage()
-	assert_engine_error("already leaving")
+	assert_push_warning("already leaving")
 
 	assert_true(fleet.get_coords().is_empty())
 
@@ -119,7 +124,7 @@ func test_bad_move_ship():
 	var ship = add_ship(Vector2i.ONE)
 	assert_sync(ship)
 	fleet.move_ship_to(ship, Vector2i.ONE)
-	assert_engine_error("already a ship")
+	assert_push_warning("already a ship")
 	clear_fleet()
 
 
