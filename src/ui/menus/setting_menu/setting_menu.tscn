@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://chxbo7x5lv5lq"]
+[gd_scene format=3 uid="uid://chxbo7x5lv5lq"]
 
 [ext_resource type="Script" uid="uid://bjoyylrn2dlk7" path="res://src/ui/menus/setting_menu/setting_menu.gd" id="1_fo5yy"]
 [ext_resource type="Resource" uid="uid://3u2nm4gd0atv" path="res://asset/resources/settings/SettingWindowMode.tres" id="2_3a65t"]
 [ext_resource type="PackedScene" uid="uid://6j517jodedoc" path="res://addons/simple_setting_system/src/ui/option/option.tscn" id="3_fcwo4"]
 [ext_resource type="PackedScene" uid="uid://mgk2n8jrx3dn" path="res://addons/simple_setting_system/src/ui/checkbox/checkbox.tscn" id="3_fo5yy"]
 [ext_resource type="Resource" uid="uid://dm15fa5pbe1lf" path="res://asset/resources/settings/SettingLanguage.tres" id="5_f6fg3"]
+[ext_resource type="PackedScene" uid="uid://csrftkg2hanio" path="res://addons/simple_setting_system/src/ui/slider/slider.tscn" id="6_om2ls"]
+[ext_resource type="Resource" uid="uid://bnw4uj24xsbjl" path="res://asset/resources/settings/SettingAnimationSpeed.tres" id="7_f3xka"]
 
-[node name="SettingMenu" type="Control"]
+[node name="SettingMenu" type="Control" unique_id=1675515490]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fo5yy")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2126095495]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,31 +25,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1445588305]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2145189752]
 layout_mode = 2
 
-[node name="SettingOptions" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SettingOptions" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1381591721]
 layout_mode = 2
 
-[node name="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/SettingOptions" instance=ExtResource("3_fo5yy")]
+[node name="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/SettingOptions" unique_id=498106984 instance=ExtResource("3_fo5yy")]
 layout_mode = 2
 size_flags_vertical = 3
 setting = ExtResource("2_3a65t")
 
-[node name="Option" parent="PanelContainer/MarginContainer/VBoxContainer/SettingOptions" instance=ExtResource("3_fcwo4")]
+[node name="Option" parent="PanelContainer/MarginContainer/VBoxContainer/SettingOptions" unique_id=908562789 instance=ExtResource("3_fcwo4")]
 layout_mode = 2
 size_flags_vertical = 3
 options = Array[String](["system", "en", "zh_CN"])
 setting = ExtResource("5_f6fg3")
 
-[node name="BottomRight" type="MarginContainer" parent="."]
+[node name="Slider" parent="PanelContainer/MarginContainer/VBoxContainer/SettingOptions" unique_id=694853297 instance=ExtResource("6_om2ls")]
+layout_mode = 2
+setting = ExtResource("7_f3xka")
+
+[node name="BottomRight" type="MarginContainer" parent="." unique_id=1510139747]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -63,7 +69,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ExitButton" type="Button" parent="BottomRight"]
+[node name="ExitButton" type="Button" parent="BottomRight" unique_id=575520729]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_horizontal = 8

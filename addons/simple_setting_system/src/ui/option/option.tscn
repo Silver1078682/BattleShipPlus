@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://6j517jodedoc"]
+[gd_scene format=3 uid="uid://6j517jodedoc"]
 
 [ext_resource type="Script" uid="uid://yeutsy16ukua" path="res://addons/simple_setting_system/src/ui/option/option.gd" id="1_yc2dn"]
 [ext_resource type="Script" uid="uid://cpp0ti4bdncu8" path="res://addons/simple_setting_system/src/core/setting.gd" id="2_f7q6o"]
@@ -7,25 +7,26 @@
 script = ExtResource("2_f7q6o")
 default = null
 name = "name"
+value = null
 metadata/_custom_type_script = "uid://cpp0ti4bdncu8"
 
-[node name="Option" type="MarginContainer"]
+[node name="Option" type="MarginContainer" unique_id=296826388]
 offset_right = 101.0
 offset_bottom = 648.0
 script = ExtResource("1_yc2dn")
 setting = SubResource("Resource_ncy1v")
 metadata/_custom_type_script = "uid://durwnow4c4x3r"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1222122917]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1415243490]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 2
 text = "test text"
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer" unique_id=415910494]
 unique_name_in_owner = true
 layout_mode = 2
 
