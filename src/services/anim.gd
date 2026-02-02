@@ -4,6 +4,7 @@ extends CenterContainer
 #-----------------------------------------------------------------#
 static var instance: Anim
 static var pop_up_label: Label
+static var global_speed := 1.0
 
 
 func _init() -> void:
@@ -79,7 +80,7 @@ class AnimProcess:
 
 	func tween_property(node: Node, property: NodePath, final_val: Variant, duration: float) -> PropertyTweener:
 		start()
-		var tweener := node.create_tween().tween_property(node, property, final_val, duration)
+		var tweener := node.create_tween().tween_property(node, property, final_val, duration / Anim.global_speed)
 		tweener.finished.connect(end)
 		return tweener
 
