@@ -100,11 +100,10 @@ static func pop_up(text: Variant) -> void:
 
 	pop_up_label.text = str(text)
 	pop_up_label.modulate.a = 1
-	await _pop_up_tween.tween_property(pop_up_label, "modulate:a", 0, 2).finished
-
+	await _pop_up_tween.tween_property(pop_up_label, "modulate:a", 0, 2 / global_speed).finished
 	pop_up_anim_process.end()
 
 
 #-----------------------------------------------------------------#
 static func fade_out(object: CanvasItem, duration := 1.0) -> Tweener:
-	return object.create_tween().tween_property(object, "modulate:a", 0, duration)
+	return object.create_tween().tween_property(object, "modulate:a", 0, duration / global_speed)
