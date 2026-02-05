@@ -6,11 +6,13 @@ const GAME_SCENE = preload("uid://b4hy2lm0osuvm")
 @onready var start_menu: Control = %StartMenu
 static var instance: Main
 
+var cli := CmdLineInterface.new()
+
 
 func _init() -> void:
 	assert(not instance)
 	instance = self
-	CmdLineInterface.parse(OS.get_cmdline_args())
+	cli.parse_and_apply(OS.get_cmdline_args())
 
 
 func _ready() -> void:

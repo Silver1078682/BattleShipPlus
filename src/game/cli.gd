@@ -2,37 +2,77 @@ class_name CmdLineInterface
 extends RefCounted
 ## Handles command line arguments for the game.
 
-static var network: PackedStringArray = []
-static var log_level: PackedStringArray = []
+#-----------------------------------------------------------------#
+var options: Dictionary[String, String]
+var flags: Dictionary[String, bool]
+var arguments: PackedStringArray
 
 
-static func add_unique_arg_to(arr: PackedStringArray, value: Variant) -> void:
-	if arr:
-		Log.warning("duplicate arr_name args")
-	arr.append(value)
+func parse_args(args: PackedStringArray) -> void:
+	for arg: String in args:
+		if arg.begins_with("--"):
+			# a flag or an option
+			if "=" in arg:
+				# an option with value, e.g., --option=value
+				var parts := arg.split('=')
+				var option_name := parts[0].right(-2)
+				var option_value := parts[1]
+				options[option_name] = option_value
+			else:
+				# a flag
+				var flag_name = arg.right(-2)
+				flags[flag_name] = true
+		else:
+			# a positional argument
+			arguments.append(arg)
 
 
-static func parse(args: PackedStringArray) -> void:
-	var last_arg := ""
-	for arg in args:
-		if last_arg == "client":
-			network.append(arg)
-		elif arg in ["host", "client"]:
-			add_unique_arg_to(network, arg)
-		elif arg in ["debug", "info", "warning", "error"]:
-			add_unique_arg_to(log_level, arg)
-		last_arg = arg
-
-	if log_level:
-		Log.log_level = Log.Level.get(log_level[0].to_upper())
+#-----------------------------------------------------------------#
+func parse_and_apply(args: PackedStringArray) -> void:
+	parse_args(args)
+	apply_all()
 	Log.debug("CLI args:", args)
 
+
+func apply_all() -> void:
+	_apply_options()
+	_apply_flags()
+	_apply_arguments()
+
+
+#-----------------------------------------------------------------#
+func _apply_options() -> void:
+	for option in options:
+		var value = options[option]
+		match option:
+			"log":
+				Log.log_level = Log.Level.get(value.to_upper(), Log.Level.INFO)
+			"host":
+				_host(value)
+			"join":
+				_join(value)
+
+
+func _apply_flags() -> void:
+	if flags.has("host"):
+		_host("Default")
+	elif flags.has("join"):
+		_join("localhost")
+
+
+func _apply_arguments() -> void:
+	pass
+
+
+#-----------------------------------------------------------------#
+func _host(map_name: String) -> void:
 	await Main.instance.ready
-	if network:
-		if network[0] == "host":
-			Network.instance.start_server()
-		elif network[0] == "client":
-			if network.size() >= 2:
-				Network.instance.start_client(network[1])
-			else:
-				Network.instance.start_client("localhost")
+	var map_scene: PackedScene = ResourceUtil.load_resource("maps", map_name, null, "tscn")
+	if map_scene:
+		Map.instance = map_scene.instantiate()
+		Network.instance.start_server()
+
+
+func _join(host_ip: String) -> void:
+	await Main.instance.ready
+	Network.instance.start_client(host_ip)
