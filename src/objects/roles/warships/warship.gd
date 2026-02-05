@@ -21,6 +21,7 @@ extends Node2D
 		config = p_config
 
 ## Coordinate of the ship
+## Only set this coord for a ship that is not in stage. otherwise, call Fleet.move_ship_to
 var coord: Vector2i:
 	set(p_coord):
 		var fleet: Fleet = get_parent()
@@ -56,9 +57,9 @@ func handle_attack(damage: int, attack: Attack) -> bool:
 			is_highlighted = true
 			return true
 	is_highlighted = is_highlighted or attack.scouting
+	apply_exposure(attack)
 	if damage != 0:
 		warship_pusher.force_push({ "health": health })
-	apply_exposure(attack)
 	return true
 
 
@@ -82,6 +83,8 @@ func update() -> void:
 
 
 func receive_state(state: Dictionary[StringName, Variant]):
+	if "coord" in state:
+		Log.error("Changes of coord should not be handled here")
 	Serializer.deserialize_by_properties(self, state)
 
 #-----------------------------------------------------------------#

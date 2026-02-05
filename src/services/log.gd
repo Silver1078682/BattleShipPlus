@@ -44,6 +44,7 @@ static func debug(...variant) -> void:
 
 
 enum Level {
+	QUIET,
 	ERROR,
 	WARNING,
 	INFO,

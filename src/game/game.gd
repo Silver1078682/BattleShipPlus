@@ -96,10 +96,11 @@ func _enter_self_turn() -> void:
 
 	if not Card.manager.is_empty():
 		return
+
+	# pop up a notice if no ship has available action in this phase
 	for ship in Player.fleet.get_ships():
 		if ship.has_any_action():
 			return
-
 	Anim.pop_up("NOTHING_TO_DO")
 
 

@@ -71,8 +71,10 @@ func _add_ship(ship: Warship, auto_indexing := true) -> void:
 func has_ship_at(coord: Vector2i) -> bool:
 	return coord in _warships
 
-
 #-----------------------------------------------------------------#
+var movement_staging: Dictionary[Warship, Vector2i]
+
+
 ## Move a ship to a new coordinate.
 ## This function does not update the ship itself
 ## Setting ship.coord to coord manually is required
@@ -97,12 +99,13 @@ func _erase_ship(coord: Vector2i) -> void:
 
 #-----------------------------------------------------------------#
 # Call [method Warship update] on each ship
-# pop up a notice if no ship has available action in this phase
 func update_ships() -> void:
 	if is_enemy_mirror:
 		Log.error("enemy mirror should not call update function")
 
 	Log.debug("Trying to update ships")
+
+	movement_staging.clear()
 	for warship: Warship in get_children():
 		warship.update()
 
@@ -116,10 +119,6 @@ func get_collision_damages() -> Dictionary[Vector2i, int]:
 			continue
 		damages[coord] = 0
 	return damages
-
-#-----------------------------------------------------------------#
-## destroyed
-var warship_destroyed: Array[StringName]
 
 #-----------------------------------------------------------------#
 ## _warships that is hit at least once this round.

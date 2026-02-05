@@ -18,7 +18,7 @@ script = ExtResource("2_tg0wg")
 radius = 4
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
-[node name="Map" unique_id=1992854079 instance=ExtResource("1_2wq5j")]
+[node name="Map2" unique_id=1992854079 instance=ExtResource("1_2wq5j")]
 map_name = "Test"
 
 [node name="Sea" parent="CanvasGroup" parent_id_path=PackedInt32Array(550510857) index="0" unique_id=1359299357]
