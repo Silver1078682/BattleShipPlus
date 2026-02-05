@@ -3,6 +3,7 @@ class_name ResourceUtil
 
 const RESOURCE_FOLDER = "res://asset/resources/"
 
+
 ## Load a resource
 ## load_resource("type", "name") is a snippet to load("res://asset/resources/type/name.tres")
 ## extra restrictions: [param type] should be snake_case. [param name] should be PascalCase.
@@ -28,9 +29,9 @@ static func list_directory(type: String) -> PackedStringArray:
 		return []
 	var result := []
 	for i in ResourceLoader.list_directory(path):
-		if i.ends_with("/"):# filter the subdirectory
+		if i.ends_with("/"): # filter the subdirectory
 			continue
-		if i.begins_with("_"):# filter file starting with "_
+		if i.begins_with("_"): # filter file starting with "_
 			continue
 		result.append(i)
 	return result

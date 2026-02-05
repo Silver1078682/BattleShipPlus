@@ -13,8 +13,6 @@ extends Node2D
 @export var map_name: String
 
 @export_group("map_layout")
-@export var map_tilemap: TileMapLayer
-@export var map_area: Area
 @export var auto_map_center: bool
 var _map_center: Vector2i
 @export var map_center: Vector2i
@@ -30,6 +28,9 @@ func get_map_center() -> Vector2i:
 		return map_center
 	if _map_center_calculated:
 		return _map_center
+	if get_coords().is_empty():
+		_map_center_calculated = true
+		return Vector2i.ZERO
 	_map_center = _coord_reducer(func(a, b): return (a + b), Vector2i.ZERO) / get_coords().size()
 	_map_center_calculated = true
 	return _map_center
@@ -57,12 +58,12 @@ func _coord_reducer(method: Callable, accum) -> Variant:
 #-----------------------------------------------------------------#
 ## Get all coordinates in the map
 func get_coords() -> Dictionary[Vector2i, int]:
-	return map_area.get_coords()
+	return sea.get_coords()
 
 
 ## Returns whether the coord is in map.
 func has_coord(coord: Vector2i) -> bool:
-	return map_area.has_point(coord)
+	return coord in get_coords()
 
 
 #-----------------------------------------------------------------#
