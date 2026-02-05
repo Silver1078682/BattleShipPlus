@@ -28,6 +28,7 @@ func _ready() -> void:
 		Log.error("a game start but no map is selected")
 	NodeUtil.set_parent_of(Map.instance, self)
 	await NodeUtil.ensure_ready(Map.instance)
+	Map.instance.setup()
 
 	player.setup()
 	opponent.setup()

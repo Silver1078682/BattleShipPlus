@@ -106,6 +106,12 @@ static func pos_to_coord(pos: Vector2) -> Vector2i:
 #-----------------------------------------------------------------#
 static var instance: Map
 
-#func _init() -> void:
-#assert(not instance, "singleton instance initialized")
-#instance = self
+
+func setup() -> void:
+	_setup()
+
+
+func _setup() -> void:
+	var bases := base_manager.get_bases()
+	for base in bases:
+		base.setup()

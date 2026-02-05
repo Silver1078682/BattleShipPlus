@@ -21,6 +21,16 @@ extends Node2D
 
 
 #-----------------------------------------------------------------#
+func setup() -> void:
+	_setup()
+
+
+func _setup() -> void:
+	for i in get_children():
+		if i.has_method("setup"):
+			i.setup()
+
+
 func _ready() -> void:
 	await NodeUtil.ensure_ready(get_map())
 	_set_coord(coord)
