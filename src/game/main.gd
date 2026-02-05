@@ -3,7 +3,7 @@ extends Node
 ## Main application logic.
 
 const GAME_SCENE = preload("uid://b4hy2lm0osuvm")
-@onready var start_menu: Control = %StartMenu
+@onready var start_menu: StartMenu = %StartMenu
 static var instance: Main
 
 var cli := CmdLineInterface.new()
@@ -34,15 +34,14 @@ func start_game(map_id: String) -> void:
 	if Game.instance:
 		Log.error("A game instance ", Game.instance, "is already running")
 	add_child(GAME_SCENE.instantiate())
-	start_menu.waiting_screen.hide()
-	start_menu.hide()
+	start_menu.display = null
 
 
 ## Back to the main game menu
 func back_to_main_menu() -> void:
 	if Game.instance:
 		Game.instance.queue_free()
-	start_menu.show()
+	start_menu.display = start_menu.main
 
 ## Id allocator
 static var _largest_used_id: int

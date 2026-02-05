@@ -1,3 +1,4 @@
+class_name StartMenu
 extends Control
 
 @onready var ip_edit: LineEdit = %IPEdit
