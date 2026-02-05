@@ -43,7 +43,7 @@ static func delete_aerial_defense_area_at(offset: Vector2i) -> void:
 
 
 static func update_map() -> void:
-	Game.instance.map.aerial_defense_scope.set_dict(_aerial_defense_coords)
+	Map.instance.aerial_defense_scope.set_dict(_aerial_defense_coords)
 
 
 #-----------------------------------------------------------------#
@@ -69,7 +69,7 @@ func _update_cursor(_p_coord: Vector2i, _cursor: Cursor) -> void:
 	var coord = _last_aerial_defense_position if has_committed() else Cursor.coord
 	aerial_defense_area.offset = coord
 	update_map()
-	Game.instance.map.aerial_defense_scope.set_area(aerial_defense_area, true, Scope.OperationMode.ADD)
+	Map.instance.aerial_defense_scope.set_area(aerial_defense_area, true, Scope.OperationMode.ADD)
 
 #-----------------------------------------------------------------#
 var _last_aerial_defense_position: Vector2i

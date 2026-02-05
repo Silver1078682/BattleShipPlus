@@ -11,9 +11,6 @@ extends Node2D
 @onready var camera: Camera = $Camera2D
 ## [Cursor] singleton
 @onready var cursor: Cursor = $Cursor
-## [Map] singleton
-@onready var map: Map
-@export var map_scene: PackedScene
 ## [UI] singleton
 @onready var ui: UI = %UI
 ## [Player] singleton
@@ -27,11 +24,10 @@ signal setup
 
 # Load the scene synchronously
 func _ready() -> void:
-	Log.info("Game instance ready")
-
-	map = map_scene.instantiate()
-	add_child(map)
-	await NodeUtil.ensure_ready(map)
+	if Map.instance == null:
+		Log.error("a game start but no map is selected")
+	NodeUtil.set_parent_of(Map.instance, self)
+	await NodeUtil.ensure_ready(Map.instance)
 
 	player.setup()
 	opponent.setup()
@@ -40,7 +36,7 @@ func _ready() -> void:
 
 	camera.setup()
 	ui.setup()
-	camera.move_to_position(map.get_map_center(), false)
+	camera.move_to_position(Map.instance.get_map_center(), false)
 
 	if Network.is_server():
 		Phase.manager.set_initial_phase()
@@ -54,6 +50,7 @@ func _ready() -> void:
 	## TODO tech_point.max_value for each phase
 	Card.manager.tech_point.max_value = ActionArrange.INITIAL_ARRANGE_MAX_COST
 	setup.emit()
+	Log.info("Game instance ready")
 
 #-----------------------------------------------------------------#
 var readiness_confirmation := Vote.new("ReadinessConfirmation")

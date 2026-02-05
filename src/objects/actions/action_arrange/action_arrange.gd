@@ -103,7 +103,7 @@ func _cancelled() -> void:
 		_warship_preview = null
 
 
-# The Game.instance.map.scope.clear_mask() is not called here
+# The Map.instance.scope.clear_mask() is not called here
 func revert() -> void:
 	if has_committed():
 		if _reverted():
@@ -121,7 +121,7 @@ func _reverted() -> bool:
 
 #-----------------------------------------------------------------#
 func _get_action_area() -> Dictionary[Vector2i, int]:
-	var map := Game.instance.map
+	var map := Map.instance
 	match warship_config.arrange_area:
 		WarshipConfig.ArrangeArea.PUBLIC:
 			return map.get_scope_public()
@@ -133,11 +133,11 @@ func _get_action_area() -> Dictionary[Vector2i, int]:
 #-----------------------------------------------------------------#
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
 	return {
-		"NOT_IN_MAP": Game.instance.map.has_coord(p_coord),
-		"CANNOT_ARRANGE_HERE": Game.instance.map.scope.has_coord(p_coord),
+		"NOT_IN_MAP": Map.instance.has_coord(p_coord),
+		"CANNOT_ARRANGE_HERE": Map.instance.scope.has_coord(p_coord),
 		"OCCUPIED": not Player.fleet.has_ship_at(p_coord) or not check_cursor_fleet,
 		"OCCUPIED_BY_MINE": not Player.mine.has_mine_at(p_coord) or not check_cursor_mine,
-		"CANNOT_ARRANGE_BASE": p_coord != Game.instance.map.get_base().coord,
+		"CANNOT_ARRANGE_BASE": p_coord != Map.instance.get_base().coord,
 		"NOT_ENOUGH_SHIP": not _has_reached_arrange_limit,
 		"NOT_ENOUGH_FUND": not _has_reached_tech_point_limit,
 	}

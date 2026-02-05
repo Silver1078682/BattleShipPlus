@@ -4,11 +4,16 @@ class_name ResourceUtil
 const RESOURCE_FOLDER = "res://asset/resources/"
 
 
-static func load_resource(type: String, resource_name: String, fallback: Resource = null) -> Resource:
+## Load a resource
+## load_resource("type", "name") is a snippet to load("res://asset/resources/type/name.tres")
+## extra restrictions: [param type] should be snake_case. [param name] should be PascalCase.
+## return [param fallback] on failure, or null [param fallback] when not set
+## by default load a .tres, but you can also override the [param file_ext]
+static func load_resource(type: String, resource_name: String, fallback: Resource = null, file_ext := "tres") -> Resource:
 	if resource_name.to_pascal_case() != resource_name:
 		Log.error("Resource name should be PascalCase, but given: %s" % resource_name)
 		return null
-	var path := RESOURCE_FOLDER + "%s/%s.tres" % [type, resource_name]
+	var path := RESOURCE_FOLDER + "%s/%s.%s" % [type, resource_name, file_ext]
 	if not ResourceLoader.exists(path):
 		if fallback == null:
 			Log.error("file does not exist at: %s" % path)
@@ -24,9 +29,11 @@ static func list_directory(type: String) -> PackedStringArray:
 		return []
 	var result := []
 	for i in ResourceLoader.list_directory(path):
-		if not i.ends_with("/"):
-			# filter the subdirectory
-			result.append(i)
+		if i.ends_with("/"): # filter the subdirectory
+			continue
+		if i.begins_with("_"): # filter file starting with "_
+			continue
+		result.append(i)
 	return result
 
 

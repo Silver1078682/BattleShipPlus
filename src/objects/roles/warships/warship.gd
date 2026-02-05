@@ -8,6 +8,7 @@ extends Node2D
 @onready var label: Label = $Label
 @onready var animation: AnimationPlayer = $Animation
 @onready var action_button: ActionButton = $ActionButton
+@onready var warship_pusher: WarshipStatePusher = $StatePusher
 
 ## Config of the warship
 ## A config can only (and must) be applied before the node is ready
@@ -37,6 +38,7 @@ var anim_process := Anim.AnimProcess.new()
 #-----------------------------------------------------------------#
 func _ready() -> void:
 	assert(config)
+	death.connect(_on_death)
 
 
 ## Usually invoked by [method Fleet.get_hit_ships]
@@ -54,6 +56,8 @@ func handle_attack(damage: int, attack: Attack) -> bool:
 			is_highlighted = true
 			return true
 	is_highlighted = is_highlighted or attack.scouting
+	if damage != 0:
+		warship_pusher.force_push({ "health": health })
 	apply_exposure(attack)
 	return true
 
@@ -74,8 +78,11 @@ func update() -> void:
 
 	# push state ----------------
 	if not as_enemy and is_exposed() and health > 0:
-		# this update the mirror warship
-		call_mirror("deserialized", serialized())
+		warship_pusher.push()
+
+
+func receive_state(state: Dictionary[StringName, Variant]):
+	Serializer.deserialize_by_properties(self, state)
 
 #-----------------------------------------------------------------#
 # Actions in this phase
@@ -191,12 +198,11 @@ var health: int:
 	get:
 		return _health
 	set(p_health):
-		if _health != p_health:
+		if health != p_health:
 			health_changed.emit(p_health)
 			_health = p_health
 			if p_health <= 0:
 				death.emit()
-				_on_death()
 
 signal death
 
@@ -358,9 +364,10 @@ func serialized() -> Dictionary[StringName, Variant]:
 
 # a deserialized ship update its id according to the given list
 func deserialized(prop_list: Dictionary[StringName, Variant]) -> void:
-	# manually update id & name
-	id = prop_list.id
-	name = "Warship" + str((prop_list.id as int))
+	if "id" in prop_list:
+		# manually update id & name
+		id = prop_list.id
+		name = "Warship" + str((prop_list.id as int))
 	# set _health to avoid triggering setter
 	_health = prop_list.health
 	# use move_ship_to on necessary
@@ -368,7 +375,8 @@ func deserialized(prop_list: Dictionary[StringName, Variant]) -> void:
 		if self.is_node_ready():
 			if not (get_parent() as Fleet).move_ship_to(self, prop_list.coord):
 				Log.error("Calling move_ship_to on ", self, "failed")
-		coord = prop_list.coord
+		else:
+			coord = prop_list.coord
 	torpedo = prop_list.torpedo
 
 #-----------------------------------------------------------------#

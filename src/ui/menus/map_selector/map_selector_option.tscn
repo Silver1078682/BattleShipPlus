@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://djk3jbfsowy04"]
+
+[ext_resource type="Script" uid="uid://7hxh4qb4dm6j" path="res://src/ui/menus/map_selector/map_selector_option.gd" id="1_eld2i"]
+
+[node name="MapOption" type="MarginContainer" unique_id=319694610]
+custom_minimum_size = Vector2(180, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_eld2i")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1728349633]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=545073151]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer" unique_id=1941416992]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer" unique_id=110747960]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(1144, 584)
+render_target_update_mode = 4
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=475734356]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SELECT"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

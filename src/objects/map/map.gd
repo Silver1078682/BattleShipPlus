@@ -9,28 +9,61 @@ extends Node2D
 @onready var sea: Sea = %Sea
 @onready var base_manager: BaseManager = $Base
 
-## Map layout
-@export var map_area: Area
-@export var _map_center: Vector2i
-#@export var WIDTH = 30
-#@export var HEIGHT = 15
+@export_group("map_meta")
+@export var map_name: String
+
+@export_group("map_layout")
+@export var auto_map_center: bool
+var _map_center: Vector2i
+@export var map_center: Vector2i
 
 const TILE_SIZE = 128
 
-
 #-----------------------------------------------------------------#
-func get_map_center() -> Vector2:
+var _map_center_calculated := false
+
+
+func get_map_center() -> Vector2i:
+	if not auto_map_center:
+		return map_center
+	if _map_center_calculated:
+		return _map_center
+	if get_coords().is_empty():
+		_map_center_calculated = true
+		return Vector2i.ZERO
+	_map_center = _coord_reducer(func(a, b): return (a + b), Vector2i.ZERO) / get_coords().size()
+	_map_center_calculated = true
 	return _map_center
 
+#-----------------------------------------------------------------#
 
+var _map_size_calculated := false
+var _map_size: Vector2i
+
+
+func get_map_size() -> Vector2i:
+	if _map_size_calculated:
+		return _map_size
+	var _left_top = _coord_reducer(func(a: Vector2i, b: Vector2i): return a.min(b), Vector2i.ZERO)
+	var _right_bottom = _coord_reducer(func(a: Vector2i, b: Vector2i): return a.max(b), Vector2i.ZERO)
+	_map_size = _right_bottom - _left_top
+	_map_size_calculated = true
+	return _map_size
+
+
+func _coord_reducer(method: Callable, accum) -> Variant:
+	return get_coords().keys().reduce(method, accum)
+
+
+#-----------------------------------------------------------------#
 ## Get all coordinates in the map
 func get_coords() -> Dictionary[Vector2i, int]:
-	return map_area.get_coords()
+	return sea.get_coords()
 
 
 ## Returns whether the coord is in map.
 func has_coord(coord: Vector2i) -> bool:
-	return map_area.has_point(coord)
+	return coord in get_coords()
 
 
 #-----------------------------------------------------------------#
@@ -73,7 +106,6 @@ static func pos_to_coord(pos: Vector2) -> Vector2i:
 #-----------------------------------------------------------------#
 static var instance: Map
 
-
-func _init() -> void:
-	assert(not instance, "singleton instance initialized")
-	instance = self
+#func _init() -> void:
+#assert(not instance, "singleton instance initialized")
+#instance = self

@@ -42,7 +42,7 @@ func mark_scope() -> void:
 	var coord := Cursor.coord if follow_mouse else _ship.coord
 	if action_area:
 		action_area.offset = coord
-	Game.instance.map.scope.set_dict(_get_action_area())
+	Map.instance.scope.set_dict(_get_action_area())
 
 
 func has_reached_commit_limit() -> bool:

@@ -68,7 +68,7 @@ func mark_scope() -> void:
 	var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
 	if action_area:
 		action_area.offset = coord
-	Game.instance.map.scope.set_dict(_get_action_area())
+	Map.instance.scope.set_dict(_get_action_area())
 
 
 # proxy function
@@ -169,7 +169,7 @@ func revert() -> void:
 			_commit_times -= 1
 
 			reverted.emit()
-			Game.instance.map.scope.clear_mask()
+			Map.instance.scope.clear_mask()
 
 
 ## Custom behavior when reverting an action.
@@ -195,7 +195,7 @@ func cancel() -> void:
 
 ## Behavior when an [Action] is cancelled
 func _cancelled() -> void:
-	Game.instance.map.scope.clear_mask()
+	Map.instance.scope.clear_mask()
 
 
 #-----------------------------------------------------------------#
@@ -245,7 +245,7 @@ func check_cursor(p_coord: Vector2i) -> void:
 ## Get the list of rules to check for the cursor position.
 ## See the default example below for more details.
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
-	var map := Game.instance.map
+	var map := Map.instance
 	return {
 		"CANNOT_MOVE_HERE": map.scope.has_coord(p_coord),
 		"NOT_IN_MAP": map.has_coord(p_coord),

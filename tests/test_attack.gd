@@ -1,34 +1,7 @@
 extends GutTest
 
-#gdlint-ignore-next-line
-class AttackTest extends GutTest:
-	const SHIP_TYPE = "Battleship"
-	static var MAX_HEALTH = Warship.get_config(SHIP_TYPE).health #gdlint-ignore
-	var pd: AttackRequest
-
-
-	func before_each():
-		## double the AttackRequest node.
-		pd = partial_double(AttackRequest).new()
-		assert_not_null(pd)
-		if Game.instance.has_node("AttackRequest"):
-			replace_node(Game.instance, "AttackRequest", pd)
-		else:
-			pd.name = "AttackRequest"
-			Game.instance.add_child(pd, true)
-		assert_true(Game.instance.has_node("AttackRequest"))
-		watch_signals(pd)
-
-
-	func after_all():
-		for ship in Player.fleet.get_ships():
-			ship.leave_stage()
-		assert_true(Player.fleet.get_ships().is_empty())
-
-
-	func assert_init(atk: Attack):
-		assert_eq(atk.attacker, Player.id)
-		assert_not_null(atk.config)
+func before_all():
+	pass
 
 
 #-----------------------------------------------------------------#
@@ -64,7 +37,7 @@ class TestGeneral extends AttackTest:
 
 
 #-----------------------------------------------------------------#
-class TestDefaultSuccess extends AttackNetworkTest:
+class TestSuccess extends AttackNetworkTest:
 	func _test_push():
 		attack = create_atk("Default")
 		attack.launch({ Vector2i.ZERO: 0, Vector2i.ONE: 1 })
@@ -84,7 +57,7 @@ class TestDefaultSuccess extends AttackNetworkTest:
 
 
 #-----------------------------------------------------------------#
-class TestDefaultMiss extends AttackNetworkTest:
+class TestMiss extends AttackNetworkTest:
 	func _test_push():
 		attack = create_atk("Default")
 		attack.launch({ Vector2i(-1, -1): 1 })
@@ -99,7 +72,7 @@ class TestDefaultMiss extends AttackNetworkTest:
 
 
 #-----------------------------------------------------------------#
-class TestDefaultKill extends AttackNetworkTest:
+class TestKill extends AttackNetworkTest:
 	func _test_push():
 		attack = create_atk("Default")
 		attack.launch({ Vector2i.ZERO: MAX_HEALTH })
@@ -114,12 +87,30 @@ class TestDefaultKill extends AttackNetworkTest:
 		assert_eq(attack.result, Attack.Result.SUCCESS, "should success")
 		assert_eq(Opponent.sunk.get_sunk_ship_count(SHIP_TYPE), 1, "A ship killed")
 
+# class TestPass extends AttackNetworkTest:
+# 	func _test_push():
+# 		attack = create_atk("Default")
+# 		attack.launch({ Vector2i.ZERO: MAX_HEALTH })
+
+# 	func _test_result():
+# 		examine_fleet({ Vector2i.ZERO: assert_null })
+# 		assert_eq(Player.sunk.get_sunk_ship_count(SHIP_TYPE), 1, "A ship killed")
+
+# 	func _test_reply():
+# 		assert_eq(attack.result, Attack.Result.SUCCESS, "should success")
+# 		assert_eq(Opponent.sunk.get_sunk_ship_count(SHIP_TYPE), 1, "A ship killed")
+
 
 #-----------------------------------------------------------------#
 #-----------------------------------------------------------------#
 class AttackNetworkTest extends AttackTest:
-	func _test_push():
+	func _get_attack_to_test() -> Attack:
 		attack = create_atk("Default")
+		return attack
+
+
+	func _test_push():
+		_get_attack_to_test()
 		attack.launch({ })
 
 
@@ -187,6 +178,36 @@ class AttackNetworkTest extends AttackTest:
 		assert_eq(warship.health, MAX_HEALTH - damage, str(warship.coord, "\t", damage))
 
 	#-----------------------------------------------------------------#
+
+
+class AttackTest extends GutTest:
+	const SHIP_TYPE = "Battleship"
+	static var MAX_HEALTH = Warship.get_config(SHIP_TYPE).health #gdlint-ignore
+	var pd: AttackRequest
+
+
+	func before_each():
+		## double the AttackRequest node.
+		pd = partial_double(AttackRequest).new()
+		assert_not_null(pd)
+		if Game.instance.has_node("AttackRequest"):
+			replace_node(Game.instance, "AttackRequest", pd)
+		else:
+			pd.name = "AttackRequest"
+			Game.instance.add_child(pd, true)
+		assert_true(Game.instance.has_node("AttackRequest"))
+		watch_signals(pd)
+
+
+	func after_all():
+		for ship in Player.fleet.get_ships():
+			ship.leave_stage()
+		assert_true(Player.fleet.get_ships().is_empty())
+
+
+	func assert_init(atk: Attack):
+		assert_eq(atk.attacker, Player.id)
+		assert_not_null(atk.config)
 
 
 	func create_atk(attack_name: String, center := Vector2i.ZERO, meta: Dictionary = { }) -> Attack:

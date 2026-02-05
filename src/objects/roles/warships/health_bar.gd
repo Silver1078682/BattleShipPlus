@@ -1,7 +1,9 @@
 extends ProgressBar
 
-@onready var _ship: Warship = get_parent()
 @onready var particles: CPUParticles2D = $Particles
+var _ship:
+	get:
+		return get_parent()
 
 
 func _ready() -> void:

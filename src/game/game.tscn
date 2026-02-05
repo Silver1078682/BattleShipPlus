@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4hy2lm0osuvm"]
+[gd_scene format=3 uid="uid://b4hy2lm0osuvm"]
 
 [ext_resource type="Script" uid="uid://dnok2glml21yy" path="res://src/game/game.gd" id="1_pxd1g"]
-[ext_resource type="PackedScene" uid="uid://snlrdafj0w67" path="res://asset/resources/maps/map.tscn" id="2_4r86i"]
 [ext_resource type="Script" uid="uid://vhdyiw58d815" path="res://src/objects/camera/camera.gd" id="2_lk14o"]
 [ext_resource type="Script" uid="uid://dmpeewqaa3cpi" path="res://src/objects/phase/phase_manager.gd" id="3_gnbkw"]
 [ext_resource type="Script" uid="uid://brdvfpcofm2jk" path="res://src/objects/participant/communicators/mirror_request.gd" id="5_c7grw"]
@@ -17,74 +16,73 @@
 [ext_resource type="Script" uid="uid://csapiq4d5bx7k" path="res://src/objects/participant/components/mine_manager.gd" id="15_pktyp"]
 [ext_resource type="Script" uid="uid://crt8egra6tprc" path="res://src/commands/command_loader.gd" id="16_80fip"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" unique_id=1279210121]
 script = ExtResource("1_pxd1g")
-map_scene = ExtResource("2_4r86i")
 
-[node name="PhaseManager" type="Node" parent="."]
+[node name="PhaseManager" type="Node" parent="." unique_id=828893168]
 script = ExtResource("3_gnbkw")
 metadata/_custom_type_script = "uid://dmpeewqaa3cpi"
 
-[node name="MirrorRequest" type="Node" parent="."]
+[node name="MirrorRequest" type="Node" parent="." unique_id=953890506]
 script = ExtResource("5_c7grw")
 
-[node name="AttackRequest" type="Node" parent="."]
+[node name="AttackRequest" type="Node" parent="." unique_id=621402931]
 script = ExtResource("6_72t65")
 metadata/_custom_type_script = "uid://ddik16p73f0tw"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1745333106]
 zoom = Vector2(0.25, 0.25)
 position_smoothing_enabled = true
 script = ExtResource("2_lk14o")
 
-[node name="Player" type="Node2D" parent="."]
+[node name="Player" type="Node2D" parent="." unique_id=1254970409]
 script = ExtResource("14_llhjw")
 metadata/_custom_type_script = "uid://dgxiyaeji0d8k"
 
-[node name="Fleet" type="Node2D" parent="Player"]
+[node name="Fleet" type="Node2D" parent="Player" unique_id=1911485945]
 script = ExtResource("8_67gkr")
 metadata/_custom_type_script = "uid://gm11jl6mjc30"
 
-[node name="Mine" type="Node2D" parent="Player"]
+[node name="Mine" type="Node2D" parent="Player" unique_id=1543030792]
 script = ExtResource("15_pktyp")
 metadata/_custom_type_script = "uid://csapiq4d5bx7k"
 
-[node name="Opponent" type="Node2D" parent="."]
+[node name="Opponent" type="Node2D" parent="." unique_id=1967065111]
 script = ExtResource("12_kovr4")
 metadata/_custom_type_script = "uid://cwmajiswx0gqm"
 
-[node name="Fleet" type="Node2D" parent="Opponent"]
+[node name="Fleet" type="Node2D" parent="Opponent" unique_id=1249918865]
 script = ExtResource("8_67gkr")
 is_enemy_mirror = true
 metadata/_custom_type_script = "uid://gm11jl6mjc30"
 
-[node name="Mine" type="Node2D" parent="Opponent"]
+[node name="Mine" type="Node2D" parent="Opponent" unique_id=1580047393]
 script = ExtResource("15_pktyp")
 visible_on_default = false
 metadata/_custom_type_script = "uid://csapiq4d5bx7k"
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1967594503]
 
-[node name="UI" parent="UI" instance=ExtResource("9_oe2k8")]
+[node name="UI" parent="UI" unique_id=639180634 instance=ExtResource("9_oe2k8")]
 unique_name_in_owner = true
 
-[node name="Cursor" type="Node2D" parent="."]
+[node name="Cursor" type="Node2D" parent="." unique_id=1117678434]
 script = ExtResource("11_2s2jw")
 metadata/_custom_type_script = "uid://d3h2jdn2bjcqw"
 
-[node name="Debug" type="Node" parent="Cursor"]
+[node name="Debug" type="Node" parent="Cursor" unique_id=1293611063]
 script = ExtResource("12_itvmg")
 
-[node name="SnappedCursor" type="Node2D" parent="."]
+[node name="SnappedCursor" type="Node2D" parent="." unique_id=101249549]
 
-[node name="InvalidTile" type="Sprite2D" parent="SnappedCursor"]
+[node name="InvalidTile" type="Sprite2D" parent="SnappedCursor" unique_id=1321827347]
 self_modulate = Color(1, 1, 1, 0.5254902)
 texture = ExtResource("13_qtsi8")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=52823300]
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("12_5lp5o")]
+[node name="PauseMenu" parent="CanvasLayer" unique_id=352960170 instance=ExtResource("12_5lp5o")]
 visible = false
 
-[node name="CommandLoader" type="Node" parent="."]
+[node name="CommandLoader" type="Node" parent="." unique_id=1882991944]
 script = ExtResource("16_80fip")

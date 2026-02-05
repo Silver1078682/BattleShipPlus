@@ -1,17 +1,45 @@
+@tool
 class_name SpawnPoint
 extends Node2D
 
 @export var warship_type: StringName
-@export var coord: Vector2i
 @export var spawn_amount_max: int
 @onready var base := get_parent()
+
+#-----------------------------------------------------------------#
+@export var coord := Vector2i.ZERO:
+	set(p_coord):
+		if is_node_ready():
+			_set_coord(p_coord)
+		coord = p_coord
+
+
+func _set_coord(p_coord: Vector2i) -> void:
+	var sea: Sea = base.get_map().get_node(^"%Sea")
+	position = sea.map_to_local(p_coord) - sea.map_to_local(Vector2i.ZERO)
 
 
 #-----------------------------------------------------------------#
 func _ready() -> void:
 	assert(base != null and base is Base)
-	assert(warship_type in Warship.NAMES)
+	if warship_type not in Warship.NAMES:
+		Log.error("Invalid warship type ", warship_type, " in ", self)
 
+	await NodeUtil.ensure_ready(base.get_map())
+	_set_coord(coord)
+
+
+func _process(_delta: float) -> void:
+	if Engine.is_editor_hint():
+		var sea: Sea = base.get_map().get_node(^"%Sea")
+		coord = sea.local_to_map(position + sea.map_to_local(Vector2i.ZERO))
+
+
+func setup():
+	_setup()
+
+
+func _setup():
 	if base == (base.get_parent() as BaseManager).get_base(Player.id):
 		Log.debug("SpawnPoint %s activated" % self)
 		Phase.manager.round_over.connect(spawn)
