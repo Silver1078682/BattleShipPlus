@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActionAerialDefense" load_steps=5 format=3 uid="uid://ddpnfst3o5mnn"]
+[gd_resource type="Resource" script_class="ActionAerialDefense" format=3 uid="uid://ddpnfst3o5mnn"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_3i6ob"]
 [ext_resource type="Script" uid="uid://diht1cbv4llae" path="res://src/objects/actions/action_operation/action_aerial_defense.gd" id="2_riodh"]

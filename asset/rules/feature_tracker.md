@@ -14,14 +14,18 @@
 - [x] 指令系统
 
 ## 0.1.2
-- [ ] 补给船C&布雷艇ML：在基地周围被敌方棋子占用仍然生成。
+- [x] ActionButton FilterMask
 - [x] 移动撤回反馈优化
-- [ ] ActionButton 抢夺鼠标焦点
-- [ ] BB CA 自带侦察
 
 ## 0.2.0
+- [ ] 补给船C&布雷艇ML：在基地周围被敌方棋子占用仍然生成。
+- [ ] BB CA 自带侦察
+- [ ] 血量攻击后立即更新
+- [ ] 可调动画速度
+- [ ] ActionButton 抢夺鼠标焦点
 - [ ] Setting系统重构
 - [ ] translation
+- [ ] MapSelector
 
 ## TODO
 - [ ] 更复杂的移动逻辑（路径可达性检验）

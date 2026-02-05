@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActionDestroyerAttack" load_steps=6 format=3 uid="uid://b8o22hevp88nw"]
+[gd_resource type="Resource" script_class="ActionDestroyerAttack" format=3 uid="uid://b8o22hevp88nw"]
 
 [ext_resource type="Resource" uid="uid://d0dpusquoqm0b" path="res://asset/resources/attacks/Default.tres" id="1_n2iyb"]
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_snqy1"]

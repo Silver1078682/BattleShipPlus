@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActionArtilleryAttack" load_steps=6 format=3 uid="uid://d16f576xrpmd8"]
+[gd_resource type="Resource" script_class="ActionArtilleryAttack" format=3 uid="uid://d16f576xrpmd8"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_s47qh"]
 [ext_resource type="Resource" uid="uid://8lyq4dfoq6tp" path="res://asset/resources/attacks/ArtilleryAttack.tres" id="2_s47qh"]

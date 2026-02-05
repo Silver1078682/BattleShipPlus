@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="SettingWindowMode" load_steps=2 format=3 uid="uid://3u2nm4gd0atv"]
+[gd_resource type="Resource" script_class="SettingWindowMode" format=3 uid="uid://3u2nm4gd0atv"]
 
-[ext_resource type="Script" uid="uid://c3uxcl22kg84l" path="res://tools/objects/settings/setting_window_mode.gd" id="1_pancf"]
+[ext_resource type="Script" uid="uid://c3uxcl22kg84l" path="res://src/objects/settings/setting_window_mode.gd" id="1_pancf"]
 
 [resource]
 resource_name = "SettingWindowMode"

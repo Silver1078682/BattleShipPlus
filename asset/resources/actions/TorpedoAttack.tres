@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ActionTorpedoAttack" load_steps=7 format=3 uid="uid://coefqffem7op3"]
+[gd_resource type="Resource" script_class="ActionTorpedoAttack" format=3 uid="uid://coefqffem7op3"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_43jnu"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="2_km0cf"]

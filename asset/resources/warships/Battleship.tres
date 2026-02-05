@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WarshipConfig" load_steps=6 format=3 uid="uid://by15h247taedx"]
+[gd_resource type="Resource" script_class="WarshipConfig" format=3 uid="uid://by15h247taedx"]
 
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_7lfpq"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_gdtpk"]
