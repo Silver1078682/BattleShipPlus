@@ -1,13 +1,15 @@
 extends Node
 
 var server_commands := """
+setting SettingAnimationSpeed 3.0
 area base "warship all $ (1 1)"
 area rect "a=(40,15) size=(2,2)--warship add $ Des"
 area rect "a=(40,10) size=(2,2)--warship add $ Batt"
-phase goto Mov
+phase goto AerialSc
 """
 
 var client_commands := """
+setting SettingAnimationSpeed 3.0
 area base "warship all $ (-1 -1)"
 """
 

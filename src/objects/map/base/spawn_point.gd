@@ -12,6 +12,12 @@ func _ready() -> void:
 	assert(base != null and base is Base)
 	assert(warship_type in Warship.NAMES)
 
+
+func setup():
+	_setup()
+
+
+func _setup():
 	if base == (base.get_parent() as BaseManager).get_base(Player.id):
 		Log.debug("SpawnPoint %s activated" % self)
 		Phase.manager.round_over.connect(spawn)

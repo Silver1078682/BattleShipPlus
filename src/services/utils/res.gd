@@ -4,11 +4,11 @@ class_name ResourceUtil
 const RESOURCE_FOLDER = "res://asset/resources/"
 
 
-static func load_resource(type: String, resource_name: String, fallback: Resource = null) -> Resource:
+static func load_resource(type: String, resource_name: String, fallback: Resource = null, file_ext := "tres") -> Resource:
 	if resource_name.to_pascal_case() != resource_name:
 		Log.error("Resource name should be PascalCase, but given: %s" % resource_name)
 		return null
-	var path := RESOURCE_FOLDER + "%s/%s.tres" % [type, resource_name]
+	var path := RESOURCE_FOLDER + "%s/%s.%s" % [type, resource_name, file_ext]
 	if not ResourceLoader.exists(path):
 		if fallback == null:
 			Log.error("file does not exist at: %s" % path)

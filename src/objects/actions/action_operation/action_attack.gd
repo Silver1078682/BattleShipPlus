@@ -107,11 +107,11 @@ func mark_attack_scope() -> void:
 		return
 
 	var coord := Game.instance.cursor.coord if attack_follow_mouse else _ship.coord
-	Game.instance.map.attack_scope.set_dict(_get_attack_damages(coord))
+	Map.instance.attack_scope.set_dict(_get_attack_damages(coord))
 
 
 func unmark_attack_scope() -> void:
-	Game.instance.map.attack_scope.clear()
+	Map.instance.attack_scope.clear()
 
 
 #-----------------------------------------------------------------#

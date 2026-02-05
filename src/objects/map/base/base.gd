@@ -16,5 +16,9 @@ extends Node2D
 
 
 func _ready() -> void:
-	await NodeUtil.ensure_ready(Map.instance)
-	position = Map.coord_to_pos(coord)
+	await NodeUtil.ensure_ready(get_map())
+	position = get_map().sea.map_to_local(coord)
+
+
+func get_map() -> Map:
+	return NodeUtil.find_first_ancestor_matching_condition(self, func(node): return node is Map)

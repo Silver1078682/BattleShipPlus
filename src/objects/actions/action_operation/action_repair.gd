@@ -37,12 +37,11 @@ func fade_and_leave_stage() -> void:
 
 #-----------------------------------------------------------------#
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
-	var map := Game.instance.map
 	var has_ship := Player.fleet.has_ship_at(p_coord)
 	var answer: Dictionary[String, bool] = {
-		"NOT_IN_MAP": map.has_coord(p_coord),
+		"NOT_IN_MAP": Map.instance.has_coord(p_coord),
 		"NO_WARSHIP": has_ship,
-		"CANNOT_ARRANGE_BASE": p_coord != Game.instance.map.get_base().coord,
+		"CANNOT_ARRANGE_BASE": p_coord != Map.instance.get_base().coord,
 	}
 	if has_ship:
 		var warship = Player.fleet.get_ship_at(p_coord)

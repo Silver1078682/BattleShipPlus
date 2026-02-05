@@ -19,6 +19,9 @@ func _ready() -> void:
 
 static func sleep(duration: float) -> void:
 	if duration:
+		if not instance:
+			await Main.instance.get_tree().create_timer(duration).timeout
+			return
 		await instance.get_tree().create_timer(duration).timeout
 
 #-----------------------------------------------------------------#

@@ -63,4 +63,4 @@ func _process(_delta: float) -> void:
 
 func _on_coord_changed(p_coord: Vector2i) -> void:
 	snapped_cursor.position = Map.coord_to_pos(p_coord)
-	check_if_valid(Game.instance.map.has_coord(p_coord), "NOT_IN_MAP")
+	check_if_valid(Map.instance.has_coord(p_coord), "NOT_IN_MAP")

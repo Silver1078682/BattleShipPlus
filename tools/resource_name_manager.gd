@@ -12,7 +12,7 @@ func edit_a_directory(dir_access: DirAccess, property_name: String) -> void:
 		resource.resource_name = resource_name
 		if property_name:
 			resource.set(property_name, resource_name)
-		ResourceSettingSaver.save(resource, resource_path)
+		ResourceSaver.save(resource, resource_path)
 
 
 func go_through_resource_folder(dir_path: String, property_name_map: Dictionary[String, String]) -> void:

@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dk7xha40tm5fl"]
+
+[ext_resource type="Script" uid="uid://dirf5dson6b" path="res://src/ui/menus/map_selector/map_selector.gd" id="1_i35p0"]
+
+[node name="MapSelector" type="MarginContainer" unique_id=936317204]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i35p0")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1391781252]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=315763002]
+layout_mode = 2
+
+[node name="OptionContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer" unique_id=1001216105]
+unique_name_in_owner = true
+layout_mode = 2

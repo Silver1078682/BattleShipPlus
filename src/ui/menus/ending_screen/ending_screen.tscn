@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci1emonde57ra"]
+[gd_scene format=3 uid="uid://ci1emonde57ra"]
 
 [ext_resource type="Script" uid="uid://cyl2qm1y87rky" path="res://src/ui/menus/ending_screen/ending_screen.gd" id="1_jp1p5"]
 
-[node name="EndingScreen" type="Control"]
+[node name="EndingScreen" type="Control" unique_id=1650747919]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_vertical = 2
 mouse_behavior_recursive = 2
 script = ExtResource("1_jp1p5")
 
-[node name="EndingScreen" type="PanelContainer" parent="."]
+[node name="EndingScreen" type="PanelContainer" parent="." unique_id=1749674121]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,25 +20,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="EndingScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="EndingScreen" unique_id=585608785]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndingScreen/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndingScreen/CenterContainer" unique_id=792023486]
 layout_mode = 2
 
-[node name="ResultLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer"]
+[node name="ResultLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer" unique_id=39726759]
 unique_name_in_owner = true
 layout_mode = 2
 text = "FAILURE"
 
-[node name="HSeparator" type="HSeparator" parent="EndingScreen/CenterContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="EndingScreen/CenterContainer/VBoxContainer" unique_id=1348678725]
 layout_mode = 2
 
-[node name="EndConditionLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer"]
+[node name="EndConditionLabel" type="Label" parent="EndingScreen/CenterContainer/VBoxContainer" unique_id=1814086771]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=108742747]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -49,12 +49,8 @@ offset_left = -68.0
 offset_top = -38.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
 
-[node name="BackButton" type="Button" parent="MarginContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer" unique_id=1739438116]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2

@@ -29,7 +29,7 @@ func set_dict(coords: Dictionary[Vector2i, int], clamped := true, operation := O
 	if operation == OperationMode.SET:
 		clear()
 	for coord in coords:
-		if clamped and not (coord) in Game.instance.map.get_coords():
+		if clamped and not (coord) in get_map().get_coords():
 			continue
 		if operation == OperationMode.ERASE:
 			_erase_tile(coord)
@@ -63,3 +63,8 @@ func _set_tile(coords: Vector2i, source_id := 0, atlas_coords := Vector2i.ZERO, 
 # wrapper for erasing a tile
 func _erase_tile(coords: Vector2i) -> void:
 	erase_cell(coords)
+
+
+#-----------------------------------------------------------------#
+func get_map() -> Map:
+	return NodeUtil.find_first_ancestor_matching_condition(self, func(node): return node is Map)
