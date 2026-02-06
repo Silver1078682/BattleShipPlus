@@ -79,7 +79,7 @@ func should_explode() -> bool:
 
 func _anim_explode() -> void:
 	anim_process.start()
-	animation.play("Explosion")
+	animation.play(&"Explosion", -1, Anim.global_speed)
 	await animation.animation_finished
 	anim_process.end()
 	queue_free()

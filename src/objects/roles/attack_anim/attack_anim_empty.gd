@@ -19,4 +19,4 @@ func _anim_attack(coords: Array) -> void:
 		return
 	for coord: Vector2i in coords:
 		anim_pos.global_position = Map.coord_to_pos(coord)
-		animation.play(&"Explosion")
+		animation.play(&"Explosion", -1, Anim.global_speed)

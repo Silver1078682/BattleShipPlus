@@ -146,7 +146,7 @@ func leave_stage(with_explosion := false) -> void:
 	_is_leaving_stage = true
 
 	if with_explosion:
-		animation.play("Explosion")
+		animation.play(&"Explosion", -1, Anim.global_speed)
 		await animation.animation_finished
 		(get_parent().get_parent() as Participant).handle_death(self)
 

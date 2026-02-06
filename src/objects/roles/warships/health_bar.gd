@@ -18,7 +18,7 @@ func set_health(p_health: int) -> void:
 
 	if p_health < value:
 		if _ship.animation and not _ship.animation.is_playing():
-			_ship.animation.play("Damage")
+			_ship.animation.play(&"Damage", -1, Anim.global_speed)
 
 	value = p_health
 	if p_health > 0 and p_health <= max_value / 3:
