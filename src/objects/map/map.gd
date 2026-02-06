@@ -69,7 +69,7 @@ func has_coord(coord: Vector2i) -> bool:
 #-----------------------------------------------------------------#
 # mark the home area
 func get_scope_home() -> Dictionary[Vector2i, int]:
-	return get_base().area.get_coords()
+	return get_base().get_coords()
 
 # mark the public area
 var _public_cache: Dictionary[Vector2i, int]
@@ -79,7 +79,7 @@ func get_scope_public() -> Dictionary[Vector2i, int]:
 	if not _public_cache:
 		_public_cache = get_coords()
 		for base: Base in base_manager.get_bases():
-			for coord in base.area.get_coords():
+			for coord in base.get_coords():
 				_public_cache.erase(coord)
 	return _public_cache
 

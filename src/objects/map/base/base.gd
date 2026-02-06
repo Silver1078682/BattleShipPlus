@@ -1,6 +1,6 @@
 @tool
 class_name Base
-extends Node2D
+extends TileMapLayer
 ## The base of the game
 
 @onready var sprite: Sprite2D = $Sprite
@@ -11,13 +11,19 @@ extends Node2D
 			_set_coord(p_coord)
 		coord = p_coord
 
-@export var area: Area:
-	get:
-		if Engine.is_editor_hint():
-			return area
-		if area.offset != coord:
-			area.offset = coord
-		return area
+
+#-----------------------------------------------------------------#
+var _coords: Dictionary[Vector2i, int]
+
+
+func _init_coords() -> void:
+	for i in get_used_cells():
+		_coords[i + coord] = 0
+
+
+func get_coords() -> Dictionary[Vector2i, int]:
+	Log.debug(name, _coords)
+	return _coords
 
 
 #-----------------------------------------------------------------#
@@ -33,12 +39,14 @@ func _setup() -> void:
 
 func _ready() -> void:
 	await NodeUtil.ensure_ready(get_map())
+	self_modulate = Color(0, 0, 0, 0)
+	_init_coords()
 	_set_coord(coord)
 
 
 func _set_coord(p_coord: Vector2i) -> void:
-	position = get_map().get_node(^"%Sea").map_to_local(p_coord)
-
+	var sea: Sea = get_map().get_node(^"%Sea")
+	position = sea.map_to_local(p_coord) - sea.map_to_local(Vector2i.ZERO)
 
 func get_map() -> Map:
 	return NodeUtil.find_first_ancestor_matching_condition(self, func(node): return node is Map)
@@ -46,4 +54,5 @@ func get_map() -> Map:
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		coord = get_map().get_node(^"%Sea").local_to_map(position)
+		var sea: Sea = get_map().get_node(^"%Sea")
+		coord = sea.local_to_map(position + sea.map_to_local(Vector2i.ZERO))
