@@ -1,4 +1,4 @@
-extends GutTest
+extends GutTestGame
 
 func before_all():
 	clear_fleet()
@@ -101,7 +101,6 @@ func test_remove():
 		assert_signal_emitted(ship.stage_left)
 
 
-#-----------------------------------------------------------------#
 func test_bad_remove():
 	var ship := Warship.create_from_name(type)
 	ship.leave_stage()
@@ -117,13 +116,23 @@ func test_bad_remove():
 	assert_true(fleet.get_coords().is_empty())
 
 
+#-----------------------------------------------------------------#
 func test_move_ship_push():
-	var ship = add_ship(Vector2i.ONE)
+	const C1 = Vector2i.ONE * 1
+	const C2 = Vector2i.ONE * 2
+	const C3 = Vector2i.ONE * 3
+	var ship = add_ship(C1)
 	assert_sync(ship)
-	fleet.move_ship_to(ship, Vector2i.ZERO)
-	assert_sync(ship, Vector2i.ZERO)
+
+	fleet.move_ship_to(ship, C2)
+	assert_sync(ship, C2)
 	assert_has(fleet.movement_push, ship)
-	assert_eq(fleet.movement_push[ship], ship.coord)
+	assert_eq(fleet.movement_push[ship], C1)
+
+	fleet.move_ship_to(ship, C3)
+	assert_sync(ship, C3)
+	assert_has(fleet.movement_push, ship)
+	assert_eq(fleet.movement_push[ship], C1)
 	fleet.movement_push.clear()
 
 
@@ -176,10 +185,17 @@ func test_move_ships2():
 
 #-----------------------------------------------------------------#
 func test_serialized_ship():
-	gut.p(fleet.get_ships())
-	var ship := add_ship(Vector2i.ONE)
+	var ship := add_ship(Vector2i.ZERO)
 	assert_sync(ship)
 	var serialized := ship.serialized()
+	assert_serial(serialized, ship)
+	var ship2 := add_ship(Vector2i.ONE)
+	assert_sync(ship2)
+	var serialized2 := ship2.serialized()
+	assert_serial(serialized2, ship2)
+
+
+func assert_serial(serialized, ship: Warship):
 	assert_true(serialized is Dictionary)
 	assert_has(serialized, "id")
 	assert_eq(serialized.get("id"), ship.id)
@@ -210,5 +226,3 @@ func assert_is_leaving(ship: Warship):
 
 func assert_orphan(ship: Warship):
 	assert_null(ship.get_parent())
-
-#-----------------------------------------------------------------#

@@ -61,7 +61,7 @@ func _add_ship(ship: Warship, auto_indexing := true) -> void:
 		ship.name = "Warship" + str(ship.id)
 
 	NodeUtil.set_parent_of(ship, self)
-	ship.stage_left.connect(_erase_ship.bind(ship.coord))
+	ship.stage_left.connect(_erase_ship.bind(ship))
 	_warships[ship.coord] = ship
 
 	Log.debug("warship added %s" % ship)
@@ -75,6 +75,11 @@ func has_ship_at(coord: Vector2i) -> bool:
 var movement_push: Dictionary[Warship, Vector2i]
 
 
+func _add_to_movement_push(ship: Warship, prev_coord: Vector2i) -> void:
+	if not ship in movement_push:
+		movement_push[ship] = prev_coord
+
+
 ## Move a ship to a new coordinate.
 ## when push, the ship's movement will be staged and be pushed to the other side
 func move_ship_to(ship: Warship, coord: Vector2i, push := true) -> bool:
@@ -84,22 +89,22 @@ func move_ship_to(ship: Warship, coord: Vector2i, push := true) -> bool:
 	if has_ship_at(coord):
 		Log.warning("There is already a ship at %s" % [ship.coord])
 		return false
-	_warships.erase(ship.coord)
-	ship.stage_left.disconnect(_erase_ship)
-	ship.coord = coord
 	if push:
-		movement_push[ship] = coord
-	ship.stage_left.connect(_erase_ship.bind(coord))
+		_add_to_movement_push(ship, ship.coord)
+	_warships.erase(ship.coord)
+	ship.coord = coord
 	_warships[coord] = ship
 	return true
 
 
 # Avoid priority problems when moving multiple ships
 ## Move ships to a new coordinate.
-@rpc()
-func move_ships_to(prev_coords: PackedVector2Array, coords: PackedVector2Array, push = true) -> void:
+@rpc("any_peer", "call_remote")
+func move_ships_to(prev_coords: Array, coords: Array, push = true) -> void:
 	if (prev_coords.size() != coords.size()):
 		Log.error("prev coords does not match prev_coords when moving multiple ships")
+		return
+
 	var warships: Array[Warship]
 	for coord: Vector2i in prev_coords:
 		var warship = _warships.get(coord, null)
@@ -109,7 +114,6 @@ func move_ships_to(prev_coords: PackedVector2Array, coords: PackedVector2Array, 
 			Log.error("There is no ship to remove at ", coord)
 		else:
 			_warships.erase(coord)
-			warship.stage_left.disconnect(_erase_ship)
 
 	var warships_to_move: Array[Warship]
 	for i in prev_coords.size():
@@ -118,24 +122,24 @@ func move_ships_to(prev_coords: PackedVector2Array, coords: PackedVector2Array, 
 			continue
 
 		var new_coord: Vector2i = coords[i]
+		var prev_coord: Vector2i = coords[i]
+
 		if has_ship_at(new_coord):
 			Log.warning("There is already a ship at %s" % new_coord)
-			var prev_coord: Vector2i = coords[i]
-			warship.stage_left.connect(_erase_ship.bind(prev_coord))
 			_warships[prev_coord] = warship
 		else:
+			if push:
+				_add_to_movement_push(warship, prev_coord)
 			warship.coord = new_coord
 			warships_to_move.append(warship)
 
 	for warship in warships_to_move:
-		if push:
-			movement_push[warship] = warship.coord
-		warship.stage_left.connect(_erase_ship.bind(warship.coord))
 		_warships[warship.coord] = warship
 
 
-func _erase_ship(coord: Vector2i) -> void:
-	_warships.erase(coord)
+func _erase_ship(warship: Warship) -> void:
+	_warships.erase(warship.coord)
+	movement_push.erase(warship)
 
 
 #-----------------------------------------------------------------#
@@ -145,8 +149,9 @@ func update_ships() -> void:
 		Log.error("enemy mirror should not call update function")
 
 	Log.debug("Trying to update ships")
-
-	Opponent.fleet.move_ships_to.rpc(movement_push.keys(), movement_push.values(), false)
+	var prev_coords = movement_push.values()
+	var new_coords = movement_push.keys().map(func(a): return a.coord)
+	Opponent.fleet.move_ships_to.rpc(prev_coords, new_coords, false)
 	movement_push.clear()
 	for warship: Warship in get_children():
 		warship.update()
