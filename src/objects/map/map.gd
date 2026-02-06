@@ -57,6 +57,7 @@ func _coord_reducer(method: Callable, accum) -> Variant:
 
 #-----------------------------------------------------------------#
 ## Get all coordinates in the map
+## Don't modify the returned Array!
 func get_coords() -> Dictionary[Vector2i, int]:
 	return sea.get_coords()
 
@@ -77,10 +78,11 @@ var _public_cache: Dictionary[Vector2i, int]
 
 func get_scope_public() -> Dictionary[Vector2i, int]:
 	if not _public_cache:
-		_public_cache = get_coords()
+		_public_cache = get_coords().duplicate()
 		for base: Base in base_manager.get_bases():
 			for coord in base.get_coords():
 				_public_cache.erase(coord)
+
 	return _public_cache
 
 

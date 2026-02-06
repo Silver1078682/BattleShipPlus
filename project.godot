@@ -43,7 +43,7 @@ project/assembly_name="BattleShipPlus"
 
 [editor]
 
-run/main_run_args="--log=debug"
+run/main_run_args="--log=quiet"
 
 [editor_plugins]
 

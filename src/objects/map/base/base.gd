@@ -21,7 +21,6 @@ func _init_coords() -> void:
 
 
 func get_coords() -> Dictionary[Vector2i, int]:
-	Log.debug(name, _coords)
 	return _coords
 
 
