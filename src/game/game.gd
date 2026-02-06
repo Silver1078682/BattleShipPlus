@@ -81,6 +81,7 @@ func get_required_ready_player_count() -> int:
 ## Called right after a turn starts
 @rpc("authority", "call_local")
 func enter_turn() -> void:
+	## TODO
 	await Anim.sleep(0.2)
 	await Anim.wait_anim()
 	if Phase.manager.is_turn_of(Player.id):
