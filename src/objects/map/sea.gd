@@ -15,12 +15,3 @@ func _editor_apply_area() -> void:
 func _ready() -> void:
 	for i in get_used_cells():
 		_coords[i] = 0
-
-# TEMP
-var _track
-
-
-func _process(_delta: float) -> void:
-	if _track != _coords:
-		print(Network.instance, self, "fucked, _coords", _coords)
-	_track = _coords.duplicate()
