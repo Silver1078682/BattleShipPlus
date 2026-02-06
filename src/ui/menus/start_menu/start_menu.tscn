@@ -183,5 +183,5 @@ text = "Cancel"
 [connection signal="text_changed" from="Main/Main/CenterContainer/VBoxContainer/IPEdit" to="Main/Main/CenterContainer/VBoxContainer/IPEdit" method="_on_text_changed"]
 [connection signal="pressed" from="Main/Main/BottomRight/SettingButton" to="." method="_on_setting_button_pressed"]
 [connection signal="map_selected" from="MapSelector/MapSelector" to="." method="_on_map_selected"]
-[connection signal="pressed" from="WaitingScreen/MarginContainer/CancelButton" to="WaitingScreen" method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="WaitingScreen/MarginContainer/CancelButton" to="WaitingScreen" method="_on_exit_button_pressed"]
+[connection signal="pressed" from="WaitingScreen/MarginContainer/CancelButton" to="WaitingScreen" method="_on_cancel_button_pressed"]

@@ -10,8 +10,8 @@ func setup(text: String) -> void:
 
 
 func _on_cancel_button_pressed() -> void:
-	hide()
 	if Network.is_server():
 		Network.instance.terminate_server()
 	else:
 		Network.instance.terminate_client()
+	Main.instance.back_to_main_menu()
