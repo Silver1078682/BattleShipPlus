@@ -104,6 +104,9 @@ class TestKill extends AttackNetworkTest:
 #-----------------------------------------------------------------#
 #-----------------------------------------------------------------#
 class AttackNetworkTest extends AttackTest:
+	const WAIT_TIME = 2.0
+
+
 	func _get_attack_to_test() -> Attack:
 		attack = create_atk("Default")
 		return attack
@@ -135,7 +138,7 @@ class AttackNetworkTest extends AttackTest:
 		for coord in rect.get_coords():
 			Player.fleet.add_ship_at(Warship.create_from_name(SHIP_TYPE), coord)
 
-		await wait_seconds(5)
+		await wait_seconds(WAIT_TIME)
 		assert_called(pd.handle_attack)
 		_test_result()
 
@@ -153,7 +156,7 @@ class AttackNetworkTest extends AttackTest:
 
 		assert_called(pd.push_attack)
 
-		await wait_seconds(5)
+		await wait_seconds(WAIT_TIME)
 
 		assert_called(pd.end_attack)
 		assert_signal_emitted(attack.finished)

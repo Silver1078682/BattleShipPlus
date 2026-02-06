@@ -11,7 +11,6 @@ extends TileMapLayer
 			_set_coord(p_coord)
 		coord = p_coord
 
-
 #-----------------------------------------------------------------#
 var _coords: Dictionary[Vector2i, int]
 
@@ -47,6 +46,7 @@ func _ready() -> void:
 func _set_coord(p_coord: Vector2i) -> void:
 	var sea: Sea = get_map().get_node(^"%Sea")
 	position = sea.map_to_local(p_coord) - sea.map_to_local(Vector2i.ZERO)
+
 
 func get_map() -> Map:
 	return NodeUtil.find_first_ancestor_matching_condition(self, func(node): return node is Map)

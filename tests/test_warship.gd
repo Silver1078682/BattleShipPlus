@@ -4,6 +4,10 @@ func before_all():
 	clear_fleet()
 
 
+func before_each():
+	clear_fleet()
+
+
 #-----------------------------------------------------------------#
 func test_warship_init():
 	var ship := Warship.new()
@@ -45,6 +49,7 @@ func clear_fleet():
 		assert_sync(ship)
 		ship.leave_stage()
 		assert_is_leaving(ship)
+	assert_true(fleet.get_ships().is_empty(), "fleet not empty after clear")
 
 
 #-----------------------------------------------------------------#
@@ -96,6 +101,7 @@ func test_remove():
 		assert_signal_emitted(ship.stage_left)
 
 
+#-----------------------------------------------------------------#
 func test_bad_remove():
 	var ship := Warship.create_from_name(type)
 	ship.leave_stage()
@@ -111,13 +117,24 @@ func test_bad_remove():
 	assert_true(fleet.get_coords().is_empty())
 
 
-func test_move_ship():
+func test_move_ship_push():
 	var ship = add_ship(Vector2i.ONE)
 	assert_sync(ship)
 	fleet.move_ship_to(ship, Vector2i.ZERO)
 	assert_sync(ship, Vector2i.ZERO)
-	ship.leave_stage()
-	assert_is_leaving(ship)
+	assert_has(fleet.movement_push, ship)
+	assert_eq(fleet.movement_push[ship], ship.coord)
+	fleet.movement_push.clear()
+
+
+func test_move_ship_no_push():
+	var ship = add_ship(Vector2i.ONE)
+	assert_sync(ship)
+	fleet.move_ship_to(ship, Vector2i.ZERO, false)
+	assert_sync(ship, Vector2i.ZERO)
+
+	assert_true(fleet.movement_push.is_empty())
+	fleet.movement_push.clear()
 
 
 func test_bad_move_ship():
@@ -125,30 +142,60 @@ func test_bad_move_ship():
 	assert_sync(ship)
 	fleet.move_ship_to(ship, Vector2i.ONE)
 	assert_push_warning("already a ship")
-	clear_fleet()
+
+	assert_true(fleet.movement_push.is_empty())
+	fleet.movement_push.clear()
 
 
 func test_bad_move_ship2():
 	var ship2 := Warship.create_from_name(type)
 	fleet.move_ship_to(ship2, Vector2i.ONE)
 	assert_push_error("not found")
-	clear_fleet()
+	assert_true(fleet.movement_push.is_empty())
+
+#-----------------------------------------------------------------#
+const MOVE_SHIP_COORDS_FROM = [Vector2i.ONE, Vector2i.DOWN, Vector2i.LEFT]
+const MOVE_SHIP_COORDS_TO = [Vector2i.LEFT, Vector2i.ONE, Vector2i.DOWN]
 
 
+func test_move_ships():
+	for coord in MOVE_SHIP_COORDS_FROM:
+		add_ship(coord)
+	fleet.move_ships_to(MOVE_SHIP_COORDS_FROM, MOVE_SHIP_COORDS_FROM.map(func(a): return a * 2))
+	for coord in MOVE_SHIP_COORDS_FROM.map(func(a): return a * 2):
+		assert_sync(fleet.get_ship_at(coord), coord)
+
+
+func test_move_ships2():
+	for coord in MOVE_SHIP_COORDS_FROM:
+		add_ship(coord)
+	fleet.move_ships_to(MOVE_SHIP_COORDS_FROM, MOVE_SHIP_COORDS_TO)
+	for coord in MOVE_SHIP_COORDS_TO:
+		assert_sync(fleet.get_ship_at(coord), coord)
+
+
+#-----------------------------------------------------------------#
 func test_serialized_ship():
+	gut.p(fleet.get_ships())
 	var ship := add_ship(Vector2i.ONE)
 	assert_sync(ship)
 	var serialized := ship.serialized()
 	assert_true(serialized is Dictionary)
+	assert_has(serialized, "id")
+	assert_eq(serialized.get("id"), ship.id)
+	assert_has(serialized, "coord")
+	assert_eq(serialized.get("coord"), ship.coord)
+	assert_has(serialized, "health")
+	assert_eq(serialized.get("health"), ship.health)
 
 
 #-----------------------------------------------------------------#
 # a ideal state of a ship in the stage
 func assert_sync(ship: Warship, coord = null):
-	assert_not_freed(ship)
-	assert_not_null(ship)
+	assert_not_freed(ship, "freed")
+	assert_not_null(ship, "null")
 	assert_eq(ship.get_parent(), fleet, "should have valid parent")
-	assert_eq(fleet.get_ship_at(ship.coord), ship)
+	assert_eq(fleet.get_ship_at(ship.coord), ship, "not register at fleet")
 	assert_connected(ship.stage_left, fleet._erase_ship)
 	assert_true(ship.name.ends_with(str(ship.id)))
 	if coord != null:

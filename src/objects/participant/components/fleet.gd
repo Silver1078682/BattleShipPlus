@@ -72,13 +72,12 @@ func has_ship_at(coord: Vector2i) -> bool:
 	return coord in _warships
 
 #-----------------------------------------------------------------#
-var movement_staging: Dictionary[Warship, Vector2i]
+var movement_push: Dictionary[Warship, Vector2i]
 
 
 ## Move a ship to a new coordinate.
-## This function does not update the ship itself
-## Setting ship.coord to coord manually is required
-func move_ship_to(ship: Warship, coord: Vector2i) -> bool:
+## when push, the ship's movement will be staged and be pushed to the other side
+func move_ship_to(ship: Warship, coord: Vector2i, push := true) -> bool:
 	if _warships.get(ship.coord) != ship:
 		Log.error("Ship %s not found at %s" % [ship, ship.coord])
 		return false
@@ -88,9 +87,51 @@ func move_ship_to(ship: Warship, coord: Vector2i) -> bool:
 	_warships.erase(ship.coord)
 	ship.stage_left.disconnect(_erase_ship)
 	ship.coord = coord
+	if push:
+		movement_push[ship] = coord
 	ship.stage_left.connect(_erase_ship.bind(coord))
 	_warships[coord] = ship
 	return true
+
+
+# Avoid priority problems when moving multiple ships
+## Move ships to a new coordinate.
+@rpc()
+func move_ships_to(prev_coords: PackedVector2Array, coords: PackedVector2Array, push = true) -> void:
+	if (prev_coords.size() != coords.size()):
+		Log.error("prev coords does not match prev_coords when moving multiple ships")
+	var warships: Array[Warship]
+	for coord: Vector2i in prev_coords:
+		var warship = _warships.get(coord, null)
+		warships.append(warship)
+
+		if not warship:
+			Log.error("There is no ship to remove at ", coord)
+		else:
+			_warships.erase(coord)
+			warship.stage_left.disconnect(_erase_ship)
+
+	var warships_to_move: Array[Warship]
+	for i in prev_coords.size():
+		var warship := warships[i]
+		if not warship:
+			continue
+
+		var new_coord: Vector2i = coords[i]
+		if has_ship_at(new_coord):
+			Log.warning("There is already a ship at %s" % new_coord)
+			var prev_coord: Vector2i = coords[i]
+			warship.stage_left.connect(_erase_ship.bind(prev_coord))
+			_warships[prev_coord] = warship
+		else:
+			warship.coord = new_coord
+			warships_to_move.append(warship)
+
+	for warship in warships_to_move:
+		if push:
+			movement_push[warship] = warship.coord
+		warship.stage_left.connect(_erase_ship.bind(warship.coord))
+		_warships[warship.coord] = warship
 
 
 func _erase_ship(coord: Vector2i) -> void:
@@ -105,7 +146,8 @@ func update_ships() -> void:
 
 	Log.debug("Trying to update ships")
 
-	movement_staging.clear()
+	Opponent.fleet.move_ships_to.rpc(movement_push.keys(), movement_push.values(), false)
+	movement_push.clear()
 	for warship: Warship in get_children():
 		warship.update()
 
