@@ -373,13 +373,13 @@ func deserialized(prop_list: Dictionary[StringName, Variant]) -> void:
 		name = "Warship" + str((prop_list.id as int))
 	# set _health to avoid triggering setter
 	_health = prop_list.health
-	# use move_ship_to on necessary
-	if coord != prop_list.coord:
-		if self.is_node_ready():
+	if self.is_node_ready():
+		if coord != prop_list.coord:
+			# use move_ship_to on necessary
 			if not (get_parent() as Fleet).move_ship_to(self, prop_list.coord):
 				Log.error("Calling move_ship_to on ", self, "failed")
-		else:
-			coord = prop_list.coord
+	else:
+		coord = prop_list.coord
 	torpedo = prop_list.torpedo
 
 #-----------------------------------------------------------------#
