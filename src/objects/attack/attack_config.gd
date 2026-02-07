@@ -68,7 +68,7 @@ func handle_attack(
 		attack_damages: Dictionary,
 		attack: Attack,
 ) -> void:
-	Log.error("Handling attack %s..." % attack)
+	Log.debug("Handling attack %s..." % attack)
 	var attack_anim := attack.create_attack_anim()
 	if attack_anim and attack_anim.should_play():
 		Game.instance.add_child(attack_anim)
