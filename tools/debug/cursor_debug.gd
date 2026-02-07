@@ -3,7 +3,7 @@ extends Node
 #-----------------------------------------------------------------#
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_HOME:
+		if event.keycode == KEY_END:
 			_debug_print("@" + str(Cursor.coord))
 			for reason in Game.instance.cursor.invalid_check.keys():
 				_debug_print("\t%s" % reason)
@@ -40,5 +40,6 @@ func _debug_print(variant) -> void:
 
 
 func _debug_flush():
+	LimboConsole.print_line(_debug_string)
 	Log.debug(_debug_string)
 	_debug_string = ""

@@ -5,7 +5,7 @@ func _ready() -> void:
 	# adjust pos
 	position = map.sea.map_to_local(map.get_map_center())
 	# adjust zoom
-	var size = map.get_map_size()
+	var size = map.get_map_rect().size
 	var max_axis_value = size[size.max_axis_index()]
 	var p_zoom = BASE_SCALE * Vector2.ONE / max_axis_value / Map.TILE_SIZE
 	if p_zoom.x and p_zoom.y:

@@ -37,18 +37,18 @@ func get_map_center() -> Vector2i:
 
 #-----------------------------------------------------------------#
 
-var _map_size_calculated := false
-var _map_size: Vector2i
+var _map_rect_calculated := false
+var _map_rect: Rect2i
 
 
-func get_map_size() -> Vector2i:
-	if _map_size_calculated:
-		return _map_size
+func get_map_rect() -> Rect2i:
+	if _map_rect_calculated:
+		return _map_rect
 	var _left_top = _coord_reducer(func(a: Vector2i, b: Vector2i): return a.min(b), Vector2i.ZERO)
 	var _right_bottom = _coord_reducer(func(a: Vector2i, b: Vector2i): return a.max(b), Vector2i.ZERO)
-	_map_size = _right_bottom - _left_top
-	_map_size_calculated = true
-	return _map_size
+	_map_rect = Rect2i(_left_top, _right_bottom - _left_top)
+	_map_rect_calculated = true
+	return _map_rect
 
 
 func _coord_reducer(method: Callable, accum) -> Variant:

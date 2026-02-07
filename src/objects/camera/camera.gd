@@ -26,11 +26,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		if event is InputEventMouseMotion:
 			if Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
-				position -= event.screen_velocity * SPEED
+				position -= event.screen_velocity * SPEED * 1 / zoom.x
 
 
 const KEY_SPEED = 100
-const MIN_ZOOM = 0.2
+const MIN_ZOOM = 0.01
 const MAX_ZOOM = 5.0
 
 
@@ -49,3 +49,9 @@ func _unhandled_input(event) -> void:
 		position.y -= KEY_SPEED
 	if event.is_action("down", true):
 		position.y += KEY_SPEED
+
+	var rect := Map.instance.get_map_rect()
+	position = position.clamp(Map.coord_to_pos(rect.position), Map.coord_to_pos(rect.end))
+
+	if event.is_action("go_home", true):
+		position = Map.coord_to_pos(Map.instance.get_base().coord)

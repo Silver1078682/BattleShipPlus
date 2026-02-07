@@ -24,7 +24,8 @@
 - [x] 命令行接口重构
 - [x] 修复move_ship顺序问题
 - [x] AttackAnim 显示距离
-- [ ] CV平衡调整
+- [x] CV平衡调整
+- [x] Camera缩放移动限制
 - [ ] 驱逐侦察潜艇Action
 - [ ] Setting系统重构
 ---
