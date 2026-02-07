@@ -158,10 +158,11 @@ static func get_config(config_name: String) -> AttackConfig:
 
 #-----------------------------------------------------------------#
 func _to_string() -> String:
-	return "ATK< %s %s @%s [%d] %d>" % [
+	return "ATK< %s %s @%s [%d] %d:%d>" % [
 		"S" if scouting else "-",
 		config.name,
 		center,
 		base_damage,
+		attacker,
 		id,
 	]

@@ -20,7 +20,7 @@ func _ready() -> void:
 	assert(attack.config)
 	if attack:
 		sprite.texture = attack.config.texture
-		if attack.config.use_dice:
+		if _should_play_dice():
 			dice = Dice.create()
 			dice.set_result(attack.dice_result)
 			add_child(dice)
@@ -45,12 +45,30 @@ func play(coords: Array) -> void:
 	else:
 		await _anim_fade_out()
 
+#-----------------------------------------------------------------#
+const DICE_DISPLAY_RANGE = 4
+
+
+func should_play() -> bool:
+	var area = AreaHex.new()
+	area.offset = attack.center
+	area.radius = DICE_DISPLAY_RANGE
+	for coord in area.get_coords():
+		if Player.fleet.has_ship_at(coord):
+			return true
+	return false
+
+
+func _should_play_dice() -> bool:
+	return attack.config.use_dice
+
 
 func _anim_display(coord := attack.center if attack else Vector2i.ZERO) -> void:
 	position = Map.coord_to_pos(coord - Vector2i.ONE)
 	show()
 
 
+#-----------------------------------------------------------------#
 func _anim_fly_to(coord := attack.center if attack else Vector2i.ZERO) -> void:
 	var tweener := anim_process.tween_property(self, "position", Map.coord_to_pos(coord), attack.config.flight_time)
 	tweener.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
@@ -66,13 +84,14 @@ func _anim_fade_out() -> void:
 
 func _anim_attack(coords: Array) -> void:
 	anim_process.start()
-	if attack.config.use_dice:
+	if _should_play_dice():
 		await dice.anim_roll()
 	for coord: Vector2i in coords:
 		pass
 	anim_process.end()
 
 
+#-----------------------------------------------------------------#
 func should_explode() -> bool:
 	return attack.config.should_explode and attack.result == attack.config.explode_when
 
