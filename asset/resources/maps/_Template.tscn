@@ -97,7 +97,6 @@ z_index = -2
 script = ExtResource("1_jdj64")
 map_name = "_Template"
 auto_map_center = true
-map_center = null
 
 [node name="CanvasGroup" type="CanvasGroup" parent="." unique_id=550510857]
 material = SubResource("ShaderMaterial_erps6")
@@ -110,7 +109,7 @@ tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("4_lejf8")
 area = SubResource("Resource_rvj0u")
 
-[node name="Area" type="TileMapLayer" parent="." unique_id=304255163]
+[node name="Scope" type="TileMapLayer" parent="." unique_id=304255163]
 tile_set = SubResource("TileSet_v7a3w")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
@@ -136,6 +135,7 @@ home_color = Color(1, 1, 1, 1)
 enemy_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
 
 [node name="BaseA" type="TileMapLayer" parent="Base" unique_id=1316173198]
+self_modulate = Color(0, 0, 0, 0)
 position = Vector2(64, 96)
 tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("8_lq10h")
@@ -151,7 +151,7 @@ coord = Vector2i(1, 0)
 metadata/_custom_type_script = "uid://20x5ygogq6bb"
 
 [node name="CargoShip" type="Node2D" parent="Base/BaseA" unique_id=1514329285]
-position = Vector2(72, 96)
+position = Vector2(64, 96)
 script = ExtResource("9_372so")
 warship_type = &"CargoShip"
 spawn_amount_max = 1
@@ -169,6 +169,7 @@ scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_gcxw7")
 
 [node name="BaseB" type="TileMapLayer" parent="Base" unique_id=1323214987]
+self_modulate = Color(0, 0, 0, 0)
 position = Vector2(320, 96)
 tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("8_lq10h")
@@ -176,7 +177,7 @@ coord = Vector2i(2, 1)
 metadata/_custom_type_script = "uid://w6k14ppdabns"
 
 [node name="MineLayer" type="Node2D" parent="Base/BaseB" unique_id=2072311991]
-position = Vector2(256, 0)
+position = Vector2(-128, 0)
 script = ExtResource("9_372so")
 warship_type = &"MineLayer"
 spawn_amount_max = 1
@@ -184,7 +185,7 @@ coord = Vector2i(-1, 0)
 metadata/_custom_type_script = "uid://20x5ygogq6bb"
 
 [node name="CargoShip" type="Node2D" parent="Base/BaseB" unique_id=1738443734]
-position = Vector2(320, -96)
+position = Vector2(-64, -96)
 script = ExtResource("9_372so")
 warship_type = &"CargoShip"
 spawn_amount_max = 1

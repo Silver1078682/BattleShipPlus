@@ -26,9 +26,9 @@ func _area(type: String, subcommand: String):
 
 	match type:
 		"home":
-			coords = Map.instance.get_scope_home().keys()
+			coords = Map.instance.get_area_home().keys()
 		"public":
-			coords = Map.instance.get_scope_public().keys()
+			coords = Map.instance.get_area_public().keys()
 		"base":
 			coords = [Map.instance.get_base().coord]
 		"circle":

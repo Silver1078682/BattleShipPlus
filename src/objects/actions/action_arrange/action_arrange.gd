@@ -124,9 +124,9 @@ func _get_action_area() -> Dictionary[Vector2i, int]:
 	var map := Map.instance
 	match warship_config.arrange_area:
 		WarshipConfig.ArrangeArea.PUBLIC:
-			return map.get_scope_public()
+			return map.get_area_public()
 		WarshipConfig.ArrangeArea.HOME:
-			return map.get_scope_home()
+			return map.get_area_home()
 	return { }
 
 

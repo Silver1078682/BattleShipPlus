@@ -168,7 +168,7 @@ func _check_game_over() -> EndCondition:
 	for ship in Player.fleet.get_ships():
 		if not ship.config.name in [Warship.CARGO_SHIP, Warship.MINE_LAYER]:
 			has_valid_ship = true
-			if ship.coord in Map.instance.get_scope_home():
+			if ship.coord in Map.instance.get_area_home():
 				has_valid_ship_in_home = true
 				break
 

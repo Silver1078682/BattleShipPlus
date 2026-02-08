@@ -3,7 +3,7 @@ extends Node2D
 ## Game map
 
 ## Node pointer
-@onready var scope: Scope = $Area
+@onready var scope: Scope = $Scope
 @onready var aerial_defense_scope: Scope = $AerialDefenseScope
 @onready var attack_scope: Scope = $AttackScope
 @onready var sea: Sea = %Sea
@@ -51,8 +51,8 @@ func get_map_rect() -> Rect2i:
 	return _map_rect
 
 
-func _coord_reducer(method: Callable, accum) -> Variant:
-	return get_coords().keys().reduce(method, accum)
+func _coord_reducer(method: Callable, a) -> Variant:
+	return get_coords().keys().reduce(method, a)
 
 
 #-----------------------------------------------------------------#
@@ -69,14 +69,14 @@ func has_coord(coord: Vector2i) -> bool:
 
 #-----------------------------------------------------------------#
 # mark the home area
-func get_scope_home() -> Dictionary[Vector2i, int]:
+func get_area_home() -> Dictionary[Vector2i, int]:
 	return get_base().get_coords()
 
 # mark the public area
 var _public_cache: Dictionary[Vector2i, int]
 
 
-func get_scope_public() -> Dictionary[Vector2i, int]:
+func get_area_public() -> Dictionary[Vector2i, int]:
 	if not _public_cache:
 		_public_cache = get_coords().duplicate()
 		for base: Base in base_manager.get_bases():
