@@ -3,35 +3,10 @@
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_6gdbh"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_i2ij7"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="2_af3ng"]
-[ext_resource type="Resource" uid="uid://c6cshsld2by0b" path="res://asset/resources/actions/SubmarineMove.tres" id="2_o2v3k"]
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="3_namkn"]
-[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="4_af3ng"]
-[ext_resource type="Resource" uid="uid://mvuswue8762a" path="res://asset/resources/attacks/Torpedo.tres" id="5_65ayq"]
-[ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://src/objects/actions/action_operation/action_torpedo_attack.gd" id="6_xh8sw"]
-
-[sub_resource type="Resource" id="Resource_43jnu"]
-script = ExtResource("3_namkn")
-radius = 3
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_5au64"]
-script = ExtResource("4_af3ng")
-metadata/_custom_type_script = "uid://dh8llcoq6d73a"
-
-[sub_resource type="Resource" id="Resource_nfl6y"]
-resource_name = "TorpedoAttack"
-script = ExtResource("6_xh8sw")
-attack_area = SubResource("Resource_5au64")
-attack_config = ExtResource("5_65ayq")
-action_area = SubResource("Resource_43jnu")
-area_force_mouse_update = true
-action_name = "TorpedoAttack"
-metadata/_custom_type_script = "uid://bmybf2l7grmym"
 
 [sub_resource type="Resource" id="Resource_af3ng"]
-resource_name = "<S0 C2 E0>"
+resource_name = "<Empty>"
 script = ExtResource("2_af3ng")
-course = Array[ExtResource("1_6gdbh")]([ExtResource("2_o2v3k"), SubResource("Resource_nfl6y")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
@@ -49,5 +24,4 @@ arrange_area = 1
 action_groups = Dictionary[String, ExtResource("2_af3ng")]({
 "SubmarineAttack": SubResource("Resource_af3ng")
 })
-action_submarine_attack = Array[ExtResource("1_6gdbh")]([ExtResource("2_o2v3k"), SubResource("Resource_nfl6y")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"
