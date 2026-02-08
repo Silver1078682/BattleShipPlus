@@ -28,7 +28,7 @@ var phases: Dictionary[StringName, StringName] = {
 	&"AerialScout": "AerialDefense",
 	&"AerialDefense": "AerialAttack",
 	&"AerialAttack": "Scout",
-	&"Scout":"ArtilleryAttack",
+	&"Scout": "ArtilleryAttack",
 	&"ArtilleryAttack": "TorpedoAttack",
 	&"TorpedoAttack": "SubmarineScout",
 	&"SubmarineScout": "SubmarineAttack",
