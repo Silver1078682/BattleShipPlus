@@ -2,8 +2,6 @@ class_name Camera
 extends Camera2D
 ## TODO optimize the camera movement
 
-#func _ready() -> void:
-
 func setup() -> void:
 	var coord := Map.instance.get_base().coord
 	position = Map.coord_to_pos(Map.instance.get_map_center())

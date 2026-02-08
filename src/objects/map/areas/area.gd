@@ -1,6 +1,7 @@
 @tool
 @abstract class_name Area
 extends Resource
+## [Area] is a basic ship with a positionc(offset)
 
 var offset: Vector2i
 

@@ -1,11 +1,14 @@
-class_name MapLayerMarker
+class_name ScopeMarker
 extends Resource
+## [ScopeMarker] marks a zone in a [Layer]
 
-@export var map_layer_layer: Map.Layer
 
+@export var map_layer: Map.Layer
+var action: Action
 
 #-----------------------------------------------------------------#
-func start(_coord: Vector2i) -> void:
+func start(p_action: Action, _coord: Vector2i) -> void:
+	action = p_action
 	mark(_coord)
 	if should_update_on_cursor_changed():
 		Game.instance.cursor.coord_changed.connect(mark)
@@ -20,6 +23,9 @@ func end() -> void:
 func should_update_on_cursor_changed():
 	return false
 
+#-----------------------------------------------------------------#
+func rotate(_times: int) -> void:
+	return
 
 #-----------------------------------------------------------------#
 func mark(_coord: Vector2i) -> void:
@@ -46,4 +52,4 @@ func get_coords() -> void:
 
 #-----------------------------------------------------------------#
 func _get_map_layer() -> MapLayer:
-	return Map.instance.get_layer(map_layer_layer)
+	return Map.instance.get_layer(map_layer)

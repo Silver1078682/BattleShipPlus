@@ -2,10 +2,6 @@ class_name ActionTorpedoAttack
 extends ActionAttack
 
 #-----------------------------------------------------------------#
-func _started() -> void:
-	pass
-
-
 func _committed() -> bool:
 	var result := super()
 	if result:

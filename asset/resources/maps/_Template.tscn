@@ -109,7 +109,7 @@ tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("4_lejf8")
 area = SubResource("Resource_rvj0u")
 
-[node name="Scope" type="TileMapLayer" parent="." unique_id=304255163]
+[node name="Action" type="TileMapLayer" parent="." unique_id=304255163]
 tile_set = SubResource("TileSet_v7a3w")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"

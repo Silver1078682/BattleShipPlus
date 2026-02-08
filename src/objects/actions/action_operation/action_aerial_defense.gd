@@ -48,7 +48,7 @@ static func update_map() -> void:
 
 #-----------------------------------------------------------------#
 func _committed() -> bool:
-	var coord := Cursor.coord if follow_mouse else _ship.coord
+	var coord := Cursor.coord if aerial_defense_follow_mouse else _ship.coord
 	add_aerial_defense_area(aerial_defense_area)
 	return defend_at(coord)
 

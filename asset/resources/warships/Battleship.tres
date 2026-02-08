@@ -6,14 +6,8 @@
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_qysup"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="3_un0w7"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="4_dyoki"]
-[ext_resource type="Script" path="res://src/objects/actions/map_layer_marker.gd" id="4_lcoh8"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="7_dyoki"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="7_un0w7"]
-
-[sub_resource type="Resource" id="Resource_lcoh8"]
-script = ExtResource("2_4xdm8")
-radius = 9
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
 [sub_resource type="Resource" id="Resource_8vkgd"]
 script = ExtResource("2_4xdm8")
@@ -26,7 +20,6 @@ script = ExtResource("4_dyoki")
 attack_area = SubResource("Resource_8vkgd")
 attack_follow_mouse = true
 attack_config = ExtResource("3_un0w7")
-action_area = SubResource("Resource_lcoh8")
 revertible = false
 check_cursor_fleet = false
 check_cursor_mine = false

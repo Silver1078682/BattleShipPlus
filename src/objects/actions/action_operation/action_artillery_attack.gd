@@ -1,13 +1,12 @@
 class_name ActionArtilleryAttack
 extends ActionAttack
 
-func _get_action_area() -> Dictionary[Vector2i, int]:
-	if action_area is AreaHex:
-		action_area.radius = _get_action_radius()
-	else:
-		Log.warning("ActionArtilleryAttack %s with action_area set a non-AreaHex")
-	return action_area.get_coords()
-
+#func _get_action_area() -> Dictionary[Vector2i, int]:
+#if action_area is AreaHex:
+#action_area.radius = _get_action_radius()
+#else:
+#Log.warning("ActionArtilleryAttack %s with action_area set a non-AreaHex")
+#return action_area.get_coords()
 
 func _get_action_radius() -> int:
 	return _ship.config.artillery_distance

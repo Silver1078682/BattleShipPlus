@@ -103,7 +103,7 @@ func _cancelled() -> void:
 		_warship_preview = null
 
 
-# The Map.instance.scope_layer.clear_mask() is not called here
+# The Map.instance.action_layer.clear_mask() is not called here
 func revert() -> void:
 	if has_committed():
 		if _reverted():
@@ -134,7 +134,7 @@ func _get_action_area() -> Dictionary[Vector2i, int]:
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
 	return {
 		"NOT_IN_MAP": Map.instance.has_coord(p_coord),
-		"CANNOT_ARRANGE_HERE": Map.instance.scope_layer.has_coord(p_coord),
+		"CANNOT_ARRANGE_HERE": Map.instance.action_layer.has_coord(p_coord),
 		"OCCUPIED": not Player.fleet.has_ship_at(p_coord) or not check_cursor_fleet,
 		"OCCUPIED_BY_MINE": not Player.mine.has_mine_at(p_coord) or not check_cursor_mine,
 		"CANNOT_ARRANGE_BASE": p_coord != Map.instance.get_base().coord,

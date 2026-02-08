@@ -1,10 +1,12 @@
 @tool
-class_name MapLayerMarkerArea
-extends MapLayerMarker
+class_name ScopeMarkerArea
+extends ScopeMarker
 
-@export var area: Area
 @export var follow_cursor := false
-
+@export var area: Area:
+	get = get_area
+func get_area() -> Area:
+	return area
 
 func should_update_on_cursor_changed():
 	return follow_cursor
@@ -29,4 +31,4 @@ func _validate_property(_property: Dictionary) -> void:
 
 
 func _to_string() -> String:
-	return "MapLayMK< %s %d >" % [area, map_layer_layer]
+	return "ScopeMK< %s %d >" % [area, map_layer]

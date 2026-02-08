@@ -1,15 +1,8 @@
 [gd_resource type="Resource" script_class="ActionTorpedoAttack" format=3 uid="uid://coefqffem7op3"]
 
-[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_43jnu"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="2_km0cf"]
 [ext_resource type="Script" uid="uid://lgum6kkhq50c" path="res://src/objects/actions/action_operation/action_line_attack/action_torpedo_attack.gd" id="3_43jnu"]
 [ext_resource type="Resource" uid="uid://mvuswue8762a" path="res://asset/resources/attacks/Torpedo.tres" id="3_km0cf"]
-[ext_resource type="Script" path="res://src/objects/actions/map_layer_marker.gd" id="4_5au64"]
-
-[sub_resource type="Resource" id="Resource_43jnu"]
-script = ExtResource("1_43jnu")
-radius = 3
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
 [sub_resource type="Resource" id="Resource_5au64"]
 script = ExtResource("2_km0cf")
@@ -20,7 +13,5 @@ resource_name = "TorpedoAttack"
 script = ExtResource("3_43jnu")
 attack_area = SubResource("Resource_5au64")
 attack_config = ExtResource("3_km0cf")
-action_area = SubResource("Resource_43jnu")
-area_force_mouse_update = true
 action_name = "TorpedoAttack"
 metadata/_custom_type_script = "uid://bmybf2l7grmym"

@@ -6,6 +6,7 @@ var ship: Warship:
 	get:
 		return _ship
 	set(p_ship):
+		assert(p_ship != null)
 		_ship = p_ship
 
 var _ship: Warship
@@ -45,7 +46,7 @@ func revert() -> void:
 	#var coord := Cursor.coord if follow_mouse else _ship.coord
 	#if action_area:
 	#action_area.offset = coord
-	#Map.instance.scope_layer.set_dict(_get_action_area())
+	#Map.instance.action_layer.set_dict(_get_action_area())
 
 
 func has_reached_commit_limit() -> bool:

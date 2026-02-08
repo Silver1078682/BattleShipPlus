@@ -1,18 +1,6 @@
 class_name ActionMove
 extends ActionOperation
 
-func _get_action_area() -> Dictionary[Vector2i, int]:
-	if action_area is AreaHex:
-		action_area.radius = _get_move_radius()
-	else:
-		Log.warning("ActionMove ", self, " with action_area set a non-AreaHex")
-	return action_area.get_coords()
-
-
-func _get_move_radius() -> int:
-	return _ship.config.motility if _ship else 0
-
-#-----------------------------------------------------------------#
 var _previous_coord: Vector2i
 
 
@@ -44,11 +32,6 @@ func _revert_failure_anim():
 	Game.instance.add_child(hint)
 	await Anim.fade_out(hint).finished
 	hint.queue_free()
-
-
-#-----------------------------------------------------------------#
-func _started() -> void:
-	pass
 
 
 #-----------------------------------------------------------------#
