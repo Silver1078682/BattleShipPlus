@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_x4ugh"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="3_6uqgl"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="4_u72sg"]
+[ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="6_6uqgl"]
 
 [sub_resource type="Resource" id="Resource_lcoh8"]
 script = ExtResource("2_7wofe")
@@ -31,6 +32,24 @@ check_cursor_mine = false
 action_name = "AerialScout"
 metadata/_custom_type_script = "uid://bmybf2l7grmym"
 
+[sub_resource type="Resource" id="Resource_6uqgl"]
+resource_name = "<C:Move>"
+script = ExtResource("6_6uqgl")
+course = Array[ExtResource("1_vfq1d")]([ExtResource("1_pwv11")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_u72sg"]
+resource_name = "<C:AerialScout>"
+script = ExtResource("6_6uqgl")
+course = Array[ExtResource("1_vfq1d")]([SubResource("Resource_thbtq")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_c04tx"]
+resource_name = "<C:ArtilleryAttack>"
+script = ExtResource("6_6uqgl")
+course = Array[ExtResource("1_vfq1d")]([ExtResource("2_x4ugh")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
 [resource]
 resource_name = "HeavyCruiser"
 script = ExtResource("1_v0ash")
@@ -42,6 +61,11 @@ aerial_defense = 3
 artillery_distance = 3
 artillery_level = 2
 cost = 2
+action_groups = Dictionary[String, ExtResource("6_6uqgl")]({
+"AerialScout": SubResource("Resource_u72sg"),
+"ArtilleryAttack": SubResource("Resource_c04tx"),
+"Movement": SubResource("Resource_6uqgl")
+})
 action_movement = Array[ExtResource("1_vfq1d")]([ExtResource("1_pwv11")])
 action_aerial_scout = Array[ExtResource("1_vfq1d")]([SubResource("Resource_thbtq")])
 action_artillery_attack = Array[ExtResource("1_vfq1d")]([ExtResource("2_x4ugh")])

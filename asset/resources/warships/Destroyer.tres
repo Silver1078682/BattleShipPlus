@@ -4,8 +4,33 @@
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_llosa"]
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_x0l2m"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_meq6u"]
+[ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="3_ac4na"]
 [ext_resource type="Resource" uid="uid://b8o22hevp88nw" path="res://asset/resources/actions/DestroyerAttack.tres" id="4_br6hn"]
 [ext_resource type="Resource" uid="uid://coefqffem7op3" path="res://asset/resources/actions/TorpedoAttack.tres" id="4_egubb"]
+
+[sub_resource type="Resource" id="Resource_ac4na"]
+resource_name = "<C:Move>"
+script = ExtResource("3_ac4na")
+course = Array[ExtResource("1_x0l2m")]([ExtResource("1_4n7s0")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_p0qda"]
+resource_name = "<C:ArtilleryAttack>"
+script = ExtResource("3_ac4na")
+course = Array[ExtResource("1_x0l2m")]([ExtResource("2_meq6u")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_dtvxx"]
+resource_name = "<C:TorpedoAttack>"
+script = ExtResource("3_ac4na")
+course = Array[ExtResource("1_x0l2m")]([ExtResource("4_egubb")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_7qoob"]
+resource_name = "<C:DestroyerAttack>"
+script = ExtResource("3_ac4na")
+course = Array[ExtResource("1_x0l2m")]([ExtResource("4_br6hn")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "Destroyer"
@@ -20,6 +45,12 @@ artillery_distance = 2
 immune_attacks = Array[StringName]([&"DestroyerScout", &"Mine"])
 can_remove_mine = true
 arrange_limit = 8
+action_groups = Dictionary[String, ExtResource("3_ac4na")]({
+"ArtilleryAttack": SubResource("Resource_p0qda"),
+"Movement": SubResource("Resource_ac4na"),
+"SubmarineScout": SubResource("Resource_7qoob"),
+"TorpedoAttack": SubResource("Resource_dtvxx")
+})
 action_movement = Array[ExtResource("1_x0l2m")]([ExtResource("1_4n7s0")])
 action_artillery_attack = Array[ExtResource("1_x0l2m")]([ExtResource("2_meq6u")])
 action_torpedo_attack = Array[ExtResource("1_x0l2m")]([ExtResource("4_egubb")])

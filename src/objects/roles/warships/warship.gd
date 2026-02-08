@@ -74,7 +74,8 @@ func update() -> void:
 
 	# action --------------------
 	action_terminator = null
-	_actions = config.get_actions(Phase.manager.get_phase().name)
+	var action_group := config.get_action_group(Phase.manager.get_phase().name)
+	_actions.assign(action_group.course if action_group != null else [])
 	_update_actions()
 
 	# push state ----------------

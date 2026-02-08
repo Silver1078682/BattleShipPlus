@@ -4,7 +4,26 @@
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="1_4ohwh"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_uwdgv"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_b03ag"]
+[ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="3_vblac"]
 [ext_resource type="Resource" uid="uid://coefqffem7op3" path="res://asset/resources/actions/TorpedoAttack.tres" id="4_kq5p7"]
+
+[sub_resource type="Resource" id="Resource_ebtv2"]
+resource_name = "<C:Move>"
+script = ExtResource("3_vblac")
+course = Array[ExtResource("1_4jpoq")]([ExtResource("1_4ohwh")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_k7y1e"]
+resource_name = "<C:ArtilleryAttack>"
+script = ExtResource("3_vblac")
+course = Array[ExtResource("1_4jpoq")]([ExtResource("2_b03ag")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
+
+[sub_resource type="Resource" id="Resource_5hoj7"]
+resource_name = "<C:TorpedoAttack>"
+script = ExtResource("3_vblac")
+course = Array[ExtResource("1_4jpoq")]([ExtResource("4_kq5p7")])
+metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "LightCruiser"
@@ -18,6 +37,11 @@ torpedo = 2
 artillery_distance = 2
 artillery_level = 1
 cost = 2
+action_groups = Dictionary[String, ExtResource("3_vblac")]({
+"ArtilleryAttack": SubResource("Resource_k7y1e"),
+"Movement": SubResource("Resource_ebtv2"),
+"TorpedoAttack": SubResource("Resource_5hoj7")
+})
 action_movement = Array[ExtResource("1_4jpoq")]([ExtResource("1_4ohwh")])
 action_artillery_attack = Array[ExtResource("1_4jpoq")]([ExtResource("2_b03ag")])
 action_torpedo_attack = Array[ExtResource("1_4jpoq")]([ExtResource("4_kq5p7")])
