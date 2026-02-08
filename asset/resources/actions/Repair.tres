@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActionRepair" format=3 uid="uid://bguvshiowpn7t"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_ysrp4"]
-[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/map_layer_marker.gd" id="2_ja87t"]
+[ext_resource type="Script" path="res://src/objects/actions/map_layer_marker.gd" id="2_ja87t"]
 [ext_resource type="Script" uid="uid://72e1fk7wb03x" path="res://src/objects/actions/action_operation/action_supply/action_repair.gd" id="2_u3uam"]
 
 [sub_resource type="Resource" id="Resource_jsrwl"]

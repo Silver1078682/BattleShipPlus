@@ -24,7 +24,7 @@ func get_shape() -> Dictionary[Vector2i, int]:
 
 
 ## This virtual function should return a list of the coords representing the shape
-## The result should be hashed and will be chached for future reuse.
+## The result should be hashed and will be cached for future reuse.
 @abstract func _get_shape() -> Dictionary[Vector2i, int]
 
 
@@ -41,7 +41,7 @@ func _is_in_shape(at: Vector2i) -> bool:
 
 #-----------------------------------------------------------------#
 ## Rotate the shape to (0, 0) with (times * PI /3) degrees clockwise,
-## please override the [method _rotate] to impolement a rotation
+## please override the [method _rotate] to implement a rotation
 func rotate(times: int) -> void:
 	_rotate(posmod(times, 6))
 
@@ -55,7 +55,7 @@ var _shape_cache: Dictionary[Vector2i, int]
 
 
 ## request an update for the shape of this area
-## call this function only when it is neccessary
+## call this function only when it is necessary
 ## e.g the radius grows by 2, or an asymmetric shape is mirrored
 ## Please note that the shape won't be actually updated
 ## until the [method get_shape] or [method get_coord] is called.
