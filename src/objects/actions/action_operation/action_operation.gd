@@ -14,6 +14,10 @@ var _ship: Warship
 @export var is_terminating := false
 
 
+func _get_scope_marker_default_coord():
+	return _ship.coord
+
+
 func commit() -> void:
 	if not _ship or _ship.is_leaving_stage():
 		return
@@ -37,12 +41,11 @@ func revert() -> void:
 			return
 	super()
 
-
-func mark_scope() -> void:
-	var coord := Cursor.coord if follow_mouse else _ship.coord
-	if action_area:
-		action_area.offset = coord
-	Map.instance.scope.set_dict(_get_action_area())
+	#func mark_scope() -> void:
+	#var coord := Cursor.coord if follow_mouse else _ship.coord
+	#if action_area:
+	#action_area.offset = coord
+	#Map.instance.scope.set_dict(_get_action_area())
 
 
 func has_reached_commit_limit() -> bool:

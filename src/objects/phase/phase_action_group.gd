@@ -33,5 +33,9 @@ func is_valid_arr(arr) -> bool:
 	return arr.size() and is_instance_valid(arr[0])
 
 
-func arr_getter(arr) -> Array[Action]:
-	return arr.duplicate_deep(DEEP_DUPLICATE_ALL) if not Engine.is_editor_hint() else arr
+func arr_getter(arr: Array[Action]) -> Array[Action]:
+	if Engine.is_editor_hint():
+		return arr
+	var result: Array[Action]
+	result.assign(arr.map(func(act: Action): return act.duplicate(true)))
+	return result

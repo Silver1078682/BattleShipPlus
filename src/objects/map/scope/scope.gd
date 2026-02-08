@@ -9,6 +9,12 @@ enum OperationMode {
 	ERASE, ## The subtraction of this value from the existing area.
 }
 
+enum Layer {
+	SCOPE,
+	ATTACK_SCOPE,
+	AERIAL_DEFENSE_SCOPE,
+}
+
 
 #-----------------------------------------------------------------#
 ## Set the Scope to a specific area

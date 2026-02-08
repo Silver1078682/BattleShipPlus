@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_w1fw6"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="2_7lfg3"]
+[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/scope_marker.gd" id="3_a35xf"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="3_w1fw6"]
+[ext_resource type="Script" uid="uid://wvh8fa8dbif6" path="res://src/objects/actions/scope_marker/scope_marker_area.gd" id="4_h01d8"]
 
 [sub_resource type="Resource" id="Resource_7lfg3"]
 script = ExtResource("1_w1fw6")
@@ -14,12 +16,37 @@ script = ExtResource("1_w1fw6")
 radius = 2
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
+[sub_resource type="Resource" id="Resource_a35xf"]
+script = ExtResource("1_w1fw6")
+radius = 12
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_h01d8"]
+resource_name = "ScpM< [HEX 12 @(0, 0)] 0 >"
+script = ExtResource("4_h01d8")
+area = SubResource("Resource_a35xf")
+metadata/_custom_type_script = "uid://wvh8fa8dbif6"
+
+[sub_resource type="Resource" id="Resource_q2k6b"]
+script = ExtResource("1_w1fw6")
+radius = 3
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_0g3eb"]
+resource_name = "ScpM< [HEX 3 @(0, 0)] 1 >"
+script = ExtResource("4_h01d8")
+area = SubResource("Resource_q2k6b")
+follow_cursor = true
+scope_layer = 1
+metadata/_custom_type_script = "uid://wvh8fa8dbif6"
+
 [resource]
 resource_name = "AerialScout"
 script = ExtResource("3_w1fw6")
 attack_area = SubResource("Resource_w1fw6")
 attack_follow_mouse = true
 attack_config = ExtResource("2_7lfg3")
+scope_markers = Array[ExtResource("3_a35xf")]([SubResource("Resource_h01d8"), SubResource("Resource_0g3eb")])
 action_area = SubResource("Resource_7lfg3")
 revertible = false
 check_cursor_fleet = false

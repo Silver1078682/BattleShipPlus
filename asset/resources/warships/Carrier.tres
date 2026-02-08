@@ -5,12 +5,14 @@
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_8bprf"]
 [ext_resource type="Resource" uid="uid://ddpnfst3o5mnn" path="res://asset/resources/actions/AerialDefense.tres" id="3_2lo8t"]
 [ext_resource type="Resource" uid="uid://cqb26x6iiomrq" path="res://asset/resources/attacks/DiveBomber.tres" id="3_8bprf"]
+[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/scope_marker.gd" id="4_w4x53"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="5_w4x53"]
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="8_6yqui"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="9_8bprf"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="10_8bprf"]
+[ext_resource type="Resource" uid="uid://bbal4e4uwotea" path="res://asset/resources/actions/AerialScout.tres" id="11_6e78m"]
 
 [sub_resource type="Resource" id="Resource_c1s03"]
 script = ExtResource("2_8bprf")
@@ -95,7 +97,7 @@ metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 [sub_resource type="Resource" id="Resource_xu123"]
 resource_name = "<C:AerialScout>"
 script = ExtResource("9_8bprf")
-course = Array[ExtResource("1_h2aut")]([SubResource("Resource_w4x53")])
+course = Array[ExtResource("1_h2aut")]([ExtResource("11_6e78m")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_6e78m"]

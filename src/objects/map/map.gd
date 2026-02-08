@@ -4,8 +4,14 @@ extends Node2D
 
 ## Node pointer
 @onready var scope: Scope = $Scope
-@onready var aerial_defense_scope: Scope = $AerialDefenseScope
 @onready var attack_scope: Scope = $AttackScope
+@onready var aerial_defense_scope: Scope = $AerialDefenseScope
+
+
+func get_scope(layer: Scope.Layer) -> Scope:
+	return [scope, attack_scope, aerial_defense_scope][layer]
+
+
 @onready var sea: Sea = %Sea
 @onready var base_manager: BaseManager = $Base
 

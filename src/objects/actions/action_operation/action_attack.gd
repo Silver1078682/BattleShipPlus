@@ -19,7 +19,8 @@ func _committed() -> bool:
 		return false
 
 	var coord := Cursor.coord if attack_follow_mouse else _ship.coord
-	unmark_attack_scope()
+	## TODO
+	#unmark_attack_scope()
 	return attack_at(coord)
 
 
@@ -27,10 +28,10 @@ func _input(event: InputEvent) -> bool:
 	if attack_area:
 		if event.is_action_pressed("rotate_forward"):
 			attack_area.rotate(1)
-			mark_attack_scope()
+			#mark_attack_scope()
 		if event.is_action_pressed("rotate_backward"):
 			attack_area.rotate(-1)
-			mark_attack_scope()
+			#mark_attack_scope()
 	return false
 
 

@@ -41,7 +41,7 @@ func start() -> void:
 	if has_reached_commit_limit():
 		return
 	_action_in_process = self
-	mark_scope()
+	start_scope_markers()
 	_started()
 
 
@@ -49,6 +49,30 @@ func start() -> void:
 func _started() -> void:
 	pass
 
+#-----------------------------------------------------------------#
+@export_group("scope marker")
+@export var scope_markers: Array[ScopeMarker]
+
+
+func start_scope_markers() -> void:
+	var coord := _get_scope_marker_default_coord()
+	for scope_marker in scope_markers:
+		scope_marker.start(coord)
+
+
+func update_scope_markers() -> void:
+	var coord := _get_scope_marker_default_coord()
+	for scope_marker in scope_markers:
+		scope_marker.mark(coord)
+
+
+func end_scope_markers() -> void:
+	for scope_marker in scope_markers:
+		scope_marker.end()
+
+
+func _get_scope_marker_default_coord() -> Vector2i:
+	return Vector2i.ZERO
 #-----------------------------------------------------------------#
 @export_group("area")
 ## The [Area] only in which the [Action] can be committed.
@@ -62,20 +86,21 @@ func _started() -> void:
 func should_update_area_on_cursor_coord_changed() -> bool:
 	return follow_mouse or area_force_mouse_update
 
+## DEPRECATED TODO WARNING
+## mark_scope _get_action_area is deprecated.
 
-## mark the [Scope] in the [Map].
-func mark_scope() -> void:
-	var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
-	if action_area:
-		action_area.offset = coord
-	Map.instance.scope.set_dict(_get_action_area())
-
+### mark the [Scope] in the [Map].
+#func mark_scope() -> void:
+#var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
+#if action_area:
+#action_area.offset = coord
+#Map.instance.scope.set_dict(_get_action_area())
 
 # proxy function
-func _get_action_area() -> Dictionary[Vector2i, int]:
-	if not action_area:
-		return { }
-	return action_area.get_coords()
+# func _get_action_area() -> Dictionary[Vector2i, int]:
+# 	if not action_area:
+# 		return { }
+# 	return action_area.get_coords()
 
 
 static func _change_scope_marker_object(previous_action: Action, new_action: Action) -> void:
@@ -220,10 +245,10 @@ func _input(event: InputEvent) -> bool:
 	if action_area:
 		if event.is_action_pressed("rotate_forward"):
 			action_area.rotate(1)
-			mark_scope()
+			update_scope_markers()
 		if event.is_action_pressed("rotate_backward"):
 			action_area.rotate(-1)
-			mark_scope()
+			update_scope_markers()
 	return false
 
 #-----------------------------------------------------------------#

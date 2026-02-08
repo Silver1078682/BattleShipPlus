@@ -55,6 +55,7 @@ func clear_fleet():
 #-----------------------------------------------------------------#
 func test_add():
 	var ship1 := Warship.create_from_name(type)
+	ship1.coord = Vector2i.ZERO
 	fleet.add_ship(ship1)
 	assert_sync(ship1, Vector2i.ZERO)
 
