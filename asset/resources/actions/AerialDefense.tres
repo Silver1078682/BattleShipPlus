@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_3i6ob"]
 [ext_resource type="Script" uid="uid://diht1cbv4llae" path="res://src/objects/actions/action_operation/action_aerial_defense.gd" id="2_riodh"]
+[ext_resource type="Script" uid="uid://wvh8fa8dbif6" path="res://src/objects/actions/scope_marker/area.gd" id="2_xip2e"]
+
+[sub_resource type="Resource" id="Resource_n1qb5"]
+script = ExtResource("1_3i6ob")
+radius = 12
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_5u8en"]
+resource_name = "ScopeMK< [HEX 12 @(0, 0)] 0 >"
+script = ExtResource("2_xip2e")
+area = SubResource("Resource_n1qb5")
+metadata/_custom_type_script = "uid://wvh8fa8dbif6"
 
 [sub_resource type="Resource" id="Resource_egkhy"]
 script = ExtResource("1_3i6ob")
@@ -13,6 +25,7 @@ resource_name = "AerialDefense"
 script = ExtResource("2_riodh")
 aerial_defense_area = SubResource("Resource_egkhy")
 aerial_defense_follow_mouse = true
+action_layer_marker = SubResource("Resource_5u8en")
 check_cursor_fleet = false
 check_cursor_mine = false
 action_name = "AerialDefense"

@@ -32,12 +32,6 @@ script = ExtResource("6_6uqgl")
 course = Array[ExtResource("1_vfq1d")]([ExtResource("2_x4ugh")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
-[sub_resource type="Resource" id="Resource_u72sg"]
-resource_name = "<C:AerialScout>"
-script = ExtResource("6_6uqgl")
-course = Array[ExtResource("1_vfq1d")]([SubResource("Resource_thbtq")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
-
 [sub_resource type="Resource" id="Resource_6uqgl"]
 resource_name = "<C:Move>"
 script = ExtResource("6_6uqgl")
@@ -57,7 +51,6 @@ artillery_level = 2
 cost = 2
 action_groups = Dictionary[String, ExtResource("6_6uqgl")]({
 "ArtilleryAttack": SubResource("Resource_c04tx"),
-"HydroplaneScout": SubResource("Resource_u72sg"),
 "Movement": SubResource("Resource_6uqgl")
 })
 action_aerial_scout = Array[ExtResource("1_vfq1d")]([SubResource("Resource_thbtq")])
