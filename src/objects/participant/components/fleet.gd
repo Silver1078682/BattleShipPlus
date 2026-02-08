@@ -76,6 +76,8 @@ var movement_push: Dictionary[Warship, Vector2i]
 
 
 func _add_to_movement_push(ship: Warship, prev_coord: Vector2i) -> void:
+	if not ship.is_exposed():
+		return
 	if not ship in movement_push:
 		movement_push[ship] = prev_coord
 
@@ -101,6 +103,8 @@ func move_ship_to(ship: Warship, coord: Vector2i, push := true) -> bool:
 ## Move ships to a new coordinate.
 @rpc("any_peer", "call_remote")
 func move_ships_to(prev_coords: Array, coords: Array, push = true) -> void:
+	Log.debug("moving multiple ships")
+
 	if (prev_coords.size() != coords.size()):
 		Log.error("prev coords does not match prev_coords when moving multiple ships")
 		return
@@ -149,10 +153,11 @@ func update_ships() -> void:
 		Log.error("enemy mirror should not call update function")
 
 	Log.debug("Trying to update ships")
-	var prev_coords = movement_push.values()
-	var new_coords = movement_push.keys().map(func(a): return a.coord)
-	Opponent.fleet.move_ships_to.rpc(prev_coords, new_coords, false)
-	movement_push.clear()
+	if movement_push:
+		var prev_coords = movement_push.values()
+		var new_coords = movement_push.keys().map(func(a): return a.coord)
+		Opponent.fleet.move_ships_to.rpc(prev_coords, new_coords, false)
+		movement_push.clear()
 	for warship: Warship in get_children():
 		warship.update()
 
