@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PhaseHydroplaneAttack" format=3 uid="uid://1uefrdp81tcv"]
 
-[ext_resource type="Script" uid="uid://qkvkueyy6cxi" path="res://src/objects/phase/phase_hydroplane_attack.gd" id="1_rykbs"]
+[ext_resource type="Script" uid="uid://qkvkueyy6cxi" path="res://src/objects/phase/phase_scout.gd" id="1_qkyon"]
 
 [resource]
 resource_name = "HydroplaneScout"
-script = ExtResource("1_rykbs")
-name = "HydroplaneScout"
+script = ExtResource("1_qkyon")
+name = "Scout"
 metadata/_custom_type_script = "uid://qkvkueyy6cxi"
