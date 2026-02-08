@@ -30,5 +30,5 @@ var _effect_duration_counter := 0
 
 func _timeout() -> void:
 	Log.info("%s preserve time out" % self)
-	Map.instance.aerial_defense_map_layer.clear_mask()
+	Map.instance.aerial_defense_layer.clear_mask()
 	ActionAerialDefense.clear_aerial_defense_areas()

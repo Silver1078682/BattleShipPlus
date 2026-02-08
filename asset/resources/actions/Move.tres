@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_5qvi3"]
 [ext_resource type="Script" uid="uid://cjm2ioyh0nue4" path="res://src/objects/actions/action_operation/action_move/action_move.gd" id="2_6j0db"]
-[ext_resource type="Script" uid="uid://1qey40ywplgh" path="res://src/objects/actions/scope_marker.gd" id="2_pfoy3"]
+[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/map_layer_marker.gd" id="2_pfoy3"]
 
 [sub_resource type="Resource" id="Resource_gdqu8"]
 script = ExtResource("1_5qvi3")

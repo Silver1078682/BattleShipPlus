@@ -94,7 +94,7 @@ func should_update_area_on_cursor_coord_changed() -> bool:
 #var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
 #if action_area:
 #action_area.offset = coord
-#Map.instance.map_layer.set_dict(_get_action_area())
+#Map.instance.scope_layer.set_dict(_get_action_area())
 
 # proxy function
 # func _get_action_area() -> Dictionary[Vector2i, int]:
@@ -194,7 +194,7 @@ func revert() -> void:
 			_commit_times -= 1
 
 			reverted.emit()
-			Map.instance.map_layer.clear_mask()
+			Map.instance.scope_layer.clear_mask()
 
 
 ## Custom behavior when reverting an action.
@@ -220,7 +220,7 @@ func cancel() -> void:
 
 ## Behavior when an [Action] is cancelled
 func _cancelled() -> void:
-	Map.instance.map_layer.clear_mask()
+	Map.instance.scope_layer.clear_mask()
 
 
 #-----------------------------------------------------------------#
@@ -272,7 +272,7 @@ func check_cursor(p_coord: Vector2i) -> void:
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
 	var map := Map.instance
 	return {
-		"CANNOT_MOVE_HERE": map.map_layer.has_coord(p_coord),
+		"CANNOT_MOVE_HERE": map.scope_layer.has_coord(p_coord),
 		"NOT_IN_MAP": map.has_coord(p_coord),
 		"OCCUPIED": not Player.fleet.has_ship_at(p_coord) or not check_cursor_fleet,
 		"OCCUPIED_BY_MINE": not Player.mine.has_mine_at(p_coord) or not check_cursor_mine,

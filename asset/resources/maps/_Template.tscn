@@ -109,20 +109,20 @@ tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("4_lejf8")
 area = SubResource("Resource_rvj0u")
 
-[node name="MapLayer" type="TileMapLayer" parent="." unique_id=304255163]
+[node name="Scope" type="TileMapLayer" parent="." unique_id=304255163]
 tile_set = SubResource("TileSet_v7a3w")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
 metadata/_edit_lock_ = true
 
-[node name="AttackMapLayer" type="TileMapLayer" parent="." unique_id=610417944]
+[node name="Attack" type="TileMapLayer" parent="." unique_id=610417944]
 modulate = Color(0.91764706, 0.62352943, 0.35686275, 0.49019608)
 tile_set = SubResource("TileSet_jq7f5")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
 metadata/_edit_lock_ = true
 
-[node name="AerialDefenseMapLayer" type="TileMapLayer" parent="." unique_id=705759696]
+[node name="AerialDefense" type="TileMapLayer" parent="." unique_id=705759696]
 modulate = Color(1, 1, 0.5294118, 0.5176471)
 tile_set = SubResource("TileSet_c5imv")
 script = ExtResource("5_3a5kb")

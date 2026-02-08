@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_w1fw6"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="2_7lfg3"]
-[ext_resource type="Script" uid="uid://1qey40ywplgh" path="res://src/objects/actions/scope_marker.gd" id="3_7lfg3"]
+[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/map_layer_marker.gd" id="3_7lfg3"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="3_w1fw6"]
 
 [sub_resource type="Resource" id="Resource_7lfg3"]

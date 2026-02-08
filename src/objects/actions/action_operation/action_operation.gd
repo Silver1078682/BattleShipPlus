@@ -45,7 +45,7 @@ func revert() -> void:
 	#var coord := Cursor.coord if follow_mouse else _ship.coord
 	#if action_area:
 	#action_area.offset = coord
-	#Map.instance.map_layer.set_dict(_get_action_area())
+	#Map.instance.scope_layer.set_dict(_get_action_area())
 
 
 func has_reached_commit_limit() -> bool:

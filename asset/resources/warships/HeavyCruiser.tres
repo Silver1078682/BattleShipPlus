@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_7wofe"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_x4ugh"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="3_6uqgl"]
-[ext_resource type="Script" uid="uid://1qey40ywplgh" path="res://src/objects/actions/scope_marker.gd" id="4_thbtq"]
+[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/map_layer_marker.gd" id="4_thbtq"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="4_u72sg"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="6_6uqgl"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="7_6uqgl"]

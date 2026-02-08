@@ -20,7 +20,7 @@ func _committed() -> bool:
 
 	var coord := Cursor.coord if attack_follow_mouse else _ship.coord
 	## TODO
-	#unmark_attack_map_layer()
+	unmark_attack_map_layer()
 	return attack_at(coord)
 
 
@@ -28,10 +28,10 @@ func _input(event: InputEvent) -> bool:
 	if attack_area:
 		if event.is_action_pressed("rotate_forward"):
 			attack_area.rotate(1)
-			#mark_attack_map_layer()
+			mark_attack_map_layer()
 		if event.is_action_pressed("rotate_backward"):
 			attack_area.rotate(-1)
-			#mark_attack_map_layer()
+			mark_attack_map_layer()
 	return false
 
 
@@ -108,11 +108,11 @@ func mark_attack_map_layer() -> void:
 		return
 
 	var coord := Game.instance.cursor.coord if attack_follow_mouse else _ship.coord
-	Map.instance.attack_map_layer.set_dict(_get_attack_damages(coord))
+	Map.instance.attack_layer.set_dict(_get_attack_damages(coord))
 
 
 func unmark_attack_map_layer() -> void:
-	Map.instance.attack_map_layer.clear()
+	Map.instance.attack_layer.clear()
 
 
 #-----------------------------------------------------------------#

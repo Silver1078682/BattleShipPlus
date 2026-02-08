@@ -46,4 +46,4 @@ func get_coords() -> void:
 
 #-----------------------------------------------------------------#
 func _get_map_layer() -> MapLayer:
-	return Map.instance.get_map_layer(map_layer_layer)
+	return Map.instance.get_layer(map_layer_layer)

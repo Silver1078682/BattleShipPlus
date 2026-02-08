@@ -13,7 +13,7 @@ static var _aerial_defense_coords: Dictionary[Vector2i, int]
 
 
 ## Add an aerial defense area
-## note that all *_aerial_defense_area does not update the Map.instance.aerial_defense_map_layer immediately
+## note that all *_aerial_defense_area does not update the Map.instance.aerial_defense_layer immediately
 static func add_aerial_defense_area(area: Area) -> void:
 	_aerial_defense_areas[area.offset] = area
 	for coord: Vector2i in area.get_coords():
@@ -43,7 +43,7 @@ static func delete_aerial_defense_area_at(offset: Vector2i) -> void:
 
 
 static func update_map() -> void:
-	Map.instance.aerial_defense_map_layer.set_dict(_aerial_defense_coords)
+	Map.instance.aerial_defense_layer.set_dict(_aerial_defense_coords)
 
 
 #-----------------------------------------------------------------#
@@ -69,7 +69,7 @@ func _update_cursor(_p_coord: Vector2i, _cursor: Cursor) -> void:
 	var coord = _last_aerial_defense_position if has_committed() else Cursor.coord
 	aerial_defense_area.offset = coord
 	update_map()
-	Map.instance.aerial_defense_map_layer.set_area(aerial_defense_area, true, MapLayer.OperationMode.ADD)
+	Map.instance.aerial_defense_layer.set_area(aerial_defense_area, true, MapLayer.OperationMode.ADD)
 
 #-----------------------------------------------------------------#
 var _last_aerial_defense_position: Vector2i

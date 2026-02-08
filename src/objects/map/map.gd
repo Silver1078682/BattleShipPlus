@@ -3,19 +3,19 @@ extends Node2D
 ## Game map
 
 ## Node pointer
-@onready var map_layer: MapLayer = $MapLayer
-@onready var attack_map_layer: MapLayer = $AttackMapLayer
-@onready var aerial_defense_map_layer: MapLayer = $AerialDefenseMapLayer
+@onready var scope_layer: MapLayer = $Scope
+@onready var attack_layer: MapLayer = $Attack
+@onready var aerial_defense_layer: MapLayer = $AerialDefense
 
 enum Layer {
-	MAP_LAYER,
-	ATTACK_MAP_LAYER,
-	AERIAL_DEFENSE_MAP_LAYER,
+	SCOPE_LAYER,
+	ATTACK_LAYER,
+	AERIAL_DEFENSE_LAYER,
 }
 
 
-func get_map_layer(layer: Map.Layer) -> MapLayer:
-	return [map_layer, attack_map_layer, aerial_defense_map_layer][layer]
+func get_layer(layer: Map.Layer) -> MapLayer:
+	return [scope_layer, attack_layer, aerial_defense_layer][layer]
 
 
 @onready var sea: Sea = %Sea
