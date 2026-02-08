@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="8_6yqui"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="9_8bprf"]
+[ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="10_8bprf"]
 
 [sub_resource type="Resource" id="Resource_c1s03"]
 script = ExtResource("2_8bprf")
@@ -80,26 +81,27 @@ action_name = "AerialScout"
 metadata/_custom_type_script = "uid://bmybf2l7grmym"
 
 [sub_resource type="Resource" id="Resource_3rdb6"]
-resource_name = "<S0 C0 E0>"
+resource_name = "<S0 C2 E0>"
 script = ExtResource("9_8bprf")
-course = Array[ExtResource("1_h2aut")]([null, null])
+course = Array[ExtResource("1_h2aut")]([SubResource("Resource_by1fw"), SubResource("Resource_pievy")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_kgbrq"]
-resource_name = "<Empty>"
+resource_name = "<C:AerialDefense>"
 script = ExtResource("9_8bprf")
-course = Array[ExtResource("1_h2aut")]([null])
+course = Array[ExtResource("1_h2aut")]([ExtResource("3_2lo8t")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_xu123"]
-resource_name = "<Empty>"
+resource_name = "<C:AerialScout>"
 script = ExtResource("9_8bprf")
-course = Array[ExtResource("1_h2aut")]([null])
+course = Array[ExtResource("1_h2aut")]([SubResource("Resource_w4x53")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_6e78m"]
-resource_name = "<Empty>"
+resource_name = "<C:Move>"
 script = ExtResource("9_8bprf")
+course = Array[ExtResource("1_h2aut")]([ExtResource("10_8bprf")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]

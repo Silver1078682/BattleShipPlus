@@ -26,10 +26,12 @@ func _validate_property(_property: Dictionary) -> void:
 			resource_name = "<EmptyActionGroup>"
 
 	else:
-		resource_name = "<S%d C%d E%d>" % [start.size(), end.size(), end.size()]
+		resource_name = "<S%d C%d E%d>" % [start.size(), course.size(), end.size()]
+
 
 func is_valid_arr(arr) -> bool:
 	return arr.size() and is_instance_valid(arr[0])
 
-func arr_getter(arr) ->  Array[Action]:
+
+func arr_getter(arr) -> Array[Action]:
 	return arr.duplicate_deep(DEEP_DUPLICATE_ALL) if not Engine.is_editor_hint() else arr
