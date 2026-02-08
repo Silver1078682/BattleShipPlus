@@ -26,13 +26,13 @@
 - [x] AttackAnim 显示距离
 - [x] CV平衡调整
 - [x] Camera缩放移动限制
-- [ ] 驱逐侦察潜艇Action
-- [ ] Setting系统重构
 ---
 - [x] 地图编辑器优化
-- [ ] 迁移godot4.6
+- [x] 迁移godot4.6
 
 ## TODO
+- [ ] 驱逐侦察潜艇Action
+- [ ] Setting系统重构
 - [ ] translation
 - [ ] ActionButton 抢夺鼠标焦点
 - [ ] 更复杂的移动逻辑（路径可达性检验）
