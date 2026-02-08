@@ -46,7 +46,7 @@ func remove_mine(mine: Mine) -> void:
 
 func remove_mine_at(coord: Vector2i, as_mirror := false) -> void:
 	if not coord in mines:
-		Log.error("Trying to remove a non-existent mine at %s" % coord)
+		Log.error("Trying to remove a non-existent mine at ", coord)
 		return
 
 	var mine := mines[coord]
