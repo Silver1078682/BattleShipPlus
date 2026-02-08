@@ -1,6 +1,6 @@
-class_name Scope
+class_name MapLayer
 extends TileMapLayer
-## A highlighted area indicating the scope or area of action
+## A highlighted area indicating the map_layer or area of action
 
 @export var default_operation_mode: OperationMode
 enum OperationMode {
@@ -9,20 +9,14 @@ enum OperationMode {
 	ERASE, ## The subtraction of this value from the existing area.
 }
 
-enum Layer {
-	SCOPE,
-	ATTACK_SCOPE,
-	AERIAL_DEFENSE_SCOPE,
-}
-
 
 #-----------------------------------------------------------------#
-## Set the Scope to a specific area
+## Set the MapLayer to a specific area
 func set_area(area: Area, clamped := true, operation := OperationMode.SET) -> void:
 	set_dict(area.get_coords(), clamped, operation)
 
 
-## Set the Scope to a hash set(Dictionary) of coordinates
+## Set the MapLayer to a hash set(Dictionary) of coordinates
 func set_dict(coords: Dictionary[Vector2i, int], clamped := true, operation := OperationMode.SET) -> void:
 	match operation:
 		OperationMode.SET:

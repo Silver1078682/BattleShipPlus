@@ -20,7 +20,7 @@ extends Resource
 static var _action_in_process: Action:
 	set(p_action_in_process):
 		if _action_in_process != p_action_in_process:
-			_change_scope_marker_object(_action_in_process, p_action_in_process)
+			_change_map_layer_marker_object(_action_in_process, p_action_in_process)
 			_change_cursor_check_object(_action_in_process, p_action_in_process)
 			_action_in_process = p_action_in_process
 
@@ -41,7 +41,7 @@ func start() -> void:
 	if has_reached_commit_limit():
 		return
 	_action_in_process = self
-	start_scope_markers()
+	start_map_layer_markers()
 	_started()
 
 
@@ -50,28 +50,28 @@ func _started() -> void:
 	pass
 
 #-----------------------------------------------------------------#
-@export_group("scope marker")
-@export var scope_markers: Array[ScopeMarker]
+@export_group("map_layer marker")
+@export var map_layer_markers: Array[MapLayerMarker]
 
 
-func start_scope_markers() -> void:
-	var coord := _get_scope_marker_default_coord()
-	for scope_marker in scope_markers:
-		scope_marker.start(coord)
+func start_map_layer_markers() -> void:
+	var coord := _get_map_layer_marker_default_coord()
+	for map_layer_marker in map_layer_markers:
+		map_layer_marker.start(coord)
 
 
-func update_scope_markers() -> void:
-	var coord := _get_scope_marker_default_coord()
-	for scope_marker in scope_markers:
-		scope_marker.mark(coord)
+func update_map_layer_markers() -> void:
+	var coord := _get_map_layer_marker_default_coord()
+	for map_layer_marker in map_layer_markers:
+		map_layer_marker.mark(coord)
 
 
-func end_scope_markers() -> void:
-	for scope_marker in scope_markers:
-		scope_marker.end()
+func end_map_layer_markers() -> void:
+	for map_layer_marker in map_layer_markers:
+		map_layer_marker.end()
 
 
-func _get_scope_marker_default_coord() -> Vector2i:
+func _get_map_layer_marker_default_coord() -> Vector2i:
 	return Vector2i.ZERO
 #-----------------------------------------------------------------#
 @export_group("area")
@@ -79,7 +79,7 @@ func _get_scope_marker_default_coord() -> Vector2i:
 @export var action_area: Area
 ## If set true, the center of [member action_area] will follow player's mouse.
 @export var follow_mouse := false
-## If set true, [mark_scope] will always be called when the cursor coordinate changes.
+## If set true, [mark_map_layer] will always be called when the cursor coordinate changes.
 @export var area_force_mouse_update := false
 
 
@@ -87,14 +87,14 @@ func should_update_area_on_cursor_coord_changed() -> bool:
 	return follow_mouse or area_force_mouse_update
 
 ## DEPRECATED TODO WARNING
-## mark_scope _get_action_area is deprecated.
+## mark_map_layer _get_action_area is deprecated.
 
-### mark the [Scope] in the [Map].
-#func mark_scope() -> void:
+### mark the [MapLayer] in the [Map].
+#func mark_map_layer() -> void:
 #var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
 #if action_area:
 #action_area.offset = coord
-#Map.instance.scope.set_dict(_get_action_area())
+#Map.instance.map_layer.set_dict(_get_action_area())
 
 # proxy function
 # func _get_action_area() -> Dictionary[Vector2i, int]:
@@ -103,12 +103,12 @@ func should_update_area_on_cursor_coord_changed() -> bool:
 # 	return action_area.get_coords()
 
 
-static func _change_scope_marker_object(previous_action: Action, new_action: Action) -> void:
+static func _change_map_layer_marker_object(previous_action: Action, new_action: Action) -> void:
 	var cursor = Game.instance.cursor
 	if previous_action and previous_action.should_update_area_on_cursor_coord_changed():
-		cursor.coord_changed.disconnect(previous_action.mark_scope.unbind(1))
+		cursor.coord_changed.disconnect(previous_action.mark_map_layer.unbind(1))
 	if new_action and new_action.should_update_area_on_cursor_coord_changed():
-		cursor.coord_changed.connect(new_action.mark_scope.unbind(1))
+		cursor.coord_changed.connect(new_action.mark_map_layer.unbind(1))
 
 #-----------------------------------------------------------------#
 @export_group("commit_and_revert")
@@ -194,7 +194,7 @@ func revert() -> void:
 			_commit_times -= 1
 
 			reverted.emit()
-			Map.instance.scope.clear_mask()
+			Map.instance.map_layer.clear_mask()
 
 
 ## Custom behavior when reverting an action.
@@ -220,7 +220,7 @@ func cancel() -> void:
 
 ## Behavior when an [Action] is cancelled
 func _cancelled() -> void:
-	Map.instance.scope.clear_mask()
+	Map.instance.map_layer.clear_mask()
 
 
 #-----------------------------------------------------------------#
@@ -245,10 +245,10 @@ func _input(event: InputEvent) -> bool:
 	if action_area:
 		if event.is_action_pressed("rotate_forward"):
 			action_area.rotate(1)
-			update_scope_markers()
+			update_map_layer_markers()
 		if event.is_action_pressed("rotate_backward"):
 			action_area.rotate(-1)
-			update_scope_markers()
+			update_map_layer_markers()
 	return false
 
 #-----------------------------------------------------------------#
@@ -272,7 +272,7 @@ func check_cursor(p_coord: Vector2i) -> void:
 func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
 	var map := Map.instance
 	return {
-		"CANNOT_MOVE_HERE": map.scope.has_coord(p_coord),
+		"CANNOT_MOVE_HERE": map.map_layer.has_coord(p_coord),
 		"NOT_IN_MAP": map.has_coord(p_coord),
 		"OCCUPIED": not Player.fleet.has_ship_at(p_coord) or not check_cursor_fleet,
 		"OCCUPIED_BY_MINE": not Player.mine.has_mine_at(p_coord) or not check_cursor_mine,

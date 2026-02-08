@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dcj37g2hhgl7q" path="res://asset/texture/tiles/Sea.png" id="3_hlvam"]
 [ext_resource type="Texture2D" uid="uid://hiow7h0nfv6j" path="res://asset/texture/tiles/Tile.png" id="3_xxvwk"]
 [ext_resource type="Script" uid="uid://5nbyfjom720l" path="res://src/objects/map/sea.gd" id="4_lejf8"]
-[ext_resource type="Script" uid="uid://6vos1ygwwned" path="res://src/objects/map/scope/scope.gd" id="5_3a5kb"]
+[ext_resource type="Script" uid="uid://6vos1ygwwned" path="res://src/objects/map/layer/map_layer.gd" id="5_3a5kb"]
 [ext_resource type="Texture2D" uid="uid://cb0vly14n3y6t" path="res://asset/texture/tiles/Attack.png" id="6_hult2"]
 [ext_resource type="Script" uid="uid://v8llqd7yqwjd" path="res://src/objects/map/base/base_manager.gd" id="7_gcxw7"]
 [ext_resource type="Texture2D" uid="uid://drf27w153od30" path="res://asset/texture/tiles/Base.png" id="8_gcxw7"]
@@ -70,17 +70,6 @@ tile_layout = 2
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_aq505")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj0u"]
-texture = ExtResource("6_hult2")
-texture_region_size = Vector2i(128, 128)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_c5imv"]
-tile_shape = 3
-tile_layout = 2
-tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_rvj0u")
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5imv"]
 texture = ExtResource("6_hult2")
 texture_region_size = Vector2i(128, 128)
@@ -91,6 +80,17 @@ tile_shape = 3
 tile_layout = 2
 tile_size = Vector2i(128, 128)
 sources/0 = SubResource("TileSetAtlasSource_c5imv")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rvj0u"]
+texture = ExtResource("6_hult2")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_c5imv"]
+tile_shape = 3
+tile_layout = 2
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_rvj0u")
 
 [node name="Map" type="Node2D" unique_id=670851857]
 z_index = -2
@@ -109,22 +109,22 @@ tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("4_lejf8")
 area = SubResource("Resource_rvj0u")
 
-[node name="Scope" type="TileMapLayer" parent="." unique_id=304255163]
+[node name="MapLayer" type="TileMapLayer" parent="." unique_id=304255163]
 tile_set = SubResource("TileSet_v7a3w")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
 metadata/_edit_lock_ = true
 
-[node name="AerialDefenseScope" type="TileMapLayer" parent="." unique_id=705759696]
-modulate = Color(1, 1, 0.5294118, 0.5176471)
-tile_set = SubResource("TileSet_c5imv")
+[node name="AttackMapLayer" type="TileMapLayer" parent="." unique_id=610417944]
+modulate = Color(0.91764706, 0.62352943, 0.35686275, 0.49019608)
+tile_set = SubResource("TileSet_jq7f5")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
 metadata/_edit_lock_ = true
 
-[node name="AttackScope" type="TileMapLayer" parent="." unique_id=610417944]
-modulate = Color(0.91764706, 0.62352943, 0.35686275, 0.49019608)
-tile_set = SubResource("TileSet_jq7f5")
+[node name="AerialDefenseMapLayer" type="TileMapLayer" parent="." unique_id=705759696]
+modulate = Color(1, 1, 0.5294118, 0.5176471)
+tile_set = SubResource("TileSet_c5imv")
 script = ExtResource("5_3a5kb")
 metadata/_custom_type_script = "uid://6vos1ygwwned"
 metadata/_edit_lock_ = true

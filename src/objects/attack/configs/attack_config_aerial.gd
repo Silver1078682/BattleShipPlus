@@ -32,8 +32,8 @@ func _handle_attack(
 ) -> Attack.Result:
 	var attack_result: Attack.Result
 
-	# if attack center is at aerial_defense_scope
-	if Map.instance.aerial_defense_scope.has_coord(attack.center):
+	# if attack center is at aerial_defense_map_layer
+	if Map.instance.aerial_defense_map_layer.has_coord(attack.center):
 		attack_result = Attack.Result.FAILURE
 		var aerial_defense_areas := ActionAerialDefense.get_aerial_defense_areas()
 		for area_coord in aerial_defense_areas:

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_8bprf"]
 [ext_resource type="Resource" uid="uid://ddpnfst3o5mnn" path="res://asset/resources/actions/AerialDefense.tres" id="3_2lo8t"]
 [ext_resource type="Resource" uid="uid://cqb26x6iiomrq" path="res://asset/resources/attacks/DiveBomber.tres" id="3_8bprf"]
-[ext_resource type="Script" uid="uid://d0ep6cjorv1lt" path="res://src/objects/actions/scope_marker.gd" id="4_w4x53"]
+[ext_resource type="Script" uid="uid://1qey40ywplgh" path="res://src/objects/actions/scope_marker.gd" id="4_6e78m"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="5_w4x53"]
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]

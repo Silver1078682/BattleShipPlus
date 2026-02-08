@@ -1,6 +1,6 @@
 @tool
 class_name Sea
-extends Scope
+extends MapLayer
 
 @export_tool_button("Apply") var _editor_apply_area_button = _editor_apply_area
 @export var area: Area
