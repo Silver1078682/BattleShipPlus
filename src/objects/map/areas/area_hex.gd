@@ -5,6 +5,9 @@ extends Area
 
 @export_range(0, 60) var radius: int:
 	set(p_radius):
+		if p_radius < 0:
+			Log.error("the radius of an AreaHex cannot be negative")
+			radius = 0
 		radius = p_radius
 		request_update()
 

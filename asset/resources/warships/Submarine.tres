@@ -3,12 +3,35 @@
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_6gdbh"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_i2ij7"]
 [ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="2_af3ng"]
-[ext_resource type="Resource" uid="uid://c6cshsld2by0b" path="res://asset/resources/actions/SubmarineMove.tres" id="3_lj2dy"]
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="3_namkn"]
+[ext_resource type="Script" uid="uid://wravfxnqw3c3" path="res://src/objects/actions/scope_marker/motility.gd" id="4_af3ng"]
+[ext_resource type="Script" uid="uid://cjm2ioyh0nue4" path="res://src/objects/actions/action_operation/action_move/action_move.gd" id="5_65ayq"]
+[ext_resource type="Resource" uid="uid://coefqffem7op3" path="res://asset/resources/actions/TorpedoAttack.tres" id="6_xh8sw"]
+
+[sub_resource type="Resource" id="Resource_nfl6y"]
+script = ExtResource("3_namkn")
+radius = 4
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_5i7o4"]
+resource_name = "ScopeMK< [HEX 4 @(0, 0)] 0 >"
+script = ExtResource("4_af3ng")
+exposure_punishment = 1
+area = SubResource("Resource_nfl6y")
+metadata/_custom_type_script = "uid://wravfxnqw3c3"
+
+[sub_resource type="Resource" id="Resource_ilqd1"]
+resource_local_to_scene = true
+resource_name = "Move"
+script = ExtResource("5_65ayq")
+action_layer_marker = SubResource("Resource_5i7o4")
+action_name = "Move"
+metadata/_custom_type_script = "uid://cjm2ioyh0nue4"
 
 [sub_resource type="Resource" id="Resource_af3ng"]
-resource_name = "<C:SubmarineMove>"
+resource_name = "<S0 C2 E0>"
 script = ExtResource("2_af3ng")
-course = Array[ExtResource("1_6gdbh")]([ExtResource("3_lj2dy")])
+course = Array[ExtResource("1_6gdbh")]([SubResource("Resource_ilqd1"), ExtResource("6_xh8sw")])
 metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]

@@ -5,8 +5,11 @@ extends ScopeMarker
 @export var follow_cursor := false
 @export var area: Area:
 	get = get_area
+
+
 func get_area() -> Area:
 	return area
+
 
 func should_update_on_cursor_changed():
 	return follow_cursor
@@ -23,6 +26,10 @@ func unmark_map_layer(_map_layer: MapLayer) -> void:
 
 func get_coords() -> void:
 	return area.get_coords()
+
+
+func rotate(times: int) -> void:
+	area.rotate(times)
 
 
 # QOL improvement
