@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActionLayMine" format=3 uid="uid://tajho1xd43o8"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_nyv31"]
-[ext_resource type="Script" uid="uid://cjtursluve41w" path="res://src/objects/actions/action_operation/action_lay_mine.gd" id="2_khfxn"]
+[ext_resource type="Script" path="res://src/objects/actions/action_operation/action_supply/action_lay_mine.gd" id="2_khfxn"]
 
 [sub_resource type="Resource" id="Resource_1kgc0"]
 script = ExtResource("1_nyv31")

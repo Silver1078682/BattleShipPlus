@@ -55,7 +55,7 @@ func _started() -> void:
 @export var action_area: Area
 ## If set true, the center of [member action_area] will follow player's mouse.
 @export var follow_mouse := false
-## If set true, [_update_area_on_cursor_coord_changed] will be called when the cursor coordinate changes.
+## If set true, [mark_scope] will always be called when the cursor coordinate changes.
 @export var area_force_mouse_update := false
 
 
@@ -63,7 +63,7 @@ func should_update_area_on_cursor_coord_changed() -> bool:
 	return follow_mouse or area_force_mouse_update
 
 
-## mark the [Area] of the [Action] in the [Map].
+## mark the [Scope] in the [Map].
 func mark_scope() -> void:
 	var coord := Cursor.coord if follow_mouse else Vector2i.ZERO
 	if action_area:

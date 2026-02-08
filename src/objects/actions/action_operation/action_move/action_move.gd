@@ -5,7 +5,7 @@ func _get_action_area() -> Dictionary[Vector2i, int]:
 	if action_area is AreaHex:
 		action_area.radius = _get_move_radius()
 	else:
-		Log.warning("ActionMove %s with action_area set a non-AreaHex")
+		Log.warning("ActionMove ", self, " with action_area set a non-AreaHex")
 	return action_area.get_coords()
 
 

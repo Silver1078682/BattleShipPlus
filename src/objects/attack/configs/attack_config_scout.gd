@@ -1,4 +1,4 @@
-class_name AttackConfigAerialScout
+class_name AttackConfigScout
 extends AttackConfig
 
 const EXPOSURE_KEY = "AerialScoutFrom"
