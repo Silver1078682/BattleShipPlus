@@ -212,7 +212,7 @@ func assert_sync(ship: Warship, coord = null):
 	assert_not_null(ship, "null")
 	assert_eq(ship.get_parent(), fleet, "should have valid parent")
 	assert_eq(fleet.get_ship_at(ship.coord), ship, "not register at fleet")
-	assert_eq(ship.position, Map.coord_to_pos(coord))
+	assert_eq(ship.position, Map.coord_to_pos(ship.coord))
 	assert_connected(ship.stage_left, fleet._erase_ship)
 	assert_true(ship.name.ends_with(str(ship.id)))
 	if coord != null:
