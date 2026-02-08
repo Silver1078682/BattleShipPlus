@@ -250,6 +250,7 @@ func handle_mine_attack() -> bool:
 
 		var attack := Attack.create_from_name("Mine")
 		attack.scouting = false
+		attack.center = coord
 		return handle_attack(Mine.DAMAGE, attack)
 	return false
 

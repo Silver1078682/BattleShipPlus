@@ -6,6 +6,7 @@ func _enter() -> void:
 		if ship.config.name == "BB":
 			var hex := AreaHex.new()
 			hex.radius = 9 - 1 # attack_range - 1
-			var attack := Attack.create_from_name("Scout")
+			var attack := Attack.create_from_name("Default")
+			attack.scouting = true
 			attack.center = ship.coord
 			attack.push(hex.get_coords())
