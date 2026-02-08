@@ -1,7 +1,6 @@
 class_name ActionArtilleryAttack
 extends ActionAttack
 
-
 func _get_action_damage() -> int:
 	return _ship.config.artillery_level + 1
 
