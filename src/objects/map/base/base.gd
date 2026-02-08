@@ -44,7 +44,7 @@ func _ready() -> void:
 
 func _set_coord(p_coord: Vector2i) -> void:
 	var sea: Sea = get_map().get_node(^"%Sea")
-	position = sea.map_to_local(p_coord) - sea.map_to_local(Vector2i.ZERO)
+	position = sea.map_to_local(p_coord)
 
 
 func get_map() -> Map:
@@ -54,4 +54,4 @@ func get_map() -> Map:
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		var sea: Sea = get_map().get_node(^"%Sea")
-		coord = sea.local_to_map(position + sea.map_to_local(Vector2i.ZERO))
+		coord = sea.local_to_map(position)

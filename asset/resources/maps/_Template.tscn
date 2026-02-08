@@ -136,10 +136,9 @@ enemy_color = Color(0.6789437, 0.6789437, 0.6789437, 1)
 
 [node name="BaseA" type="TileMapLayer" parent="Base" unique_id=1316173198]
 self_modulate = Color(0, 0, 0, 0)
-position = Vector2(64, 96)
+position = Vector2(64, 64)
 tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("8_lq10h")
-coord = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://w6k14ppdabns"
 
 [node name="MineLayer" type="Node2D" parent="Base/BaseA" unique_id=1938912419]
@@ -159,7 +158,6 @@ coord = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://20x5ygogq6bb"
 
 [node name="Sprite" type="Sprite2D" parent="Base/BaseA" unique_id=45267283]
-position = Vector2(0, -32)
 texture = ExtResource("6_hult2")
 metadata/_edit_lock_ = true
 
@@ -167,13 +165,14 @@ metadata/_edit_lock_ = true
 use_parent_material = true
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_gcxw7")
+metadata/_edit_lock_ = true
 
 [node name="BaseB" type="TileMapLayer" parent="Base" unique_id=1323214987]
 self_modulate = Color(0, 0, 0, 0)
-position = Vector2(320, 96)
+position = Vector2(320, 64)
 tile_set = SubResource("TileSet_hlvam")
 script = ExtResource("8_lq10h")
-coord = Vector2i(2, 1)
+coord = Vector2i(2, 0)
 metadata/_custom_type_script = "uid://w6k14ppdabns"
 
 [node name="MineLayer" type="Node2D" parent="Base/BaseB" unique_id=2072311991]
@@ -193,10 +192,10 @@ coord = Vector2i(0, -1)
 metadata/_custom_type_script = "uid://20x5ygogq6bb"
 
 [node name="Sprite" type="Sprite2D" parent="Base/BaseB" unique_id=1397638884]
-position = Vector2(0, -32)
 texture = ExtResource("6_hult2")
 metadata/_edit_lock_ = true
 
 [node name="Icon" type="Sprite2D" parent="Base/BaseB/Sprite" unique_id=926588391]
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("8_gcxw7")
+metadata/_edit_lock_ = true
