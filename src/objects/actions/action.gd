@@ -71,14 +71,6 @@ func _end_scope_markers() -> void:
 
 func _get_map_layer_marker_default_coord() -> Vector2i:
 	return Vector2i.ZERO
-##-----------------------------------------------------------------#
-#@export_group("area")
-### The [Area] only in which the [Action] can be committed.
-#@export var action_area: Area
-### If set true, the center of [member action_area] will follow player's mouse.
-#@export var follow_mouse := false
-### If set true, [mark_map_layer] will always be called when the cursor coordinate changes.
-#@export var area_force_mouse_update := false
 
 #-----------------------------------------------------------------#
 @export_group("commit_and_revert")

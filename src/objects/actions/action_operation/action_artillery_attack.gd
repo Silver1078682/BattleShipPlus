@@ -8,9 +8,8 @@ extends ActionAttack
 #Log.warning("ActionArtilleryAttack %s with action_area set a non-AreaHex")
 #return action_area.get_coords()
 
-func _get_action_radius() -> int:
-	return _ship.config.artillery_distance
-
+#func _get_action_radius() -> int:
+#return _ship.config.artillery_distance
 
 func _get_action_damage() -> int:
 	return _ship.config.artillery_level + 1
