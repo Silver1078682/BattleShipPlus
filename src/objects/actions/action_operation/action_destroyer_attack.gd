@@ -1,12 +1,15 @@
 class_name ActionDestroyerAttack
 extends ActionAttack
 
-#func _get_action_area() -> Dictionary[Vector2i, int]:
-#if not action_area:
-#return { }
-#var result: Dictionary[Vector2i, int] = { }
-#for coord in action_area.get_coords():
-#var opponent_ship := Opponent.fleet.get_ship_at(coord)
-#if opponent_ship and opponent_ship.config.name == Warship.SUBMARINE:
-#result[coord] = 0
-#return result
+@export var apply_list: Array[StringName]
+
+
+func _get_cursor_check_list(p_coord: Vector2i) -> Dictionary[String, bool]:
+	var list = super(p_coord)
+	var opponent_ship := Opponent.fleet.get_ship_at(p_coord)
+	if not opponent_ship:
+		list["NO_WARSHIP"] = true
+		return list
+	var name := opponent_ship.config.name
+	list["WARSHIP_IS_NOT_TYPE_OF"] = name in apply_list
+	return list
