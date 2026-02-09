@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ActionArtilleryAttack" format=3 uid="uid://d16f576xrpmd8"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_s47qh"]
-[ext_resource type="Script" uid="uid://wravfxnqw3c3" path="res://src/objects/actions/scope_marker/property.gd" id="2_kvtsy"]
+[ext_resource type="Script" uid="uid://c2kk5lxps8g0o" path="res://src/objects/actions/scope_marker/property.gd" id="2_kvtsy"]
 [ext_resource type="Resource" uid="uid://8lyq4dfoq6tp" path="res://asset/resources/attacks/ArtilleryAttack.tres" id="2_s47qh"]
 [ext_resource type="Script" uid="uid://cn6w5p3n3qnb5" path="res://src/objects/actions/action_operation/action_artillery_attack.gd" id="3_4q7u8"]
 

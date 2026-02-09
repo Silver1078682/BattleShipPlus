@@ -11,6 +11,7 @@ metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 [resource]
 resource_name = "DestroyerAttack"
 script = ExtResource("2_snqy1")
+apply_list = Array[StringName]([&"Destroyer"])
 attack_area = SubResource("Resource_20t2d")
 attack_follow_mouse = true
 damage = 6

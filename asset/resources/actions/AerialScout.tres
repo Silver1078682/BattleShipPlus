@@ -2,18 +2,10 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_w1fw6"]
 [ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="2_7lfg3"]
-[ext_resource type="Script" uid="uid://wvh8fa8dbif6" path="res://src/objects/actions/scope_marker/area.gd" id="2_a35xf"]
 [ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="3_w1fw6"]
-
-[sub_resource type="Resource" id="Resource_n1qb5"]
-script = ExtResource("1_w1fw6")
-radius = 12
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
 [sub_resource type="Resource" id="Resource_h01d8"]
 resource_name = "ScopeMK< [HEX 12 @(0, 0)] 0 >"
-script = ExtResource("2_a35xf")
-area = SubResource("Resource_n1qb5")
 metadata/_custom_type_script = "uid://wvh8fa8dbif6"
 
 [sub_resource type="Resource" id="Resource_w1fw6"]
