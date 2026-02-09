@@ -15,7 +15,7 @@ var _ship: Warship
 @export var is_terminating := false
 
 
-func _get_map_layer_marker_default_coord():
+func _get_scope_marker_fallback_coord():
 	return _ship.coord
 
 
@@ -41,12 +41,6 @@ func revert() -> void:
 		else:
 			return
 	super()
-
-	#func mark_map_layer() -> void:
-	#var coord := Cursor.coord if follow_mouse else _ship.coord
-	#if action_area:
-	#action_area.offset = coord
-	#Map.instance.action_layer.set_dict(_get_action_area())
 
 
 func has_reached_commit_limit() -> bool:

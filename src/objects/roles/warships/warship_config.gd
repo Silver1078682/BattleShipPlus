@@ -35,27 +35,10 @@ enum ArrangeArea {
 
 @export_group("action", "action_")
 @export var action_groups: Dictionary[String, PhaseActionGroup]
-@export_group("deprecated", "action_")
-@export var action_supply: Array[Action]
-@export var action_movement: Array[Action]
-@export var action_aerial_scout: Array[Action]
-@export var action_aerial_defense: Array[Action]
-@export var action_aerial_attack: Array[Action]
-@export var action_artillery_attack: Array[Action]
-@export var action_torpedo_attack: Array[Action]
-@export var action_submarine_scout: Array[Action]
-@export var action_submarine_attack: Array[Action]
 
 
 func get_action_group(phase_name: String) -> PhaseActionGroup:
 	return (action_groups.get(phase_name) as PhaseActionGroup)
-	#
-	#phase_name = phase_name.to_snake_case()
-	#var actions = get("action_" + phase_name)
-	#if actions:
-	#assert(actions is Array[Action])
-	#return actions.duplicate_deep()
-	#return []
 
 
 func _to_string() -> String:

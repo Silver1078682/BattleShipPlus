@@ -9,8 +9,8 @@ func _committed() -> bool:
 	return result
 
 
-func _get_attack(coord: Vector2i) -> Attack:
-	var attack := super(coord)
+func _get_attack() -> Attack:
+	var attack := super()
 	attack.meta["direction"] = Cursor.coord - attack_area.offset
 	return attack
 
@@ -21,8 +21,9 @@ func _update_cursor(p_coord: Vector2i, cursor: Cursor) -> void:
 	super(p_coord, cursor)
 
 
-func _get_attack_damages(offset: Vector2i) -> Dictionary[Vector2i, int]:
-	var damages := super(offset)
+## TODO remove it !!
+func _get_attack_damages() -> Dictionary[Vector2i, int]:
+	var damages := super()
 	damages.erase(_ship.coord)
 	return damages
 

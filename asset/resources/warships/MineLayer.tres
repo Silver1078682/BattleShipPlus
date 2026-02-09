@@ -10,7 +10,6 @@
 resource_name = "<S0 C2 E0>"
 script = ExtResource("2_cv7qx")
 course = Array[ExtResource("1_33olk")]([ExtResource("3_srif7"), ExtResource("4_cv7qx")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "MineLayer"

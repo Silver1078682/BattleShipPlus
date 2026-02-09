@@ -9,4 +9,6 @@ script = ExtResource("2_6ft1a")
 name = "ArtilleryAttack"
 anim_scene = ExtResource("1_6ft1a")
 use_dice = true
+should_explode = true
+explode_when = 0
 metadata/_custom_type_script = "uid://cp6jouck8vku0"

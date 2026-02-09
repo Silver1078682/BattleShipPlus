@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_klin3"]
 [ext_resource type="Resource" uid="uid://d0dpusquoqm0b" path="res://asset/resources/attacks/Default.tres" id="2_a5sc6"]
-[ext_resource type="Script" uid="uid://bvvc2gdp6uv8r" path="res://src/objects/actions/action_operation/action_list_attack.gd" id="3_ocw1l"]
+[ext_resource type="Script" uid="uid://bvvc2gdp6uv8r" path="res://src/objects/actions/action_operation/action_attack/action_list_attack.gd" id="3_ocw1l"]
 
 [sub_resource type="Resource" id="Resource_20t2d"]
 script = ExtResource("1_klin3")
@@ -12,8 +12,8 @@ metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 resource_name = "AntiSubmarineAttack"
 script = ExtResource("3_ocw1l")
 apply_list = Array[StringName]([&"Submarine"])
+damage = 6
 attack_area = SubResource("Resource_20t2d")
 attack_follow_mouse = true
-damage = 6
 action_name = "AntiSubmarineAttack"
 metadata/_custom_type_script = "uid://bvvc2gdp6uv8r"

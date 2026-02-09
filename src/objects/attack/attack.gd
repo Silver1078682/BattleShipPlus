@@ -10,6 +10,7 @@ extends Resource
 @export var scouting := true
 var base_damage := 0
 ## If the [Attack] rolls a dice, the result will be stored here
+## The result is set as soon as it is created
 var dice_result := -1
 
 ## Some extra information describing the attack, will be sent to your opponent's side

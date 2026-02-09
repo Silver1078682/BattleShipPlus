@@ -23,4 +23,4 @@ func end_attack(session_id: int, session_result: Attack.Result) -> void:
 	attack.result = session_result
 	attack.config.end_attack(attack)
 	sessions.erase(session_id)
-	Log.debug("%s finished with result id: %d" % [attack, session_result])
+	Log.debug(attack, "finished with result: ", Attack.Result.find_key(session_result))

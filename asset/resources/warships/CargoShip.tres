@@ -10,7 +10,6 @@
 resource_name = "<S0 C2 E0>"
 script = ExtResource("2_vro5r")
 course = Array[ExtResource("1_hiieo")]([ExtResource("3_ttp83"), ExtResource("4_vro5r")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "CargoShip"

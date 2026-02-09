@@ -5,29 +5,49 @@
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="2_8bprf"]
 [ext_resource type="Resource" uid="uid://ddpnfst3o5mnn" path="res://asset/resources/actions/AerialDefense.tres" id="3_2lo8t"]
 [ext_resource type="Resource" uid="uid://cqb26x6iiomrq" path="res://asset/resources/attacks/DiveBomber.tres" id="3_8bprf"]
-[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_aerial_attack.gd" id="5_7m3vq"]
+[ext_resource type="Script" uid="uid://dd24wnoq7jsmc" path="res://src/objects/actions/scope_markers/area.gd" id="4_w4x53"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="5_w4x53"]
+[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_attack/action_aerial_attack.gd" id="6_6e78m"]
 [ext_resource type="Resource" uid="uid://c55g33kqf3dot" path="res://asset/resources/attacks/TorpedoBomber.tres" id="6_w4x53"]
-[ext_resource type="Resource" uid="uid://qcfjhxh77d5s" path="res://asset/resources/attacks/ScoutAircraft.tres" id="8_6yqui"]
 [ext_resource type="Script" path="res://src/objects/phase/phase_action_group.gd" id="9_8bprf"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="10_8bprf"]
 [ext_resource type="Resource" uid="uid://bbal4e4uwotea" path="res://asset/resources/actions/AerialScout.tres" id="11_6e78m"]
 
+[sub_resource type="Resource" id="Resource_7lfg3"]
+script = ExtResource("2_8bprf")
+radius = 12
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
 [sub_resource type="Resource" id="Resource_1ste6"]
 resource_name = "ScopeMK< [HEX 12 @(0, 0)] 0 >"
-metadata/_custom_type_script = "uid://wvh8fa8dbif6"
+script = ExtResource("4_w4x53")
+area = SubResource("Resource_7lfg3")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
 
 [sub_resource type="Resource" id="Resource_t6gl7"]
 script = ExtResource("2_8bprf")
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
+[sub_resource type="Resource" id="Resource_w4x53"]
+script = ExtResource("2_8bprf")
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_a26l8"]
+resource_name = "ScopeMK< [HEX 0 @(0, 0)] 1 >"
+script = ExtResource("4_w4x53")
+follow_cursor = true
+area = SubResource("Resource_w4x53")
+map_layer = 1
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
+
 [sub_resource type="Resource" id="Resource_by1fw"]
 resource_name = "DiveAircraft"
-script = ExtResource("5_7m3vq")
-attack_area = SubResource("Resource_t6gl7")
-attack_follow_mouse = true
+script = ExtResource("6_6e78m")
+attack_layer_marker = SubResource("Resource_a26l8")
 attack_config = ExtResource("3_8bprf")
 damage = 1
+attack_area = SubResource("Resource_t6gl7")
+attack_follow_mouse = true
 is_terminating = true
 action_layer_marker = SubResource("Resource_1ste6")
 revertible = false
@@ -36,66 +56,60 @@ metadata/_custom_type_script = "uid://d3npu18ujrako"
 
 [sub_resource type="Resource" id="Resource_ece1k"]
 resource_name = "ScopeMK< [HEX 12 @(0, 0)] 0 >"
-metadata/_custom_type_script = "uid://wvh8fa8dbif6"
+script = ExtResource("4_w4x53")
+area = SubResource("Resource_7lfg3")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
 
 [sub_resource type="Resource" id="Resource_mmbmv"]
 script = ExtResource("5_w4x53")
 end = Vector2i(2, 0)
 metadata/_custom_type_script = "uid://dh8llcoq6d73a"
 
+[sub_resource type="Resource" id="Resource_qjhnm"]
+script = ExtResource("5_w4x53")
+end = Vector2i(2, 0)
+metadata/_custom_type_script = "uid://dh8llcoq6d73a"
+
+[sub_resource type="Resource" id="Resource_odqgu"]
+resource_name = "ScopeMK< [LINE (0, 0)>(2, 0) @(0, 0)] 0 >"
+script = ExtResource("4_w4x53")
+follow_cursor = true
+area = SubResource("Resource_qjhnm")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
+
 [sub_resource type="Resource" id="Resource_pievy"]
 resource_name = "TorpedoAircraft"
-script = ExtResource("5_7m3vq")
-attack_area = SubResource("Resource_mmbmv")
-attack_follow_mouse = true
+script = ExtResource("6_6e78m")
+attack_layer_marker = SubResource("Resource_odqgu")
 attack_config = ExtResource("6_w4x53")
 damage = 1
+attack_area = SubResource("Resource_mmbmv")
+attack_follow_mouse = true
 is_terminating = true
 action_layer_marker = SubResource("Resource_ece1k")
 revertible = false
 action_name = "TorpedoAircraft"
 metadata/_custom_type_script = "uid://d3npu18ujrako"
 
-[sub_resource type="Resource" id="Resource_8bprf"]
-script = ExtResource("2_8bprf")
-radius = 3
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
-[sub_resource type="Resource" id="Resource_w4x53"]
-resource_name = "AerialScout"
-script = ExtResource("5_7m3vq")
-attack_area = SubResource("Resource_8bprf")
-attack_follow_mouse = true
-attack_config = ExtResource("8_6yqui")
-revertible = false
-check_cursor_fleet = false
-check_cursor_mine = false
-action_name = "AerialScout"
-metadata/_custom_type_script = "uid://bmybf2l7grmym"
-
 [sub_resource type="Resource" id="Resource_3rdb6"]
 resource_name = "<S0 C2 E0>"
 script = ExtResource("9_8bprf")
 course = Array[ExtResource("1_h2aut")]([SubResource("Resource_by1fw"), SubResource("Resource_pievy")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_kgbrq"]
 resource_name = "<C:AerialDefense>"
 script = ExtResource("9_8bprf")
 course = Array[ExtResource("1_h2aut")]([ExtResource("3_2lo8t")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_xu123"]
 resource_name = "<C:AerialScout>"
 script = ExtResource("9_8bprf")
 course = Array[ExtResource("1_h2aut")]([ExtResource("11_6e78m")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_6e78m"]
 resource_name = "<C:Move>"
 script = ExtResource("9_8bprf")
 course = Array[ExtResource("1_h2aut")]([ExtResource("10_8bprf")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "Carrier"
@@ -114,7 +128,4 @@ action_groups = Dictionary[String, ExtResource("9_8bprf")]({
 "AerialScout": SubResource("Resource_xu123"),
 "Movement": SubResource("Resource_6e78m")
 })
-action_aerial_scout = Array[ExtResource("1_h2aut")]([SubResource("Resource_w4x53")])
-action_aerial_defense = Array[ExtResource("1_h2aut")]([ExtResource("3_2lo8t")])
-action_aerial_attack = Array[ExtResource("1_h2aut")]([SubResource("Resource_by1fw"), SubResource("Resource_pievy")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"

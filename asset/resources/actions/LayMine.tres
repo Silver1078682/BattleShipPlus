@@ -1,10 +1,24 @@
 [gd_resource type="Resource" script_class="ActionLayMine" format=3 uid="uid://tajho1xd43o8"]
 
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_3mv0e"]
+[ext_resource type="Script" uid="uid://dd24wnoq7jsmc" path="res://src/objects/actions/scope_markers/area.gd" id="2_b8l8x"]
 [ext_resource type="Script" uid="uid://cjtursluve41w" path="res://src/objects/actions/action_operation/action_supply/action_lay_mine.gd" id="2_khfxn"]
+
+[sub_resource type="Resource" id="Resource_jh4kt"]
+script = ExtResource("1_3mv0e")
+radius = 1
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_7cqpv"]
+resource_name = "ScopeMK< [HEX 1 @(0, 0)] 0 >"
+script = ExtResource("2_b8l8x")
+area = SubResource("Resource_jh4kt")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
 
 [resource]
 resource_name = "LayMine"
 script = ExtResource("2_khfxn")
 is_terminating = true
+action_layer_marker = SubResource("Resource_7cqpv")
 action_name = "LayMine"
 metadata/_custom_type_script = "uid://cjtursluve41w"

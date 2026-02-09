@@ -58,7 +58,7 @@ func _handle_attack(
 		else:
 			attack_result = Attack.Result.FAILURE
 
-	Log.debug("Attack ", Attack.Result.find_key(attack_result))
+	Log.debug("handling aerial attack result: ", Attack.Result.find_key(attack_result))
 	if attack_result != Attack.Result.FAILURE:
 		super(attack_damages, attack)
 

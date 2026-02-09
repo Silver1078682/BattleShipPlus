@@ -1,13 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bf3jb6othj56w"]
+[gd_scene format=3 uid="uid://bf3jb6othj56w"]
 
-[ext_resource type="Script" uid="uid://1u5dnkf682an" path="res://tools/objects/roles/attack_anim/attack_anim_empty.gd" id="1_sdmtm"]
+[ext_resource type="Script" uid="uid://1u5dnkf682an" path="res://src/objects/roles/attack_anim/attack_anim_empty.gd" id="1_sdmtm"]
 [ext_resource type="Texture2D" uid="uid://pvjhqt77uy8u" path="res://asset/texture/vfx/Explosion/black_0001.png" id="2_mo7oo"]
 [ext_resource type="Texture2D" uid="uid://d36l3jcyk1vrs" path="res://asset/texture/vfx/Explosion/black_0002.png" id="3_y206j"]
 [ext_resource type="Texture2D" uid="uid://duw4roogbrt3s" path="res://asset/texture/vfx/Explosion/black_0003.png" id="4_a7am8"]
 [ext_resource type="Texture2D" uid="uid://oxj6fo5wp0k8" path="res://asset/texture/vfx/Explosion/explode_areal.png" id="5_dww6y"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c1n7s"]
-load_path = "res://.godot/imported/Fighter.png-25c4f7999cd763d261bddb8177c2515f.ctex"
 
 [sub_resource type="Animation" id="Animation_s1brq"]
 resource_name = "Damage"
@@ -112,33 +109,30 @@ _data = {
 &"RESET": SubResource("Animation_cn74r")
 }
 
-[node name="AttackAnim" type="Node2D"]
+[node name="AttackAnim" type="Node2D" unique_id=1530112507]
 z_index = 10
 script = ExtResource("1_sdmtm")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = SubResource("CompressedTexture2D_c1n7s")
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1796689627]
 
-[node name="Animation" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_13liq")
-}
+[node name="Animation" type="AnimationPlayer" parent="." unique_id=1371367936]
+libraries/ = SubResource("AnimationLibrary_13liq")
 speed_scale = 0.5
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Node2D" type="Node2D" parent="." unique_id=1317892837]
 scale = Vector2(2, 2)
 
-[node name="Smoke" type="Sprite2D" parent="Node2D"]
+[node name="Smoke" type="Sprite2D" parent="Node2D" unique_id=1516582394]
 visible = false
 position = Vector2(0, -50)
 
-[node name="Explosion" type="Sprite2D" parent="Node2D"]
+[node name="Explosion" type="Sprite2D" parent="Node2D" unique_id=1007780111]
 visible = false
 scale = Vector2(1.0666667, 1.1034483)
 
-[node name="Flash" type="Sprite2D" parent="Node2D"]
+[node name="Flash" type="Sprite2D" parent="Node2D" unique_id=1081279251]
 visible = false
 scale = Vector2(1.181208, 1.1999998)
 texture = ExtResource("5_dww6y")
 
-[node name="Water" type="Sprite2D" parent="Node2D"]
+[node name="Water" type="Sprite2D" parent="Node2D" unique_id=1985193466]

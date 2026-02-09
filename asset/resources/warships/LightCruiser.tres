@@ -11,19 +11,16 @@
 resource_name = "<C:ArtilleryAttack>"
 script = ExtResource("3_vblac")
 course = Array[ExtResource("1_4jpoq")]([ExtResource("2_b03ag")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_ebtv2"]
 resource_name = "<C:Move>"
 script = ExtResource("3_vblac")
 course = Array[ExtResource("1_4jpoq")]([ExtResource("4_kq5p7")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [sub_resource type="Resource" id="Resource_5hoj7"]
 resource_name = "<C:TorpedoAttack>"
 script = ExtResource("3_vblac")
 course = Array[ExtResource("1_4jpoq")]([ExtResource("5_vblac")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "LightCruiser"
@@ -42,5 +39,4 @@ action_groups = Dictionary[String, ExtResource("3_vblac")]({
 "Movement": SubResource("Resource_ebtv2"),
 "TorpedoAttack": SubResource("Resource_5hoj7")
 })
-action_artillery_attack = Array[ExtResource("1_4jpoq")]([ExtResource("2_b03ag")])
 metadata/_custom_type_script = "uid://pixh8p210jgk"

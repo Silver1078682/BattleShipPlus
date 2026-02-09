@@ -1,9 +1,10 @@
 [gd_resource type="Resource" script_class="ActionArtilleryAttack" format=3 uid="uid://d16f576xrpmd8"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_s47qh"]
-[ext_resource type="Script" uid="uid://c2kk5lxps8g0o" path="res://src/objects/actions/scope_marker/property.gd" id="2_kvtsy"]
+[ext_resource type="Script" uid="uid://c2kk5lxps8g0o" path="res://src/objects/actions/scope_markers/property.gd" id="2_kvtsy"]
 [ext_resource type="Resource" uid="uid://8lyq4dfoq6tp" path="res://asset/resources/attacks/ArtilleryAttack.tres" id="2_s47qh"]
-[ext_resource type="Script" uid="uid://cn6w5p3n3qnb5" path="res://src/objects/actions/action_operation/action_artillery_attack.gd" id="3_4q7u8"]
+[ext_resource type="Script" uid="uid://cn6w5p3n3qnb5" path="res://src/objects/actions/action_operation/action_attack/action_artillery_attack.gd" id="3_4q7u8"]
+[ext_resource type="Script" uid="uid://dd24wnoq7jsmc" path="res://src/objects/actions/scope_markers/area.gd" id="4_4q7u8"]
 
 [sub_resource type="Resource" id="Resource_4q7u8"]
 script = ExtResource("1_s47qh")
@@ -13,18 +14,29 @@ metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 script = ExtResource("2_kvtsy")
 property_index = "config:artillery_distance"
 area = SubResource("Resource_4q7u8")
-metadata/_custom_type_script = "uid://wravfxnqw3c3"
 
 [sub_resource type="Resource" id="Resource_psj7l"]
 script = ExtResource("1_s47qh")
 metadata/_custom_type_script = "uid://d0l2feo3obo7c"
 
+[sub_resource type="Resource" id="Resource_355jc"]
+script = ExtResource("1_s47qh")
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_uolq2"]
+resource_name = "ScopeMK< [HEX 0 @(0, 0)] 0 >"
+script = ExtResource("4_4q7u8")
+follow_cursor = true
+area = SubResource("Resource_355jc")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
+
 [resource]
 resource_name = "ArtilleryAttack"
 script = ExtResource("3_4q7u8")
-attack_area = SubResource("Resource_psj7l")
-attack_follow_mouse = true
+attack_layer_marker = SubResource("Resource_uolq2")
 attack_config = ExtResource("2_s47qh")
+attack_follow_mouse = true
+attack_area = SubResource("Resource_psj7l")
 action_layer_marker = SubResource("Resource_kyih3")
 action_name = "ArtilleryAttack"
 metadata/_custom_type_script = "uid://cn6w5p3n3qnb5"

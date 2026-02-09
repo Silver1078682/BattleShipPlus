@@ -7,7 +7,7 @@ extends Resource
 ## Started: When a player selects an [Action] from their hand.[br]
 ## Committed: When a player decided to take this [Action].[br]
 ## Cancelled: When a player gives up taking this [Action].[br]
-## Reverted: When a player reverts an [Action] (if the [Action] can be reverted).[br]
+## Reverted: When a player reverts an [Action] (if it can).[br]
 ## Exited: When a player exit this phase, each existing [Action] will be exited.[br]
 ## [br]
 ##
@@ -55,21 +55,32 @@ func _started() -> void:
 
 
 func _start_scope_markers() -> void:
-	if action_layer_marker:
-		action_layer_marker.start(self, _get_map_layer_marker_default_coord())
+	_call_scope_markers_list(_get_scope_markers_list(), "start", self, _get_scope_marker_fallback_coord())
 
 
 func _update_scope_markers() -> void:
-	if action_layer_marker:
-		action_layer_marker.mark(_get_map_layer_marker_default_coord())
+	_call_scope_markers_list(_get_scope_markers_list(), "mark")
 
 
-func _end_scope_markers() -> void:
-	if action_layer_marker:
-		action_layer_marker.end()
+func _input_scope_markers(event: InputEvent) -> void:
+	_call_scope_markers_list(_get_scope_markers_list(), "input", event)
 
 
-func _get_map_layer_marker_default_coord() -> Vector2i:
+func _stop_scope_markers() -> void:
+	_call_scope_markers_list(_get_scope_markers_list(), "stop")
+
+
+func _call_scope_markers_list(list: Array[ScopeMarker], method: StringName, ...args) -> void:
+	for scope_marker: ScopeMarker in list:
+		if scope_marker != null:
+			scope_marker.callv(method, args)
+
+
+func _get_scope_markers_list() -> Array[ScopeMarker]:
+	return [action_layer_marker]
+
+
+func _get_scope_marker_fallback_coord() -> Vector2i:
 	return Vector2i.ZERO
 
 #-----------------------------------------------------------------#
@@ -116,7 +127,6 @@ func commit() -> void:
 		return
 
 	if _committed():
-		Log.debug("Action %s committed" % self)
 		_commit_times += 1
 
 		if has_reached_commit_limit():
@@ -152,11 +162,9 @@ func can_revert() -> bool:
 func revert() -> void:
 	if can_revert():
 		if _reverted():
-			Log.debug("Action %s reverted" % self)
 			_commit_times -= 1
 
 			reverted.emit()
-			_end_scope_markers()
 
 
 ## Custom behavior when reverting an action.
@@ -182,7 +190,7 @@ func cancel() -> void:
 
 ## Behavior when an [Action] is cancelled
 func _cancelled() -> void:
-	_end_scope_markers()
+	_stop_scope_markers()
 
 
 #-----------------------------------------------------------------#
@@ -204,13 +212,7 @@ func input(event: InputEvent) -> bool:
 
 ## Custom input handler, should returns true if the input has been handled
 func _input(event: InputEvent) -> bool:
-	if action_layer_marker:
-		if event.is_action_pressed("rotate_forward"):
-			action_layer_marker.rotate(1)
-			_update_scope_markers()
-		if event.is_action_pressed("rotate_backward"):
-			action_layer_marker.rotate(-1)
-			_update_scope_markers()
+	_input_scope_markers(event)
 	return false
 
 #-----------------------------------------------------------------#
@@ -282,6 +284,10 @@ func _get_description() -> String:
 #-----------------------------------------------------------------#
 func _init() -> void:
 	resource_local_to_scene = true
+	if false: # verbose debug flag
+		committed.connect(Log.debug.bind("Action", self, "committed"))
+		reverted.connect(Log.debug.bind("Action", self, "reverted"))
+		cancelled.connect(Log.debug.bind("Action", self, "cancelled"))
 
 
 const _TO_STRING_FORMAT = "{%s %%s %04d}"
