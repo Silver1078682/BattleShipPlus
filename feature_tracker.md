@@ -18,17 +18,25 @@
 - [x] 移动撤回反馈优化
 
 ## 0.2.0
+- [x] !命令行接口重构
 - [x] 地图选择
 - [x] 血量攻击后立即更新
 - [x] 可调动画速度
-- [x] 命令行接口重构
 - [x] 修复move_ship顺序问题
 - [x] AttackAnim 显示距离
 - [x] CV平衡调整
 - [x] Camera缩放移动限制
 ---
+- [x] !重构Action类， 分离点亮和行为逻辑
+  - [x] 加入ScopeMarker类， 用于点亮特定区域
+- [x] !修改WarshipConfig中的 action_*属性 至 字典，使其更灵活
+- [x] !Scope类改名MapLayer
 - [x] 地图编辑器优化
+  - [x] 更灵活的基地范围
+  - [x] 基地坐标同步更新位置
 - [x] 迁移godot4.6
+
+
 
 ## TODO
 - [ ] 驱逐侦察潜艇Action

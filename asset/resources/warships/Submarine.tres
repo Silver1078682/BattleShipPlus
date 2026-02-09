@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_6gdbh"]
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_i2ij7"]
-[ext_resource type="Script" uid="uid://dm0xbwb2q1e3o" path="res://src/objects/phase/phase_action_group.gd" id="2_af3ng"]
+[ext_resource type="Script" path="res://src/objects/phase/phase_action_group.gd" id="2_af3ng"]
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="3_namkn"]
 [ext_resource type="Script" uid="uid://wravfxnqw3c3" path="res://src/objects/actions/scope_marker/property.gd" id="4_af3ng"]
 [ext_resource type="Script" uid="uid://cjm2ioyh0nue4" path="res://src/objects/actions/action_operation/action_move/action_move.gd" id="5_65ayq"]
