@@ -15,6 +15,12 @@ func should_update_on_cursor_changed():
 	return follow_cursor
 
 
+func start(p_action: Action, _coord: Vector2i) -> void:
+	super(p_action, _coord)
+	if not area:
+		Log.warning("ScopeMarkerArea starts, but with no area set")
+
+
 func mark_map_layer(_map_layer: MapLayer, coord: Vector2i) -> void:
 	area.offset = Cursor.coord if follow_cursor else coord
 	_map_layer.set_area(area)
@@ -24,7 +30,7 @@ func unmark_map_layer(_map_layer: MapLayer) -> void:
 	_map_layer.clear_mask()
 
 
-func get_coords() -> void:
+func get_coords() -> Dictionary[Vector2i, int]:
 	return area.get_coords()
 
 

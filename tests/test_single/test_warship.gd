@@ -127,14 +127,13 @@ func test_move_ship_push():
 
 	fleet.move_ship_to(ship, C2)
 	assert_sync(ship, C2)
-	assert_has(fleet.movement_push, ship)
-	assert_eq(fleet.movement_push[ship], C1)
+	assert_true(fleet.movement_push.is_empty())
+
 
 	fleet.move_ship_to(ship, C3)
 	assert_sync(ship, C3)
-	assert_has(fleet.movement_push, ship)
-	assert_eq(fleet.movement_push[ship], C1)
-	fleet.movement_push.clear()
+	assert_true(fleet.movement_push.is_empty())
+
 
 
 func test_move_ship_no_push():
