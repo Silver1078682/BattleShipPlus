@@ -4,10 +4,6 @@
 [ext_resource type="Resource" uid="uid://d0dpusquoqm0b" path="res://asset/resources/attacks/Default.tres" id="2_x38sv"]
 [ext_resource type="Script" uid="uid://bmybf2l7grmym" path="res://src/objects/actions/action_operation/action_attack.gd" id="3_4c4rw"]
 
-[sub_resource type="Resource" id="Resource_aejnv"]
-script = ExtResource("1_efgfd")
-metadata/_custom_type_script = "uid://d0l2feo3obo7c"
-
 [sub_resource type="Resource" id="Resource_3gqq6"]
 script = ExtResource("1_efgfd")
 radius = 4
@@ -19,8 +15,6 @@ resource_name = "Attack"
 script = ExtResource("3_4c4rw")
 attack_area = SubResource("Resource_3gqq6")
 attack_follow_mouse = true
-action_area = SubResource("Resource_aejnv")
-follow_mouse = true
 revertible = false
 check_cursor_mine = false
 action_name = "Attack"

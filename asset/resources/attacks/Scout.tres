@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="AttackConfigScout" format=3 uid="uid://b451dwj5xwoum"]
+[gd_resource type="Resource" script_class="AttackConfigScout" format=3 uid="uid://6kc86qwi5i06"]
 
 [ext_resource type="PackedScene" uid="uid://b1yerg1ur6ei8" path="res://asset/resources/attacks/anims/Normal.tscn" id="1_ra681"]
-[ext_resource type="Script" uid="uid://dujguwgjdxarp" path="res://src/objects/attack/configs/attack_config_scout.gd" id="2_2d3qu"]
+[ext_resource type="Script" path="res://src/objects/attack/configs/attack_config_scout.gd" id="2_2d3qu"]
 
 [resource]
-resource_name = "ScoutAircraft"
+resource_name = "Scout"
 script = ExtResource("2_2d3qu")
 name = "Scout"

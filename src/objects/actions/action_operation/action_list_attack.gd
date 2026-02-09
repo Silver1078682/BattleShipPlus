@@ -1,4 +1,4 @@
-class_name ActionDestroyerAttack
+class_name ActionListAttack
 extends ActionAttack
 
 @export var apply_list: Array[StringName]
