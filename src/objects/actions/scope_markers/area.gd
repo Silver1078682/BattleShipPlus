@@ -21,17 +21,26 @@ func start(p_action: Action, _coord: Vector2i) -> void:
 		Log.warning("ScopeMarkerArea starts, but with no area set")
 
 
-func mark_map_layer(_map_layer: MapLayer, coord: Vector2i) -> void:
-	area.offset = Cursor.coord if follow_cursor else coord
+func _mark_map_layer(_map_layer: MapLayer) -> void:
+	area.offset = Cursor.coord if follow_cursor else offset
 	_map_layer.set_area(area)
 
 
-func unmark_map_layer(_map_layer: MapLayer) -> void:
+func _unmark_map_layer(_map_layer: MapLayer) -> void:
 	_map_layer.clear_mask()
 
 
 func get_coords() -> Dictionary[Vector2i, int]:
 	return area.get_coords()
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("rotate_forward"):
+		area.rotate(1)
+		mark()
+	if event.is_action_pressed("rotate_backward"):
+		area.rotate(-1)
+		mark()
 
 
 func rotate(times: int) -> void:

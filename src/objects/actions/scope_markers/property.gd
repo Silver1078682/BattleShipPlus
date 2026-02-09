@@ -17,4 +17,6 @@ func get_area() -> Area:
 		area.radius = value
 		if action.ship.is_exposed():
 			area.radius -= exposure_punishment
+	else:
+		Log.warning("ScopeMarkerProperty using an area that is neither AreaHex nor AreaRing")
 	return area

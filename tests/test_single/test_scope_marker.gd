@@ -17,9 +17,9 @@ func test_basic() -> void:
 	for coord in COORDS:
 		var scpmk: ScopeMarker = partial_double(ScopeMarker).new()
 		scpmk.start(null, coord)
-		assert_called(scpmk.mark_map_layer.bind(coord))
+		assert_called(scpmk._mark_map_layer)
 		scpmk.end()
-		assert_called(scpmk.unmark_map_layer)
+		assert_called(scpmk._unmark_map_layer)
 
 
 func test_area():
@@ -30,7 +30,14 @@ func test_area():
 		scpmk.area = area
 		assert_eq(scpmk.get_coords(), area.get_coords())
 
-		scpmk.map_layer = Map.Layer.ACTION_LAYER
-		scpmk.start(null, coord)
-		assert_eq(scpmk.get_coords(), Map.instance.action_layer)
-		scpmk.end()
+		var map_layers = {
+			Map.Layer.ACTION_LAYER: Map.instance.action_layer,
+			Map.Layer.ATTACK_LAYER: Map.instance.attack_layer,
+			Map.Layer.AERIAL_DEFENSE_LAYER: Map.instance.aerial_defense_layer,
+		}
+		for map_layer_id in map_layers:
+			var map_layer = map_layers[map_layer_id]
+			scpmk.map_layer = map_layer_id
+			scpmk.start(null, coord)
+			assert_eq(scpmk.get_coords(), map_layer.get_coords())
+			scpmk.end()

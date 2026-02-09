@@ -1,56 +1,42 @@
 class_name ScopeMarker
 extends Resource
 ## [ScopeMarker] marks a zone in a [Layer]
+##
+## An [ScopeMarker] can be complicated. for instance, it may react to user's input, and change dynamically
+## call [method.start] and [method.end] to make it work
 
 @export var map_layer: Map.Layer
 var action: Action
 
 #-----------------------------------------------------------------#
-var has_started := false
+var offset: Vector2i
+var _has_started := false
 
 
-func start(p_action: Action, _coord: Vector2i) -> void:
-	if has_started:
+func has_started() -> bool:
+	return _has_started
+
+
+func start(p_action: Action, p_offset: Vector2i) -> void:
+	if _has_started:
 		Log.warning("ScopeMarker already started")
 		return
 	action = p_action
-	has_started = false
-	unmark()
+	offset = p_offset
+	_has_started = true
+	mark()
 	if should_update_on_cursor_changed():
-		Game.instance.cursor.coord_changed.disconnect(mark)
+		Game.instance.cursor.coord_changed.connect(mark.unbind(1))
 
 
-func should_update_on_cursor_changed():
-	return false
-
-
-#-----------------------------------------------------------------#
-func rotate(_times: int) -> void:
-	return
-
-
-#-----------------------------------------------------------------#
-func mark(_coord: Vector2i) -> void:
-	mark_map_layer(_get_map_layer(), _coord)
-
-
-func unmark() -> void:
-	unmark_map_layer(_get_map_layer())
-	has_started = true
-	action = p_action
-	mark(_coord)
-	if should_update_on_cursor_changed():
-		Game.instance.cursor.coord_changed.connect(mark)
-
-
-func end() -> void:
-	if not has_started:
-		Log.warning("ScopeMarker not started, but end is called")
+func stop() -> void:
+	if not _has_started:
+		Log.warning("ScopeMarker not started, but stop is called")
 		return
-	has_started = false
+	_has_started = false
 	unmark()
 	if should_update_on_cursor_changed():
-		Game.instance.cursor.coord_changed.disconnect(mark)
+		Game.instance.cursor.coord_changed.disconnect(mark.unbind(1))
 
 
 func should_update_on_cursor_changed():
@@ -58,26 +44,30 @@ func should_update_on_cursor_changed():
 
 
 #-----------------------------------------------------------------#
-func rotate(_times: int) -> void:
-	return
+func input(event: InputEvent) -> void:
+	_input(event)
+
+
+func _input(_event: InputEvent) -> void:
+	pass
 
 
 #-----------------------------------------------------------------#
-func mark(_coord: Vector2i) -> void:
-	mark_map_layer(_get_map_layer(), _coord)
+func mark() -> void:
+	_mark_map_layer(_get_map_layer())
 
 
 func unmark() -> void:
-	unmark_map_layer(_get_map_layer())
+	_unmark_map_layer(_get_map_layer())
 
 
 #-----------------------------------------------------------------#
 ## virtual function
-func mark_map_layer(_map_layer: MapLayer, _coord: Vector2i) -> void:
+func _mark_map_layer(_map_layer: MapLayer) -> void:
 	pass
 
 
-func unmark_map_layer(_map_layer: MapLayer) -> void:
+func _unmark_map_layer(_map_layer: MapLayer) -> void:
 	pass
 
 
