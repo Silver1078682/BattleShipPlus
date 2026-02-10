@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/objects/phase/phase_action_group.gd" id="3_vblac"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="4_kq5p7"]
 [ext_resource type="Resource" uid="uid://coefqffem7op3" path="res://asset/resources/actions/TorpedoAttack.tres" id="5_vblac"]
+[ext_resource type="Resource" uid="uid://c535gmif13wlf" path="res://asset/resources/actions/Scout.tres" id="6_ebtv2"]
 
 [sub_resource type="Resource" id="Resource_k7y1e"]
 resource_name = "<C:ArtilleryAttack>"
@@ -22,6 +23,11 @@ resource_name = "<C:TorpedoAttack>"
 script = ExtResource("3_vblac")
 course = Array[ExtResource("1_4jpoq")]([ExtResource("5_vblac")])
 
+[sub_resource type="Resource" id="Resource_fx13b"]
+resource_name = "<C:Scout>"
+script = ExtResource("3_vblac")
+course = Array[ExtResource("1_4jpoq")]([ExtResource("6_ebtv2")])
+
 [resource]
 resource_name = "LightCruiser"
 script = ExtResource("1_uwdgv")
@@ -37,6 +43,7 @@ cost = 2
 action_groups = Dictionary[String, ExtResource("3_vblac")]({
 "ArtilleryAttack": SubResource("Resource_k7y1e"),
 "Movement": SubResource("Resource_ebtv2"),
+"Scout": SubResource("Resource_fx13b"),
 "TorpedoAttack": SubResource("Resource_5hoj7")
 })
 metadata/_custom_type_script = "uid://pixh8p210jgk"

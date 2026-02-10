@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="ActionAerialAttack" format=3 uid="uid://c535gmif13wlf"]
+
+[ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_ltmlt"]
+[ext_resource type="Script" uid="uid://dd24wnoq7jsmc" path="res://src/objects/actions/scope_markers/area.gd" id="2_ivv0y"]
+[ext_resource type="Resource" uid="uid://6kc86qwi5i06" path="res://asset/resources/attacks/Scout.tres" id="3_ft4rc"]
+[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_attack/action_aerial_attack.gd" id="4_h1vsl"]
+[ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="4_us7dx"]
+[ext_resource type="Script" uid="uid://cugjmo0ixwxbp" path="res://src/objects/actions/scope_markers/line.gd" id="5_iwjye"]
+
+[sub_resource type="Resource" id="Resource_0iww7"]
+script = ExtResource("1_ltmlt")
+radius = 3
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_2htky"]
+resource_name = "ScopeMK< [HEX 3 @(0, 0)] 0 >"
+script = ExtResource("2_ivv0y")
+area = SubResource("Resource_0iww7")
+metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
+
+[sub_resource type="Resource" id="Resource_h01d8"]
+script = ExtResource("1_ltmlt")
+radius = 3
+metadata/_custom_type_script = "uid://d0l2feo3obo7c"
+
+[sub_resource type="Resource" id="Resource_rfph3"]
+script = ExtResource("4_us7dx")
+
+[sub_resource type="Resource" id="Resource_8p6rd"]
+resource_name = "<ScopeMarkerLine>"
+script = ExtResource("5_iwjye")
+area = SubResource("Resource_rfph3")
+metadata/_custom_type_script = "uid://cugjmo0ixwxbp"
+
+[resource]
+resource_name = "Scout"
+script = ExtResource("4_h1vsl")
+attack_layer_marker = SubResource("Resource_8p6rd")
+attack_config = ExtResource("3_ft4rc")
+attack_follow_mouse = true
+attack_area = SubResource("Resource_h01d8")
+action_layer_marker = SubResource("Resource_2htky")
+revertible = false
+check_cursor_fleet = false
+check_cursor_mine = false
+action_name = "Scout"
+metadata/_custom_type_script = "uid://bmybf2l7grmym"

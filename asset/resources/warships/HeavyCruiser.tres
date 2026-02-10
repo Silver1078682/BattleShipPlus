@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://pixh8p210jgk" path="res://src/objects/roles/warships/warship_config.gd" id="1_v0ash"]
 [ext_resource type="Script" uid="uid://bwgwp1d0l2g0n" path="res://src/objects/actions/action.gd" id="1_vfq1d"]
 [ext_resource type="Resource" uid="uid://d16f576xrpmd8" path="res://asset/resources/actions/ArtilleryAttack.tres" id="2_x4ugh"]
+[ext_resource type="Resource" uid="uid://c535gmif13wlf" path="res://asset/resources/actions/Scout.tres" id="5_gqt1f"]
 [ext_resource type="Script" path="res://src/objects/phase/phase_action_group.gd" id="6_6uqgl"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="7_6uqgl"]
 
@@ -15,6 +16,11 @@ course = Array[ExtResource("1_vfq1d")]([ExtResource("2_x4ugh")])
 resource_name = "<C:Move>"
 script = ExtResource("6_6uqgl")
 course = Array[ExtResource("1_vfq1d")]([ExtResource("7_6uqgl")])
+
+[sub_resource type="Resource" id="Resource_7wofe"]
+resource_name = "<C:Scout>"
+script = ExtResource("6_6uqgl")
+course = Array[ExtResource("1_vfq1d")]([ExtResource("5_gqt1f")])
 
 [resource]
 resource_name = "HeavyCruiser"
@@ -29,6 +35,7 @@ artillery_level = 2
 cost = 2
 action_groups = Dictionary[String, ExtResource("6_6uqgl")]({
 "ArtilleryAttack": SubResource("Resource_c04tx"),
-"Movement": SubResource("Resource_6uqgl")
+"Movement": SubResource("Resource_6uqgl"),
+"Scout": SubResource("Resource_7wofe")
 })
 metadata/_custom_type_script = "uid://pixh8p210jgk"

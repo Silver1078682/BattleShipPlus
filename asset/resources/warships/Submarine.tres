@@ -32,7 +32,6 @@ metadata/_custom_type_script = "uid://cjm2ioyh0nue4"
 resource_name = "<S0 C2 E0>"
 script = ExtResource("2_af3ng")
 course = Array[ExtResource("1_6gdbh")]([SubResource("Resource_ilqd1"), ExtResource("6_xh8sw")])
-metadata/_custom_type_script = "uid://dm0xbwb2q1e3o"
 
 [resource]
 resource_name = "Submarine"

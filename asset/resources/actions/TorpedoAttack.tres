@@ -22,9 +22,13 @@ metadata/_custom_type_script = "uid://dd24wnoq7jsmc"
 script = ExtResource("2_km0cf")
 metadata/_custom_type_script = "uid://dh8llcoq6d73a"
 
+[sub_resource type="Resource" id="Resource_agsgr"]
+script = ExtResource("2_km0cf")
+
 [sub_resource type="Resource" id="Resource_f0dxl"]
 resource_name = "<ScopeMarkerLine>"
 script = ExtResource("5_agsgr")
+area = SubResource("Resource_agsgr")
 metadata/_custom_type_script = "uid://cugjmo0ixwxbp"
 
 [resource]
