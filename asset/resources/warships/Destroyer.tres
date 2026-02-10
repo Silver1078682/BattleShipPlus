@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://src/objects/phase/phase_action_group.gd" id="3_ac4na"]
 [ext_resource type="Resource" uid="uid://c6qnv3nv5xnxl" path="res://asset/resources/actions/Move.tres" id="4_ac4na"]
 [ext_resource type="Resource" uid="uid://b8o22hevp88nw" path="res://asset/resources/actions/AntiSubmarineAttack.tres" id="5_ac4na"]
-[ext_resource type="Resource" uid="uid://coefqffem7op3" path="res://asset/resources/actions/TorpedoAttack.tres" id="6_ac4na"]
 [ext_resource type="Resource" uid="uid://c535gmif13wlf" path="res://asset/resources/actions/Scout.tres" id="7_p0qda"]
 
 [sub_resource type="Resource" id="Resource_p0qda"]
@@ -19,20 +18,19 @@ resource_name = "<C:Move>"
 script = ExtResource("3_ac4na")
 course = Array[ExtResource("1_x0l2m")]([ExtResource("4_ac4na")])
 
+[sub_resource type="Resource" id="Resource_spy7e"]
+resource_name = "<C:Scout>"
+script = ExtResource("3_ac4na")
+course = Array[ExtResource("1_x0l2m")]([ExtResource("7_p0qda")])
+
 [sub_resource type="Resource" id="Resource_7qoob"]
 resource_name = "<C:AntiSubmarineAttack>"
 script = ExtResource("3_ac4na")
 course = Array[ExtResource("1_x0l2m")]([ExtResource("5_ac4na")])
 
 [sub_resource type="Resource" id="Resource_dtvxx"]
-resource_name = "<C:TorpedoAttack>"
+resource_name = "<EmptyActionGroup>"
 script = ExtResource("3_ac4na")
-course = Array[ExtResource("1_x0l2m")]([ExtResource("6_ac4na")])
-
-[sub_resource type="Resource" id="Resource_spy7e"]
-resource_name = "<C:Scout>"
-script = ExtResource("3_ac4na")
-course = Array[ExtResource("1_x0l2m")]([ExtResource("7_p0qda")])
 
 [resource]
 resource_name = "Destroyer"

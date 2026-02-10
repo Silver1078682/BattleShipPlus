@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ActionAerialAttack" format=3 uid="uid://c535gmif13wlf"]
 
 [ext_resource type="Script" uid="uid://d0l2feo3obo7c" path="res://src/objects/map/areas/area_hex.gd" id="1_ltmlt"]
-[ext_resource type="Script" uid="uid://dd24wnoq7jsmc" path="res://src/objects/actions/scope_markers/area.gd" id="2_ivv0y"]
+[ext_resource type="Script" uid="uid://bkkfjvt1rf0ed" path="res://src/objects/actions/scope_markers/area.gd" id="2_ivv0y"]
 [ext_resource type="Resource" uid="uid://6kc86qwi5i06" path="res://asset/resources/attacks/Scout.tres" id="3_ft4rc"]
-[ext_resource type="Script" uid="uid://d3npu18ujrako" path="res://src/objects/actions/action_operation/action_attack/action_aerial_attack.gd" id="4_h1vsl"]
+[ext_resource type="Script" uid="uid://p7rp4xrtgepj" path="res://src/objects/actions/action_operation/action_attack/action_aerial_attack.gd" id="4_h1vsl"]
 [ext_resource type="Script" uid="uid://dh8llcoq6d73a" path="res://src/objects/map/areas/area_line.gd" id="4_us7dx"]
-[ext_resource type="Script" uid="uid://cugjmo0ixwxbp" path="res://src/objects/actions/scope_markers/line.gd" id="5_iwjye"]
+[ext_resource type="Script" uid="uid://wo8acncy0bfc" path="res://src/objects/actions/scope_markers/line.gd" id="5_iwjye"]
 
 [sub_resource type="Resource" id="Resource_0iww7"]
 script = ExtResource("1_ltmlt")
